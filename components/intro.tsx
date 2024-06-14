@@ -15,9 +15,9 @@ export default function Intro() {
         animate={{opacity: 1, scale: 1 }}
         transition={{type: "tween", delay: 0.1, duration: 0.3}}
         >
-        <p className="md:text-7xl sm:text-4xl text-4xl font-bold text-black">
+        <h1 className="md:text-7xl sm:text-4xl text-4xl font-bold text-black">
             Hi! I am Moiz Saleem
-        </p>
+        </h1>
         <h1 className="md:text-9xl sm:text-6xl text-7xl font-bold md:py-6 py-3">
             <TypeAnimation
               
