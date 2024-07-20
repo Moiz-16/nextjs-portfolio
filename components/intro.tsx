@@ -9,7 +9,7 @@ import { FaGithubSquare } from 'react-icons/fa';
 
 export default function Intro() {
   return (
-    <section>
+    <section className=''>
         <motion.div className='flex flex-col items-center justify-center'
         initial={{opacity: 0, scale: 0 }}
         animate={{opacity: 1, scale: 1 }}

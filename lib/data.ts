@@ -2,7 +2,7 @@ import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
-// import corpcommentImg from "@/public/corpcomment.png";
+import placeholderImg from "@/public/placeholder.png";
 // import rmtdevImg from "@/public/rmtdev.png";
 // import wordanalyticsImg from "@/public/wordanalytics.png";
 
@@ -63,21 +63,21 @@ export const projectsData = [
     description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     tags: ["One", "Two", "Three", "Four", "Five"],
-    // imageUrl: corpcommentImg,
+    imageUrl: placeholderImg,
   },
   {
     title: "Placeholder 2",
     description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     tags: ["One", "Two", "Three", "Four", "Five"],
-    // imageUrl: rmtdevImg,
+    imageUrl: placeholderImg,
   },
   {
     title: "Placeholder 3",
     description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     tags: ["One", "Two", "Three", "Four", "Five"],
-    // imageUrl: wordanalyticsImg,
+    imageUrl: placeholderImg,
   },
 ] as const;
 
