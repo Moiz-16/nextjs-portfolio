@@ -1,6 +1,7 @@
 import Header from '@/components/header'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import ActiveSectionContextProvider from '@/context/active-section-context'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,9 +23,13 @@ export default function RootLayout({
         <div className=' bg-[#65e8ff] absolute top[-1rem] -z-10 left-[-35rem] h-[18.25rem]
          w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem]
          lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem]'></div>
+
+        <ActiveSectionContextProvider>
+          <Header/>
+          {children}
+
+        </ActiveSectionContextProvider>
         
-        <Header/>
-        {children}
       </body>
     </html>
   )
