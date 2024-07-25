@@ -2,14 +2,20 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TypeAnimation } from "react-type-animation";
 import { BsArrowRight, BsGithub, BsLinkedin } from 'react-icons/bs'
 import { FaGithubSquare } from 'react-icons/fa';
+import { useInView} from 'react-intersection-observer'
+import { useActiveSectionContext } from '@/context/active-section-context'
+import { useSectionInView } from '@/lib/hooks';
+
 
 export default function Intro() {
+    const { ref } = useSectionInView("Home", 0.5)
+
   return (
-    <section id='home' className='scroll-mt-[100rem]'>
+    <section ref={ref} id='home' className='scroll-mt-[100rem]'>
         <motion.div className='flex flex-col items-center justify-center'
         initial={{opacity: 0, scale: 0 }}
         animate={{opacity: 1, scale: 1 }}
