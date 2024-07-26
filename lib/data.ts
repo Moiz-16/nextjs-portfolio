@@ -38,22 +38,22 @@ export const experiencesData = [
     title: "Placeholder 1",
     description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    // icon: React.createElement(LuGraduationCap),
+    icon: React.createElement(LuGraduationCap),
     date: "2024 - present",
   },
   {
     title: "Placeholder 2",
     description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    // icon: React.createElement(CgWorkAlt),
+    icon: React.createElement(CgWorkAlt),
     date: "2024 - present",
   },
   {
     title: "Placeholder 3",
     description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    // icon: React.createElement(FaReact),
-    date: "2024 - present",
+    icon: React.createElement(FaReact),
+    date: "2024",
   },
 ] as const;
 
