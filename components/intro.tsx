@@ -55,12 +55,14 @@ export default function Intro() {
 
             </Link>
             <a className='bg-white p-4 flex items-center gap-2 text-gray-700 rounded-full
-            focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer border border-black/10'
+            focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer border
+            dark:text-white/60 dark:bg-white/10 border-black/10'
             href='https://linkedin.com' target="_blank">
                 <BsLinkedin/>
             </a>
             <a className='bg-white p-4 flex items-center gap-2 text-gray-700 rounded-full text-[1.25rem]
-            focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer border border-black/10'
+            focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer border
+            dark:text-white/60 dark:bg-white/10 border-black/10'
             href='https://github.com' target="_blank">
                 <FaGithubSquare/>
             </a>
