@@ -16,29 +16,35 @@ export default function About() {
 
     initial = {{opacity:0, y: 100 }}
     animate = {{opacity:100, y: 0 }}
+    transition={{ delay: 0.175 }}
     id="about"
     >
         <SectionHeading>About me</SectionHeading>
-        <p className="mb-3">
+        <p className="mb-5">
                 My name is{" "}
                 <span className="  font-semibold">Moiz Saleem</span>,
-                I am a proactive and driven{" "}
+                I am a proactive and driven student pursuing a Bachelor's degree in{" "}
                 <span className="  font-semibold">
                   Mathematics and Computer Science
                 </span>{" "}
-                undergraduate student at the
+                at the
                 <span className=" font-semibold">
                   {" "}
                   University of Bristol
                 </span>{" "}
-                with a passion for mathematics, finance and technology. I have
-                cultivated valuable experience in these fields through a
-                multitude of extracurricular engagements and personal projects,
-                and my primary interests centre on, AI & machine learning,
-                financial technology and probability and statistics. I'm excited
-                to connect with like-minded individuals and explore the
-                limitless potential in the worlds of mathematics and technology.
+                with aspirations to become a quantitive developer. 
               </p>
+        <p className="mb-5">
+        My academic journey has equipped me with a solid foundation in both theoretical 
+        and applied mathematics, as well as extensive programming skills. I have a deep-seated
+        passion for leveraging mathematical models and computational techniques to solve
+        real-world problems, particularly in the finance industry, and I am also passionate 
+        about developing and optimising algorithmic trading strategies.
+        </p>
+        <p >
+        I am excited to connect with like-minded individuals and explore opportunities that allow me
+        to apply my skills. Feel free to reach out to me on LinkedIn or email.
+        </p>
 
     </motion.section>
   )

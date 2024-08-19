@@ -31,6 +31,7 @@ export default function Experience() {
             <div key={index} ref={ref} className="vertical-timeline-element">
               <VerticalTimelineElement
                 contentStyle={{
+                  
                   background:
                   theme === "light" ? "#f3f4f6" : "rgba(255, 255, 255, 0.05)",
                   color: '#000', 
@@ -39,7 +40,7 @@ export default function Experience() {
                   textAlign: 'left',
                   padding: '1.3rem 2rem',
                 }}
-                dateClassName=''
+                dateClassName='dark'
                 contentArrowStyle={{
                   borderRight:
                     theme === "light"
@@ -48,6 +49,7 @@ export default function Experience() {
                 }}
                 visible={inView}
                 // date={item.date}
+                
              
                 icon={item.icon}
               
@@ -57,9 +59,12 @@ export default function Experience() {
                   fontSize: "1.5rem",
                 }}
               >
-            <h3 className="font-semibold capitalize dark:text-white/75">{item.title}</h3>
-            {/* <p className="font-normal !mt-0">{item.location}</p> */}
-            <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
+            <div className='flex flex-row justify-between'>
+              <h3 className="font-semibold capitalize dark:text-white/75">{item.title}</h3>
+              <h3 className="font-semibold capitalize dark:text-white/75">{item.date}</h3>
+            </div>
+            <p className="font-normal dark:text-white/75 !mt-0">{item.subtitle}</p>
+            <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75 whitespace-pre-line">
                 {item.description}</p>
               </VerticalTimelineElement>
             </div>

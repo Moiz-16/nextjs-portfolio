@@ -1,10 +1,15 @@
 import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
+import { RiRobot2Line } from "react-icons/ri";
+import { FiDatabase } from "react-icons/fi";
+
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
-import placeholderImg from "@/public/placeholder.png";
-// import rmtdevImg from "@/public/rmtdev.png";
-// import wordanalyticsImg from "@/public/wordanalytics.png";
+import scotlandImg from "@/public/scotlandyard_ai.png";
+import appImg from "@/public/dropkick_app.png";
+import heImg from "@/public/he_project.png";
+
+
 
 export const links = [
   {
@@ -35,49 +40,69 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: "Placeholder 1",
+    title: "University of Bristol",
+    subtitle: "BSc Mathematics and Computer Science",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    `Modules Including:
+    Imperative and Functional Programming
+    Object-Oriented Programming and Algorithms I
+    Probability and Statistics
+    Linear Algebra`,
     icon: React.createElement(LuGraduationCap),
-    date: "2024 - present",
+    date: "Sep 2023 - Present",
   },
   {
-    title: "Placeholder 2",
+    title: "WorldQuant University",
+    subtitle: "Applied Data Science Lab",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    icon: React.createElement(CgWorkAlt),
-    date: "2024 - present",
+    `• Developed an ARMA time-series model for forecasting particulate matter levels in Kenya, leveraging MongoDB datasets and performing comprehensive time series analysis for accuracy.
+    • Built a linear regression model with a machine learning pipeline, incorporating feature encoding and imputation, to predict apartment prices in Argentina.`,
+    icon: React.createElement(FiDatabase),
+    date: "Jun 2024 - Present",
   },
   {
-    title: "Placeholder 3",
+    title: "Encode Club",
+    subtitle: "AI Foundation Bootcamp",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    `• Explored the architecture and applications of LLMs like ChatGPT and LLaMA-2, including model training methods and prompt engineering.
+    • Integrated ChatGPT API with a local web UI to create an adjustable-parameter chatbot.
+    • Used the Stable Diffusion Model in Python for text-to-image generation, exploring various techniques.`,
+    icon: React.createElement(RiRobot2Line),
+    date: "Feb 2024 - Mar 2024",
+  },
+  {
+    title: "KETS Quantum Security LTD",
+    subtitle: "",
+    description:
+    `• Collaborated on a group project to research quantum technology, leading to a presentation on quantum computing fundamentals.
+    • Delivered the presentation to the company and effectively addressed follow-up questions.
+    • Engaged with external experts to deepen understanding of quantum technologies and industry insights.`,
     icon: React.createElement(FaReact),
-    date: "2024",
+    date: "August 2021",
   },
 ] as const;
 
 export const projectsData = [
   {
-    title: "Placeholder 1",
+    title: "Scotland Yard AI",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    tags: ["One", "Two", "Three", "Four", "Five"],
-    imageUrl: placeholderImg,
+    "AI agent designed to play the Scotlandyard boardgame, implementing Dijkstra’s algorithm and a Mini-Max game tree to optimize the AI agents winning performance based on a custom scoring function.",
+    tags: ["Java","OOP", "Design Patterns"],
+    imageUrl: scotlandImg,
   },
   {
-    title: "Placeholder 2",
+    title: "Mobile App Prototype",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    tags: ["One", "Two", "Three", "Four", "Five"],
-    imageUrl: placeholderImg,
+    "Prototype for a cross-platform mobile application that acted as a calendar for limited shoe releases using Flutter and a GraphQL API to connect to a local Node.JS headless CMS (Strapi).",
+    tags: ["Flutter", "Dart", "UI/UX"],
+    imageUrl: appImg,
   },
   {
-    title: "Placeholder 3",
+    title: "HE+ Research Project",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    tags: ["One", "Two", "Three", "Four", "Five"],
-    imageUrl: placeholderImg,
+    "Short research project as part of the Cambridge HE+ programme under the theme of 'uncertainty', focusing on how quantum computers have the ability to affect the security of data and the potential implications of Shor's algorithm on RSA encryption.",
+    tags: ["Research", "Quantum Technology"],
+    imageUrl: heImg,
   },
 ] as const;
 
@@ -96,10 +121,12 @@ export const skillsData = [
   "Next.js",
   "Git",
   "GitHub",
+  "Excel",
+  "Pandas",
   "Probabillity",
   "Statistics",
   "Algorithms",
   "Figma",
-  "Notion",
+  
 
 ] as const;
