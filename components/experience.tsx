@@ -24,9 +24,9 @@ export default function Experience() {
       <SectionHeading>My experience</SectionHeading>
       <VerticalTimeline lineColor=''>
         {experiencesData.map((item, index) => {
-          const { ref, inView } = useInView({
-            triggerOnce: true,
-          });
+          // const { ref, inView } = useInView({
+          //   triggerOnce: true,
+          // });
           return (
             <div key={index} ref={ref} className="vertical-timeline-element">
               <VerticalTimelineElement
@@ -47,7 +47,9 @@ export default function Experience() {
                       ? "0.4rem solid #9ca3af"
                       : "0.4rem solid rgba(255, 255, 255, 0.5)",
                 }}
-                visible={inView}
+                // visible={inView}
+                visible={true}
+
                 // date={item.date}
                 
              
