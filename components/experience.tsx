@@ -61,11 +61,10 @@ export default function Experience() {
                   fontSize: "1.5rem",
                 }}
               >
-            <div className='flex flex-row justify-between'>
-              <h3 className="font-semibold capitalize dark:text-white/75">{item.title}</h3>
-              <h3 className="font-semibold capitalize dark:text-white/75">{item.date}</h3>
-            </div>
-            <p className="font-normal dark:text-white/75 !mt-0">{item.subtitle}</p>
+            <h3 className="font-semibold capitalize dark:text-white/75">{item.title}</h3>
+            <h3 className="font-normal dark:text-white/75 !mt-0">{item.subtitle}</h3>
+            <p className="font-normal capitalize dark:text-white/75">{item.date}</p>
+
             <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75 whitespace-pre-line">
                 {item.description}</p>
               </VerticalTimelineElement>
