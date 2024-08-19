@@ -23,7 +23,7 @@ export default function About() {
         <p className="mb-5">
                 My name is{" "}
                 <span className="  font-semibold">Moiz Saleem</span>,
-                I am a proactive and driven student pursuing a Bachelor's degree in{" "}
+                I am a proactive and driven student pursuing a Bachelor&apos;s degree in{" "}
                 <span className="  font-semibold">
                   Mathematics and Computer Science
                 </span>{" "}
@@ -43,7 +43,7 @@ export default function About() {
         </p>
         <p >
         I am excited to connect with like-minded individuals and explore opportunities that allow me
-        to apply my skills. Feel free to reach out to me on LinkedIn or email.
+        to apply my skills. Feel free to reach out to me on LinkedIn or email!
         </p>
 
     </motion.section>
