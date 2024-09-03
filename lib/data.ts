@@ -8,6 +8,9 @@ import { LuGraduationCap } from "react-icons/lu";
 import scotlandImg from "@/public/scotlandyard_ai.png";
 import appImg from "@/public/dropkick_app.png";
 import heImg from "@/public/he_project.png";
+import fxBotImg from "@/public/fx_trading_bot.png";
+import gptBotImg from "@/public/gpt_bot.png";
+
 
 
 
@@ -83,6 +86,20 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
+  {
+    title: "Forex/Crypto Trading Bot",
+    description:
+    "5-min scalping strategy using VWAP, Bollinger Bands, and RSI indicators produced in Python. Achieved impressive 123% returns with a Sharpe ratio of 2.21 on EURUSD currency pair over a 2 year backtest.",
+    tags: ["Python","Pandas", "MQL"],
+    imageUrl: fxBotImg,
+  },
+  {
+    title: "ChatGPT News Trader",
+    description:
+    "System that processes real-time news events, utilizing the Alpaca and OpenAI APIs to feed headlines to ChatGPT, generating impact ratings and placing trades based on the predicted market influence.",
+    tags: ["JavaScript","ChatGPT", "API"],
+    imageUrl: gptBotImg,
+  },
   {
     title: "Scotland Yard AI",
     description:
