@@ -28,7 +28,7 @@ export default function Experience() {
           //   triggerOnce: true,
           // });
           return (
-            <div key={index} ref={ref} className="vertical-timeline-element">
+            <div key={index} ref={ref} className="vertical-timeline-element group">
               <VerticalTimelineElement
                 contentStyle={{
                   
@@ -61,8 +61,8 @@ export default function Experience() {
                   fontSize: "1.5rem",
                 }}
               >
-            <h3 className="font-semibold capitalize dark:text-white/75">{item.title}</h3>
-            <h3 className="font-normal dark:text-white/75 !mt-0">{item.subtitle}</h3>
+            <h3 className="font-semibold capitalize dark:group-hover:text-gray-400 group-hover:text-blue-500  dark:text-white/75">{item.title}</h3>
+            <h3 className="font-normal dark:group-hover:text-gray-400 group-hover:text-blue-400  dark:text-white/75 !mt-0">{item.subtitle}</h3>
             <p className="font-normal capitalize dark:text-white/75">{item.date}</p>
 
             <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75 whitespace-pre-line">

@@ -20,8 +20,8 @@ export default function RootLayout({
 }) {
   return (
     
-    <html lang="en" className='!scroll-smooth'>
-      <body className='${inter.className} bg-gray-50 text-gray-950 pt-28 sm:pt-40 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90'>
+    <html lang="en" className='!scroll-smooth ' >
+      <body className='${inter.className} overscroll-none bg-gray-50 text-gray-950 pt-28 sm:pt-40 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90'>
         <div className=' bg-[#1e96fc] absolute top[-6rem] -z-10 right-[11rem] h-[29.25rem]
          w-[31.25rem] rounded-full blur-[9rem] sm:w-[68.75rem]'></div>
         <div className='  bg-[#072ac8] absolute top[-1rem] -z-10 left-[-35rem] h-[26.25rem]
