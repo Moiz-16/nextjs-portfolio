@@ -12,7 +12,7 @@ import { useInView } from 'react-intersection-observer';
 import { useTheme } from '@/context/theme-context';
 
 export default function Experience() {
-  const { ref } = useSectionInView('Experience');
+  const { ref } = useSectionInView('Experience', 0.3);
   const {theme } = useTheme();
 
   return (
