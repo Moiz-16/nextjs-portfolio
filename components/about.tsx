@@ -32,7 +32,7 @@ export default function About() {
                   {" "}
                   University of Bristol
                 </span>{" "}
-                with aspirations to become a quantitive developer. 
+                with aspirations to enter the quantitative finance industry. 
               </p>
         <p className="mb-5">
         My academic journey has equipped me with a solid foundation in both theoretical 

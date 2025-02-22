@@ -10,6 +10,8 @@ import appImg from "@/public/dropkick_app.png";
 import heImg from "@/public/he_project.png";
 import fxBotImg from "@/public/fx_trading_bot.png";
 import gptBotImg from "@/public/gpt_bot.png";
+import tvImg from "@/public/tradingview_indicators.png";
+import carAiImg from "@/public/self_driving_car.png";
 
 
 
@@ -61,7 +63,7 @@ export const experiencesData = [
     `• Developed an ARMA time-series model for forecasting particulate matter levels in Kenya, leveraging MongoDB datasets and performing comprehensive time series analysis for accuracy.
     • Built a linear regression model with a machine learning pipeline, incorporating feature encoding and imputation, to predict apartment prices in Argentina.`,
     icon: React.createElement(FiDatabase),
-    date: "Jun 2024 - Present",
+    date: "Jun 2024 - Jan 2025",
   },
   {
     title: "Encode Club",
@@ -87,11 +89,20 @@ export const experiencesData = [
 
 export const projectsData = [
   {
+    title: "TradingView Strategy Indicators",
+    description:
+    "Actively developing and optimising algorithmic trading strategies across multiple asset classes, including equities, forex, and cryptocurrencies, using Pine Script on TradingView.",
+    tags: ["Pine Script","Data Analysis"],
+    imageUrl: tvImg,
+    link: "",
+  },
+  {
     title: "Forex/Crypto Trading Bot",
     description:
     "5-min scalping strategy using VWAP, Bollinger Bands, and RSI indicators produced in Python. Achieved impressive 123% returns with a Sharpe ratio of 2.21 on EURUSD currency pair over a 2 year backtest.",
     tags: ["Python","Pandas", "MQL"],
     imageUrl: fxBotImg,
+    link: "",
   },
   {
     title: "ChatGPT News Trader",
@@ -99,6 +110,7 @@ export const projectsData = [
     "System that processes real-time news events, utilizing the Alpaca and OpenAI APIs to feed headlines to ChatGPT, generating impact ratings and placing trades based on the predicted market influence.",
     tags: ["JavaScript","ChatGPT", "API"],
     imageUrl: gptBotImg,
+    link: "",
   },
   {
     title: "Scotland Yard AI",
@@ -106,6 +118,15 @@ export const projectsData = [
     "AI agent designed to play the Scotlandyard boardgame, implementing Dijkstra’s algorithm and a Mini-Max game tree to optimize the AI agents winning performance based on a custom scoring function.",
     tags: ["Java","OOP", "Design Patterns"],
     imageUrl: scotlandImg,
+    link: "",
+  },
+  {
+    title: "Self Driving Car AI",
+    description:
+    "Implemented an AI-driven self-driving car simulation using Deep Q-Learning (DQN), a reinforcement learning technique, that learns to autonomously navigate a dynamic 2D environment with obstacles.",
+    tags: ["Python","PyTorch", "OOP"],
+    imageUrl: carAiImg,
+    link: "",
   },
   {
     title: "Mobile App Prototype",
@@ -113,6 +134,7 @@ export const projectsData = [
     "Prototype for a cross-platform mobile application that acted as a calendar for limited shoe releases using Flutter and a GraphQL API to connect to a local Node.JS headless CMS (Strapi).",
     tags: ["Flutter", "Dart", "UI/UX"],
     imageUrl: appImg,
+    link: "",
   },
   {
     title: "HE+ Research Project",
@@ -120,6 +142,7 @@ export const projectsData = [
     "Short research project as part of the Cambridge HE+ programme under the theme of 'uncertainty', focusing on how quantum computers have the ability to affect the security of data and the potential implications of Shor's algorithm on RSA encryption.",
     tags: ["Research", "Quantum Technology"],
     imageUrl: heImg,
+    link: "",
   },
 ] as const;
 
