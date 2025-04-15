@@ -10,20 +10,6 @@ import { useTheme } from "@/context/theme-context";
 export default function Experience() {
   const { ref } = useSectionInView("Experience", 0.3);
   const { theme } = useTheme();
-  const [activeExperience, setActiveExperience] = useState(0);
-
-  // Function to scroll to selected experience
-  const scrollToExperience = (index: number) => {
-    setActiveExperience(index);
-
-    // Add a small delay to ensure DOM is updated
-    setTimeout(() => {
-      const element = document.getElementById(`experience-${index}`);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }, 100);
-  };
 
   return (
     <section
@@ -33,26 +19,19 @@ export default function Experience() {
     >
       <SectionHeading>My experience</SectionHeading>
 
-      {/* Experience Navigation */}
+      {/* Experience Overview - Non-interactive */}
       <div className="flex justify-center mb-12 flex-wrap gap-3">
         {experiencesData.map((item, index) => (
-          <motion.button
+          <div
             key={index}
-            className={`px-6 py-3 rounded-full text-sm md:text-base font-medium transition-all ${
-              activeExperience === index
-                ? theme === "light"
-                  ? "bg-gray-900 text-white"
-                  : "bg-white text-gray-900"
-                : theme === "light"
-                ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                : "bg-gray-800 text-white hover:bg-gray-700"
+            className={`px-6 py-3 rounded-full text-sm md:text-base font-medium ${
+              theme === "light"
+                ? "bg-gray-100 text-gray-900"
+                : "bg-gray-800 text-white"
             }`}
-            onClick={() => scrollToExperience(index)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
             {item.title}
-          </motion.button>
+          </div>
         ))}
       </div>
 
@@ -61,12 +40,16 @@ export default function Experience() {
         {experiencesData.map((item, index) => (
           <motion.div
             key={index}
-            id={`experience-${index}`}
             className={`w-full p-8 rounded-2xl shadow-lg ${
               theme === "light" ? "bg-white" : "bg-gray-800"
-            } ${activeExperience === index ? "border-2 border-blue-500" : ""}`}
+            }`}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow:
+                "0 10px 15px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+            }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true, margin: "-100px" }}
           >
