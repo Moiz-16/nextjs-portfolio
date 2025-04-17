@@ -32,22 +32,23 @@ export default function Projects() {
             } hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 group`}
           >
             {/* Project Image */}
-            <div className="h-60 w-full relative overflow-hidden">
-              <Image
-                src={project.imageUrl}
-                alt={project.title}
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-105 px-4 pt-4 "
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                quality={95}
-                priority={index < 3}
-              />
+            <div className="h-60 w-full relative overflow-hidden px-6 pt-6 pb-2">
+              <div className="w-full h-full relative rounded-xl overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                <Image
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="object-cover object-top "
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  quality={95}
+                  priority={index < 3}
+                />
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-              {/* Tags Overlay */}
-              {/* <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                {/* Tags Overlay */}
+                {/* <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                 {project.tags.slice(0, 2).map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
@@ -62,10 +63,11 @@ export default function Projects() {
                   </span>
                 )}
               </div> */}
+              </div>
             </div>
 
             {/* Content */}
-            <div className="flex flex-col flex-grow p-6">
+            <div className="flex flex-col flex-grow pt-2 p-6">
               <h3 className="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors flex items-center">
                 {project.title}
                 {project.link && (
