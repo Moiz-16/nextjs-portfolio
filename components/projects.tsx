@@ -36,7 +36,7 @@ export default function Projects() {
               <Image
                 src={project.imageUrl}
                 alt={project.title}
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105 px-4 pt-4 "
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 quality={95}
