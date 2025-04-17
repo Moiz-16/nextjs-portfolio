@@ -46,11 +46,11 @@ export default function Experience() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{
-              scale: 1.05,
+              scale: 1.02,
               boxShadow:
                 "0 10px 15px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
             }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.2, delay: index * 0.1 }}
             viewport={{ once: true, margin: "-100px" }}
           >
             {/* Icon and Title Row */}
