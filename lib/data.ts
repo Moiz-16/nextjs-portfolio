@@ -12,8 +12,7 @@ import fxBotImg from "@/public/fx_trading_bot.png";
 import gptBotImg from "@/public/gpt_bot.png";
 import tvImg from "@/public/tradingview_indicators.png";
 import carAiImg from "@/public/self_driving_car.png";
-
-
+import qhackImg from "@/public/qhack_2025.png";
 
 
 export const links = [
@@ -88,6 +87,14 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
+  {
+    title: "Quantum Bank Heist: QAOA Path Optimisation (QHack 2025)",
+    description:
+    "🥈Second place at QHack 2025🥈 Solo project using QAOA to optimize escape routes in a bank heist scenario. Implemented 3-layer quantum circuits with Qiskit, achieving 95% approximation to classical algorithms across 50+ test simulations.",
+    tags: ["Python", "Qiskit", "Quantum Technology"],
+    imageUrl: qhackImg,
+    link: "",
+  },
   {
     title: "TradingView Strategy Indicators",
     description:
