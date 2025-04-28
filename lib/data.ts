@@ -13,6 +13,7 @@ import gptBotImg from "@/public/gpt_bot.png";
 import tvImg from "@/public/tradingview_indicators.png";
 import carAiImg from "@/public/self_driving_car.png";
 import qhackImg from "@/public/qhack_2025.png";
+import imcImg from "@/public/imc_prosperity.png";
 
 
 export const links = [
@@ -87,6 +88,14 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
+  {
+    title: "IMC Prosperity 3 Challenge",
+    description:
+    "Participated in the IMC Prosperity 3 competition, placing 107th nationally, 737th in algorithmic trading, and 1536th overall among 12,000 participants. Implemented market making, options pricing, and risk management strategies across commodities, basket products, and options with varying strike prices, adapting to five increasingly complex competition rounds.",
+    tags: ["Python", "Pandas", "NumPy", "Data Analysis"],
+    imageUrl: imcImg,
+    link: "",
+  },
   {
     title: "Quantum Bank Heist: QAOA Path Optimisation (QHack 2025)",
     description:
