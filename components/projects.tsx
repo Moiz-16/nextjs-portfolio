@@ -32,7 +32,7 @@ export default function Projects() {
             } hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 group`}
           >
             {/* Project Image */}
-            <div className="h-60 w-full relative overflow-hidden px-6 pt-6 pb-2">
+            <div className="h-60 w-full relative overflow-hidden px-4 pt-4 pb-2">
               <div className="w-full h-full relative rounded-xl overflow-hidden transition-transform duration-500 group-hover:scale-105">
                 <Image
                   src={project.imageUrl}
@@ -45,7 +45,7 @@ export default function Projects() {
                 />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-200 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
 
                 {/* Tags Overlay */}
                 {/* <div className="absolute top-4 left-4 flex flex-wrap gap-2">
