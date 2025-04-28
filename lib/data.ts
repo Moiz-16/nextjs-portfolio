@@ -91,7 +91,7 @@ export const projectsData = [
   {
     title: "IMC Prosperity 3 Challenge",
     description:
-    "Participated in the IMC Prosperity 3 competition, placing 107th nationally, 737th in algorithmic trading, and 1536th overall among 12,000 participants. Implemented market making, options pricing, and risk management strategies across commodities, basket products, and options with varying strike prices, adapting to five increasingly complex competition rounds.",
+    "Participated in the IMC Prosperity 3 competition, ranking 107th nationally and 1536th globally among over 12,000 participants. Implemented market making and options strategies across multiple asset classes, adapting through five increasingly complex competition rounds.",
     tags: ["Python", "Pandas", "NumPy", "Data Analysis"],
     imageUrl: imcImg,
     link: "",
