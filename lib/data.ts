@@ -56,6 +56,7 @@ export const experiencesData = [
     icon: React.createElement(LuGraduationCap),
     date: "Sep 2023 - Present",
   },
+  
   {
     title: "WorldQuant University",
     subtitle: "Applied Data Science Lab",
@@ -108,7 +109,7 @@ export const projectsData = [
     title: "IMA TMT 2025 Conference Talk",
     description:
     "Delivered a talk at the IMA's 2025 TMT conference on using cointegration in finance to develop quantitative trading strategies by identifying equilibrium relationships between time series and trading the spread.",
-    tags: ["Python", "Qiskit", "Quantum Technology"],
+    tags: ["Research", "Quantitative Finance"],
     imageUrl: tmtImg,
     link: "",
   },
