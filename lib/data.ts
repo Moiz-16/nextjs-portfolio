@@ -14,7 +14,7 @@ import tvImg from "@/public/tradingview_indicators.png";
 import carAiImg from "@/public/self_driving_car.png";
 import qhackImg from "@/public/qhack_2025.png";
 import imcImg from "@/public/imc_prosperity.png";
-
+import tmtImg from "@/public/IMA_TMT_2025_Conference_Abstract.png";
 
 export const links = [
   {
@@ -102,6 +102,14 @@ export const projectsData = [
     "🥈Second place at QHack 2025🥈 Solo project using QAOA to optimize escape routes in a bank heist scenario. Implemented 3-layer quantum circuits with Qiskit, achieving 95% approximation to classical algorithms across 50+ test simulations.",
     tags: ["Python", "Qiskit", "Quantum Technology"],
     imageUrl: qhackImg,
+    link: "",
+  },
+  {
+    title: "IMA TMT 2025 Conference Talk",
+    description:
+    "Delivered a talk at the IMA's 2025 TMT conference on using cointegration in finance to develop quantitative trading strategies by identifying equilibrium relationships between time series and trading the spread.",
+    tags: ["Python", "Qiskit", "Quantum Technology"],
+    imageUrl: tmtImg,
     link: "",
   },
   {
