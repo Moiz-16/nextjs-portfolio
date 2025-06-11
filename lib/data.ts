@@ -2,7 +2,7 @@ import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
 import { RiRobot2Line } from "react-icons/ri";
 import { FiDatabase } from "react-icons/fi";
-
+import { FaResearchgate } from "react-icons/fa";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import scotlandImg from "@/public/scotlandyard_ai.png";
@@ -56,7 +56,14 @@ export const experiencesData = [
     icon: React.createElement(LuGraduationCap),
     date: "Sep 2023 - Present",
   },
-  
+  {
+    title: "University of Bristol",
+    subtitle: "Incoming Research Intern",
+    description:
+      `Devising a process for maximising the number of links between financial databases using textual analysis and natural language processing techniques.`,
+    icon: React.createElement(FaResearchgate),
+    date: "Jun 2024 - Jan 2025",
+  },
   {
     title: "WorldQuant University",
     subtitle: "Applied Data Science Lab",
