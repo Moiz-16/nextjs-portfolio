@@ -15,6 +15,8 @@ import carAiImg from "@/public/self_driving_car.png";
 import qhackImg from "@/public/qhack_2025.png";
 import imcImg from "@/public/imc_prosperity.png";
 import tmtImg from "@/public/IMA_TMT_2025_Conference_Abstract.png";
+import { FaBriefcase } from "react-icons/fa";
+
 
 export const links = [
   {
@@ -53,7 +55,7 @@ export const experiencesData = [
     Object-Oriented Programming and Algorithms I
     Probability and Statistics
     Linear Algebra`,
-    icon: React.createElement(LuGraduationCap),
+    icon: LuGraduationCap,
     date: "Sep 2023 - Present",
   },
   {
@@ -61,8 +63,16 @@ export const experiencesData = [
     subtitle: "Research Intern",
     description:
       `Devising a process for maximising the number of links between financial databases using textual analysis and natural language processing techniques.`,
-    icon: React.createElement(MdOutlineScience),
+    icon: MdOutlineScience,
     date: "Jun 2025 - Present",
+  },
+  {
+    title: "Nexus",
+    subtitle: "Founder",
+    description:
+    `Created Nexus, an intelligent platform designed to streamline the internship application process for students. It provides a centralised dashboard to track applications, leverages AI to automate data entry, and offers tools for data-driven insights and interview preparation.`,
+    icon: FaBriefcase,
+    date: "Mar 2025 - Present",
   },
   {
     title: "WorldQuant University",
@@ -70,7 +80,7 @@ export const experiencesData = [
     description:
     `• Developed an ARMA time-series model for forecasting particulate matter levels in Kenya, leveraging MongoDB datasets and performing comprehensive time series analysis for accuracy.
     • Built a linear regression model with a machine learning pipeline, incorporating feature encoding and imputation, to predict apartment prices in Argentina.`,
-    icon: React.createElement(FiDatabase),
+    icon: FiDatabase,
     date: "Jun 2024 - Jan 2025",
   },
   {
@@ -80,7 +90,7 @@ export const experiencesData = [
     `• Explored the architecture and applications of LLMs like ChatGPT and LLaMA-2, including model training methods and prompt engineering.
     • Integrated ChatGPT API with a local web UI to create an adjustable-parameter chatbot.
     • Used the Stable Diffusion Model in Python for text-to-image generation, exploring various techniques.`,
-    icon: React.createElement(RiRobot2Line),
+    icon: RiRobot2Line,
     date: "Feb 2024 - Mar 2024",
   },
   {
@@ -90,7 +100,7 @@ export const experiencesData = [
     `• Collaborated on a group project to research quantum technology, leading to a presentation on quantum computing fundamentals.
     • Delivered the presentation to the company and effectively addressed follow-up questions.
     • Engaged with external experts to deepen understanding of quantum technologies and industry insights.`,
-    icon: React.createElement(FaReact),
+    icon: FaReact,
     date: "August 2021",
   },
 ] as const;
