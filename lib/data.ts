@@ -14,6 +14,7 @@ import tvImg from "@/public/tradingview_indicators.png";
 import carAiImg from "@/public/self_driving_car.png";
 import qhackImg from "@/public/qhack_2025.png";
 import imcImg from "@/public/imc_prosperity.png";
+import nexusImg from "@/public/nexus.png";
 import tmtImg from "@/public/IMA_TMT_2025_Conference_Abstract.png";
 import { FaBriefcase } from "react-icons/fa";
 
@@ -105,7 +106,17 @@ export const experiencesData = [
   },
 ] as const;
 
+
+
 export const projectsData = [
+  {
+    title: "Nexus",
+    description:
+    "Nexus is an intelligent platform designed to streamline the internship application process for students. It provides a centralised dashboard to track applications, leverages AI to automate data entry, and offers tools for data-driven insights and interview preparation.",
+    tags: ["Next.js", "Tailwind", "TypeScript"],
+    imageUrl: nexusImg,
+    link: "",
+  },
   {
     title: "IMC Prosperity 3 Challenge",
     description:
