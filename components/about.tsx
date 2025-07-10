@@ -43,7 +43,7 @@ export default function About() {
       <p>
         I’m always eager to learn, collaborate, and contribute to projects at
         the intersection of technology and finance. Feel free to get in touch
-        via LinkedIn or email.
+        via LinkedIn or email!
       </p>
     </motion.section>
   );
