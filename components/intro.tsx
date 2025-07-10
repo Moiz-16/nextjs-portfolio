@@ -12,6 +12,8 @@ import { useSectionInView } from "@/lib/hooks";
 import { SocialIcon } from "react-social-icons";
 import { useTheme } from "@/context/theme-context";
 import { ReactTyped } from "react-typed";
+import { HiArrowUpRight } from "react-icons/hi2";
+import Image from "next/image";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -49,7 +51,7 @@ export default function Intro() {
         <Link
           href="#contact"
           className="group bg-gray-900 text-white px-7 py-3 flex 
-            items-center  gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 
+            items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 
             hover:bg-gray-950 active:scale-105 transition"
           onClick={() => {
             setActiveSection("Contact");
@@ -57,8 +59,30 @@ export default function Intro() {
           }}
         >
           Contact me here{" "}
-          <BsArrowRight className="group-hover:opacity-60 group-hover:translate-x-2 transition " />
+          <BsArrowRight className="group-hover:opacity-60 group-hover:translate-x-2 transition" />
         </Link>
+
+        <a
+          href="https://nexustracker.tech"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group bg-gray-900 text-white px-7 py-3 flex 
+            items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 
+            hover:bg-gray-950 active:scale-105 transition"
+        >
+          <div className="flex items-center gap-2">
+            <Image
+              src="/Nexus_Small_White.png"
+              alt="Nexus Logo"
+              width={24}
+              height={24}
+              className="w-6 h-6"
+            />
+            Visit Nexus{" "}
+            <HiArrowUpRight className="group-hover:opacity-60 group-hover:translate-x-1 group-hover:-translate-y-1 transition" />
+          </div>
+        </a>
+
         <div
           className="bg-white bg-opacity-90 flex items-center gap-2 rounded-full
             focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer border

@@ -61,7 +61,7 @@ export default function Experience() {
                     theme === "light" ? "bg-gray-100" : "bg-gray-700"
                   }`}
                 >
-                  {item.icon}
+                  {React.createElement(item.icon)}
                 </div>
                 <div className="text-left">
                   <h3 className="text-2xl font-bold">{item.title}</h3>

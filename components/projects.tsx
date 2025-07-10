@@ -17,7 +17,7 @@ export default function Projects() {
     <section ref={ref} id="projects" className="mb-28 scroll-mt-28">
       <SectionHeading>My projects</SectionHeading>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 px-4 max-w-[90rem] mx-auto">
+      <div className="flex flex-wrap justify-center gap-8 px-4 max-w-[90rem] mx-auto">
         {projectsData.map((project, index) => (
           <motion.div
             key={index}
@@ -25,7 +25,7 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className={`rounded-2xl overflow-hidden flex flex-col ${
+            className={`rounded-2xl overflow-hidden flex flex-col w-full md:w-[calc(50%-1rem)] xl:w-[calc(33.333%-1.34rem)] ${
               theme === "light"
                 ? "bg-white shadow-lg border border-gray-100"
                 : "bg-gray-800 border border-gray-700"
