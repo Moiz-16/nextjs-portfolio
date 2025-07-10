@@ -110,7 +110,7 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: "Nexus",
+    title: "Nexus - Internship Application Tracker",
     description:
     "Nexus is an intelligent platform designed to streamline the internship application process for students. It provides a centralised dashboard to track applications, leverages AI to automate data entry, and offers tools for data-driven insights and interview preparation.",
     tags: ["Next.js", "Tailwind", "TypeScript"],
