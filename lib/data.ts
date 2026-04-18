@@ -57,7 +57,7 @@ export const experiencesData = [
     Probability and Statistics
     Linear Algebra`,
     icon: LuGraduationCap,
-    date: "Sep 2023 - Present",
+    date: "Sep 2023 - Jun 2026",
   },
   {
     title: "University of Bristol",
@@ -65,7 +65,7 @@ export const experiencesData = [
     description:
       `Devising a process for maximising the number of links between financial databases using textual analysis and natural language processing techniques.`,
     icon: MdOutlineScience,
-    date: "Jun 2025 - Present",
+    date: "Jun 2025 - Aug 2025",
   },
   {
     title: "Nexus",
