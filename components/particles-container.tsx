@@ -90,7 +90,7 @@ export default function ParticlesContainer() {
             },
             move: {
               enable: true,
-              speed: 2,
+              speed: 1,
               direction: "none",
               outModes: {
                 default: "bounce"
