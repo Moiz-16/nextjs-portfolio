@@ -41,5 +41,10 @@
   },
   "devDependencies": {
     "@types/react-vertical-timeline-component": "^3.3.6"
+  },
+  "overrides": {
+    "@tsparticles/react": {
+      "@tsparticles/engine": "^4.0.2"
+    }
   }
 }
