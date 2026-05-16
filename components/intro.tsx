@@ -14,14 +14,32 @@ import { useTheme } from "@/context/theme-context";
 import { ReactTyped } from "react-typed";
 import { HiArrowUpRight } from "react-icons/hi2";
 import Image from "next/image";
+import { Gradient } from "@/components/gradient.js";
+
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   const { theme } = useTheme();
 
+  useEffect(() => {
+    // @ts-ignore
+    const gradient = new Gradient();
+    // @ts-ignore
+    gradient.initGradient("#gradient-canvas");
+  }, []);
+
+
   return (
     <section ref={ref} id="home" className="scroll-mt-[100rem] my-28">
+
+      <canvas
+        id="gradient-canvas"
+        className="absolute inset-0 w-full h-[50rem] -z-20"
+        style={{ display: "block" }}
+        data-transition-in
+      />
+
       <motion.div
         className="flex flex-col items-center justify-center"
         initial={{ opacity: 0, scale: 0 }}
