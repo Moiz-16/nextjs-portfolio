@@ -28,7 +28,7 @@ export default function About() {
           Mathematics and Computer Science
         </span>{" "}
         at the
-        <span className=" font-semibold"> University of Bristol</span> ,and I
+        <span className=" font-semibold"> University of Bristol</span>, and I
         have a particular interest in quantitative finance and its potential to
         drive innovation across financial markets.
       </p>

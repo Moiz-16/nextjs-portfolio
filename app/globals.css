@@ -13,3 +13,10 @@ html.dark {
 .borderBlack {
     @apply border border-black/10
 }
+
+:root {
+    --gradient-color-1: #62cff4;
+    --gradient-color-2: #0a99ff;
+    --gradient-color-3: #2362f4;
+    --gradient-color-4: #73C2FB;
+}
