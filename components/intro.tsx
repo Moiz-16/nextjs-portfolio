@@ -59,6 +59,8 @@ export default function Intro() {
         </div>
 
         <div className="hero-title-wrap">
+          <p className="hero-greeting">Hi, I am</p>
+
           <h1 id="hero-title">
             <span className="hero-ghost hero-ghost--one" aria-hidden="true">
               <span>moiz</span>
