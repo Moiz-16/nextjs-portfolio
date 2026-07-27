@@ -70,7 +70,7 @@ export default function ParticlesContainer() {
             },
             particles: {
               number: {
-                value: 62,
+                value: 135,
                 density: {
                   enable: true
                 }
@@ -83,14 +83,20 @@ export default function ParticlesContainer() {
               },
               opacity: {
                 value: {
-                  min: 0.14,
-                  max: 0.46
+                  min: 0.22,
+                  max: 0.92
+                },
+                animation: {
+                  enable: true,
+                  speed: 0.35,
+                  sync: false,
+                  startValue: "random"
                 }
               },
               size: {
                 value: {
-                  min: 0.9,
-                  max: 2.1
+                  min: 1.2,
+                  max: 3.2
                 }
               },
               links: {
@@ -99,8 +105,8 @@ export default function ParticlesContainer() {
               move: {
                 enable: true,
                 speed: {
-                  min: 0.03,
-                  max: 0.16
+                  min: 0.025,
+                  max: 0.13
                 },
                 direction: "none",
                 outModes: {
