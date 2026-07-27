@@ -70,7 +70,7 @@ export default function ParticlesContainer() {
             },
             particles: {
               number: {
-                value: 135,
+                value: 210,
                 density: {
                   enable: true
                 }

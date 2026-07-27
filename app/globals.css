@@ -424,11 +424,11 @@ a {
 }
 
 .about {
-  --about-blue: #284bdc;
-  --about-grid: rgba(255, 255, 255, 0.13);
-  --about-ink: #f8f4e8;
-  --about-accent: #ffd400;
-  background-color: var(--about-blue);
+  --about-surface: rgba(248, 244, 232, 0.74);
+  --about-grid: var(--grid);
+  --about-ink: var(--ink);
+  --about-accent: var(--ink);
+  background-color: var(--about-surface);
   background-image:
     linear-gradient(var(--about-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--about-grid) 1px, transparent 1px);
@@ -458,12 +458,12 @@ a {
   background:
     radial-gradient(
       circle at 52% 15%,
-      rgba(255, 255, 255, 0.08),
+      rgba(16, 16, 16, 0.055),
       transparent 11%
     ),
     radial-gradient(
       circle at 80% 56%,
-      rgba(255, 255, 255, 0.05),
+      rgba(16, 16, 16, 0.045),
       transparent 22%
     );
   content: "";
@@ -551,7 +551,7 @@ a {
 }
 
 .skills span {
-  border: 1px solid rgba(248, 244, 232, 0.34);
+  border: 1px solid rgba(16, 16, 16, 0.3);
   display: inline-flex;
   font-size: 9px;
   padding: 8px 10px;
@@ -581,8 +581,6 @@ a {
 
 .orbit-badge {
   align-items: center;
-  border: 1px dashed rgba(248, 244, 232, 0.38);
-  border-radius: 50%;
   display: grid;
   height: 92px;
   justify-items: center;
@@ -596,6 +594,22 @@ a {
   z-index: 1;
 }
 
+.orbit-badge-ring {
+  animation: about-orbit-spin 18s linear infinite;
+  border: 1px dashed rgba(16, 16, 16, 0.32);
+  border-radius: 50%;
+  inset: 0;
+  position: absolute;
+}
+
+.orbit-badge-ring::before {
+  border: 1px solid rgba(16, 16, 16, 0.18);
+  border-radius: 50%;
+  content: "";
+  inset: 8px;
+  position: absolute;
+}
+
 .orbit-badge span {
   color: var(--about-accent);
   font-family: var(--mono);
@@ -603,29 +617,29 @@ a {
   font-weight: 700;
 }
 
-.orbit-badge i {
+.orbit-badge-ring i {
   background: var(--about-accent);
   height: 4px;
   position: absolute;
   width: 4px;
 }
 
-.orbit-badge i:nth-child(2) {
+.orbit-badge-ring i:nth-child(1) {
   left: 22%;
   top: 18%;
 }
 
-.orbit-badge i:nth-child(3) {
+.orbit-badge-ring i:nth-child(2) {
   right: 15%;
   top: 44%;
 }
 
-.orbit-badge i:nth-child(4) {
+.orbit-badge-ring i:nth-child(3) {
   bottom: 18%;
   left: 42%;
 }
 
-.orbit-badge i:nth-child(5) {
+.orbit-badge-ring i:nth-child(4) {
   bottom: 31%;
   right: 30%;
 }
@@ -852,6 +866,12 @@ a {
 @keyframes orbit-two {
   to {
     transform: rotate(360deg) scale(1.08);
+  }
+}
+
+@keyframes about-orbit-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 

@@ -74,10 +74,12 @@ export default function About() {
 
       <div className="orbit-badge" aria-hidden="true">
         <span>+</span>
-        <i />
-        <i />
-        <i />
-        <i />
+        <div className="orbit-badge-ring">
+          <i />
+          <i />
+          <i />
+          <i />
+        </div>
       </div>
 
       <PixelFlower className="about-flower" variant="coral" />
