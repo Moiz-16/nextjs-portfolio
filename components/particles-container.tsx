@@ -2,104 +2,124 @@
 
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
-import { loadBackgroundMaskPlugin } from "@tsparticles/plugin-background-mask";
-import { useTheme } from "@/context/theme-context";
+import { useEffect, useRef } from "react";
 
 const particlesInit = async (engine: any) => {
   await loadFull(engine);
-  await loadBackgroundMaskPlugin(engine);
 };
 
 export default function ParticlesContainer() {
-  const { theme } = useTheme();
+  const glowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      glowRef.current?.style.setProperty("--mouse-x", `${event.clientX}px`);
+      glowRef.current?.style.setProperty("--mouse-y", `${event.clientY}px`);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
     <ParticlesProvider init={particlesInit}>
-      <Particles
-        key={theme}
-        id="tsparticles"
-        className="absolute left-0 top-0 w-full h-[50rem] -z-10"
-        options={{
-          fullScreen: { enable: false },
-          backgroundMask: {
-            enable: true,
-            cover: {
-              color: theme === "dark" ? "#111827" : "#F9FAFB",
-              opacity: 1
-            }
-          },
-          background: {
-            color: "transparent"
-          },
-          interactivity: {
-            events: {
-              onHover: {
-                enable: true,
-                mode: "bubble"
-              },
-              onClick: {
-                enable: true,
-                mode: "push"
-              }
+      <>
+        <Particles
+          id="tsparticles"
+          className="pointer-events-none fixed inset-0 z-0 h-screen w-full bg-transparent"
+          options={{
+            fullScreen: { enable: false },
+            fpsLimit: 60,
+            background: {
+              color: "transparent"
             },
-            modes: {
-              bubble: {
-                distance: 400,
-                size: 100,
-                duration: 2,
-                opacity: 1
-              },
-              push: {
-                quantity: 4
-              }
-            }
-          },
-          particles: {
-            number: {
-              value: 80,
-              density: {
-                enable: true
-              }
-            },
-            paint: {
-              fill: {
-                color: {
-                  value: "#ffffff"
+            interactivity: {
+              detectsOn: "window",
+              events: {
+                onHover: {
+                  enable: true,
+                  mode: "repulse"
                 },
-                enable: true
+                onClick: {
+                  enable: true,
+                  mode: "push"
+                }
+              },
+              modes: {
+                repulse: {
+                  distance: 95,
+                  duration: 0.45,
+                  easing: "ease-out-quad",
+                  factor: 0.45,
+                  maxSpeed: 1.4,
+                  speed: 0.55,
+                  restore: {
+                    delay: 0.08,
+                    enable: true,
+                    follow: false,
+                    speed: 0.35
+                  }
+                },
+                push: {
+                  quantity: 2
+                }
               }
             },
-            shape: {
-              type: "circle"
-            },
-            opacity: {
-              value: 1
-            },
-            size: {
-              value: {
-                min: 1,
-                max: 30
+            particles: {
+              number: {
+                value: 62,
+                density: {
+                  enable: true
+                }
+              },
+              color: {
+                value: "#101010"
+              },
+              shape: {
+                type: "circle"
+              },
+              opacity: {
+                value: {
+                  min: 0.14,
+                  max: 0.46
+                }
+              },
+              size: {
+                value: {
+                  min: 0.9,
+                  max: 2.1
+                }
+              },
+              links: {
+                enable: false
+              },
+              move: {
+                enable: true,
+                speed: {
+                  min: 0.03,
+                  max: 0.16
+                },
+                direction: "none",
+                outModes: {
+                  default: "out"
+                }
               }
             },
-            links: {
-              enable: true,
-              distance: 150,
-              color: "#ffffff",
-              opacity: 1,
-              width: 1
-            },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: "none",
-              outModes: {
-                default: "bounce"
-              }
-            }
-          },
-          detectRetina: true
-        }}
-      />
+            detectRetina: true
+          }}
+        />
+        <div
+          ref={glowRef}
+          className="pointer-events-none fixed inset-0 z-0"
+          style={{
+            background:
+              "radial-gradient(circle 8rem at var(--mouse-x, -20rem) var(--mouse-y, -20rem), rgba(16, 16, 16, 0.055), rgba(16, 16, 16, 0.025) 34%, transparent 72%)"
+          }}
+        />
+      </>
     </ParticlesProvider>
   );
 }

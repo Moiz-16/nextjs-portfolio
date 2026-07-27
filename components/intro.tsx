@@ -1,156 +1,115 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { TypeAnimation } from "react-type-animation";
-import { BsArrowRight, BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaGithub } from "react-icons/fa6";
-import { useInView } from "react-intersection-observer";
-import { useActiveSectionContext } from "@/context/active-section-context";
+import { useEffect } from "react";
+import { BsEnvelope, BsGithub, BsLinkedin } from "react-icons/bs";
 import { useSectionInView } from "@/lib/hooks";
-import { SocialIcon } from "react-social-icons";
-import { useTheme } from "@/context/theme-context";
-import { ReactTyped } from "react-typed";
-import { HiArrowUpRight } from "react-icons/hi2";
-import Image from "next/image";
-import { Gradient } from "@/components/gradient.js";
 
+function MotionEffects() {
+  useEffect(() => {
+    const root = document.documentElement;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reducedMotion) return;
+
+    const updatePointer = (event: PointerEvent) => {
+      root.style.setProperty("--pointer-x", `${event.clientX}px`);
+      root.style.setProperty("--pointer-y", `${event.clientY}px`);
+    };
+
+    window.addEventListener("pointermove", updatePointer, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("pointermove", updatePointer);
+    };
+  }, []);
+
+  return null;
+}
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
-  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    // @ts-ignore
-    const gradient = new Gradient();
-    // @ts-ignore
-    gradient.initGradient("#gradient-canvas");
-  }, []);
-
 
   return (
-    <section ref={ref} id="home" className="scroll-mt-[100rem] my-28">
+    <>
+      <MotionEffects />
 
-      <canvas
-        id="gradient-canvas"
-        className="absolute inset-0 w-full h-[50rem] -z-20"
-        style={{ display: "block" }}
-        data-transition-in
-      />
+      <div className="cursor-glow" aria-hidden="true" />
 
-      <motion.div
-        className="flex flex-col items-center justify-center"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ type: "tween", delay: 0.1, duration: 0.3 }}
+      <section
+        ref={ref}
+        className="hero grid-surface"
+        id="home"
+        aria-labelledby="hero-title"
       >
-        <h1 className="md:text-6xl sm:text-5xl text-4xl font-bold text-black">
-          Hi! I am Moiz Saleem
-        </h1>
-        <h1 className="md:text-9xl sm:text-7xl text-7xl font-bold text-black md:py-6 py-3">
-          <ReactTyped
-            strings={["Student", "Developer"]}
-            typeSpeed={75}
-            backSpeed={50}
-            backDelay={1000}
-            loop
-          />
-        </h1>
-      </motion.div>
-      <motion.div
-        className="flex flex-col sm:flex-row items-center justify-center gap-5 
-        px-4 py-10 text-lg font-medium"
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        <Link
-          href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex 
-            items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 
-            hover:bg-gray-950 active:scale-105 transition"
-          onClick={() => {
-            setActiveSection("Contact");
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          Contact me here{" "}
-          <BsArrowRight className="group-hover:opacity-60 group-hover:translate-x-2 transition" />
-        </Link>
+        <div className="hero-orbit hero-orbit--one" aria-hidden="true" />
+        <div className="hero-orbit hero-orbit--two" aria-hidden="true" />
 
-        <a
-          href="https://nexustracker.tech"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group bg-gray-900 text-white px-7 py-3 flex 
-            items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 
-            hover:bg-gray-950 active:scale-105 transition"
-        >
-          <div className="flex items-center gap-2">
-            <Image
-              src="/Nexus_Small_White.png"
-              alt="Nexus Logo"
-              width={24}
-              height={24}
-              className="w-6 h-6"
-            />
-            Visit Nexus{" "}
-            <HiArrowUpRight className="group-hover:opacity-60 group-hover:translate-x-1 group-hover:-translate-y-1 transition" />
-          </div>
-        </a>
+        <span className="pixel-comet pixel-comet--one" aria-hidden="true" />
+        <span className="pixel-comet pixel-comet--two" aria-hidden="true" />
 
-        <div
-          className="bg-white bg-opacity-90 flex items-center gap-2 rounded-full
-            focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer border
-             dark:bg-gray-950 dark:bg-opacity-75 border-black/10 "
-        >
-          <div>
-            <SocialIcon
-              bgColor="transparent"
-              fgColor="currentColor"
-              style={{ color: theme === "light" ? "black" : "white" }}
-              url="https://www.linkedin.com/in/moiz-saleem/"
-            />
-          </div>
+        <p className="hero-coordinates">51.5072° N&nbsp;&nbsp;0.1276° W</p>
+
+        <div className="hero-kicker">
+          <span>SITE RELIABILITY ENGINEER</span>
+          <span>QUANTITATIVE BUILDER</span>
         </div>
-        <div
-          className="bg-white bg-opacity-90 flex items-center gap-2 rounded-full
-            focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer border
-             dark:bg-gray-950 border-black/10 dark:bg-opacity-75"
-        >
-          <div>
-            <SocialIcon
-              bgColor="transparent"
-              fgColor="currentColor"
-              style={{ color: theme === "light" ? "black" : "white" }}
-              url="https://github.com/Moiz-16"
-            />
-          </div>
+
+        <div className="hero-title-wrap">
+          <h1 id="hero-title">
+            <span className="hero-ghost hero-ghost--one" aria-hidden="true">
+              <span>moiz</span>
+              <span>saleem</span>
+            </span>
+
+            <span className="hero-ghost hero-ghost--two" aria-hidden="true">
+              <span>moiz</span>
+              <span>saleem</span>
+            </span>
+
+            <span className="hero-name">
+              <span>moiz</span>
+              <span>saleem</span>
+            </span>
+          </h1>
         </div>
-        {/* 
-            <a>
-                <SocialIcon url="https://linkedin.com/in/" />
 
-            </a>
-            <a href="https://github.com/Moiz459">
-              <img
-                src={githubIcon.src}
-                alt="My GitHub Profile"
-                className="  sm:h-12 h-10"
-                
-              />
-            </a>
+        <p className="hero-location">BSC MATHEMATICS AND COMPUTER SCIENCE</p>
 
-            <a href="https://www.linkedin.com/in/moiz-saleem-144a9a1a2/">
-              <img
-                src={linkedinIcon.src}
-                alt="My LinkedIn profile"
-                className=" sm:h-12 h-10"
-              />
-            </a> */}
-      </motion.div>
-    </section>
+        <p className="hero-intro">
+          I build thoughtful software at the intersection of engineering, data
+          and markets.
+        </p>
+
+        <div className="hero-footer">
+          <a href="#about">↓ SCROLL TO EXPLORE</a>
+        </div>
+
+        <div className="hero-actions" aria-label="Contact links">
+          <a
+            href="https://www.linkedin.com/in/moiz-saleem/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <BsLinkedin />
+          </a>
+          <a
+            href="https://github.com/Moiz-16"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <BsGithub />
+          </a>
+          <a href="#contact" aria-label="Contact">
+            <BsEnvelope />
+          </a>
+        </div>
+      </section>
+    </>
   );
 }
