@@ -37,7 +37,9 @@ export default function About() {
         <h2>
           Engineer by craft,
           <br />
-          <em>mathematician</em> by training.
+          <em>mathematician</em> by
+          <br />
+          training.
         </h2>
       </div>
 

@@ -416,41 +416,55 @@ a {
 /* About */
 
 .section-shell {
-  margin: 0 auto 9rem;
+  margin: 0 calc(50% - 50vw) 9rem;
   overflow: hidden;
   position: relative;
-  scroll-margin-top: 108px;
-  width: min(1120px, calc(100vw - 2rem));
+  scroll-margin-top: 0;
+  width: 100vw;
 }
 
 .about {
-  border: 1px solid rgba(16, 16, 16, 0.18);
+  --about-blue: #284bdc;
+  --about-grid: rgba(255, 255, 255, 0.13);
+  --about-ink: #f8f4e8;
+  --about-accent: #ffd400;
+  background-color: var(--about-blue);
+  background-image:
+    linear-gradient(var(--about-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--about-grid) 1px, transparent 1px);
+  color: var(--about-ink);
   display: grid;
-  gap: 44px;
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
-  min-height: 650px;
-  padding: clamp(28px, 5vw, 72px);
+  gap: clamp(52px, 8vw, 130px);
+  grid-template-columns: minmax(0, 1fr) minmax(390px, 0.86fr);
+  min-height: calc(100svh - 78px);
+  padding: clamp(92px, 15vh, 158px) clamp(52px, 6vw, 116px)
+    clamp(42px, 6vh, 72px);
 }
 
 .about::before {
-  border: 1px solid rgba(16, 16, 16, 0.14);
-  content: "";
-  inset: 24px;
+  color: var(--about-accent);
+  content: "01";
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   pointer-events: none;
   position: absolute;
+  right: 16px;
+  top: 18px;
 }
 
 .about::after {
   background:
     radial-gradient(
-      circle at 18% 18%,
-      rgba(16, 16, 16, 0.08),
-      transparent 22%
+      circle at 52% 15%,
+      rgba(255, 255, 255, 0.08),
+      transparent 11%
     ),
     radial-gradient(
-      circle at 76% 70%,
-      rgba(16, 16, 16, 0.06),
-      transparent 20%
+      circle at 80% 56%,
+      rgba(255, 255, 255, 0.05),
+      transparent 22%
     );
   content: "";
   inset: 0;
@@ -478,9 +492,12 @@ a {
 }
 
 .section-index {
-  font-size: 10px;
-  grid-column: 1 / -1;
-  opacity: 0.72;
+  font-size: 11px;
+  left: 22px;
+  opacity: 1;
+  position: absolute;
+  top: 36px;
+  writing-mode: vertical-rl;
 }
 
 .about-heading {
@@ -489,38 +506,39 @@ a {
 
 .eyebrow {
   font-size: 10px;
-  margin: 0 0 24px;
+  margin: 0 0 28px;
 }
 
 .about h2 {
   font-family: var(--serif);
-  font-size: clamp(44px, 5.3vw, 76px);
+  font-size: clamp(72px, 5.7vw, 112px);
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 0.92;
+  line-height: 0.9;
   margin: 0;
 }
 
 .about h2 em {
+  color: var(--about-accent);
   font-style: italic;
 }
 
 .about-copy {
-  align-self: end;
+  align-self: center;
   display: grid;
-  gap: 22px;
-  max-width: 440px;
+  gap: 12px;
+  max-width: 640px;
 }
 
 .about-copy p {
-  font-size: clamp(15px, 1.2vw, 18px);
-  line-height: 1.65;
+  font-size: clamp(15px, 0.95vw, 18px);
+  line-height: 1.72;
   margin: 0;
 }
 
 .about-lead {
   font-family: var(--serif);
-  font-size: clamp(21px, 2.1vw, 30px) !important;
+  font-size: clamp(34px, 2.4vw, 48px) !important;
   font-style: italic;
   line-height: 1.18 !important;
 }
@@ -533,7 +551,7 @@ a {
 }
 
 .skills span {
-  border: 1px solid rgba(16, 16, 16, 0.28);
+  border: 1px solid rgba(248, 244, 232, 0.34);
   display: inline-flex;
   font-size: 9px;
   padding: 8px 10px;
@@ -541,16 +559,17 @@ a {
 
 .about-stat {
   align-items: end;
-  bottom: 48px;
+  bottom: clamp(34px, 5.4vh, 58px);
   display: grid;
   gap: 6px;
-  left: clamp(28px, 5vw, 72px);
+  left: clamp(52px, 6vw, 116px);
   position: absolute;
 }
 
 .about-stat strong {
+  color: var(--about-accent);
   font-family: var(--serif);
-  font-size: clamp(54px, 5.6vw, 84px);
+  font-size: clamp(44px, 3.2vw, 68px);
   font-style: italic;
   font-weight: 400;
   line-height: 0.82;
@@ -562,28 +581,30 @@ a {
 
 .orbit-badge {
   align-items: center;
-  border: 1px solid rgba(16, 16, 16, 0.2);
+  border: 1px dashed rgba(248, 244, 232, 0.38);
   border-radius: 50%;
   display: grid;
-  height: 170px;
+  height: 92px;
   justify-items: center;
   place-content: center;
   position: absolute;
-  opacity: 0.42;
-  right: 5%;
-  top: 10%;
-  width: 170px;
+  left: 50%;
+  opacity: 1;
+  top: 62px;
+  transform: translateX(-50%);
+  width: 92px;
   z-index: 1;
 }
 
 .orbit-badge span {
+  color: var(--about-accent);
   font-family: var(--mono);
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
 }
 
 .orbit-badge i {
-  background: var(--ink);
+  background: var(--about-accent);
   height: 4px;
   position: absolute;
   width: 4px;
@@ -618,7 +639,7 @@ a {
 }
 
 .pixel-flower i {
-  background: var(--ink);
+  background: var(--about-ink);
   display: block;
   height: 14px;
   opacity: 0.9;
@@ -638,7 +659,7 @@ a {
 
 .pixel-flower i:nth-child(3) {
   background: transparent;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--about-ink);
   left: 14px;
   top: 14px;
 }
@@ -661,12 +682,20 @@ a {
 }
 
 .about-flower {
-  bottom: 14%;
-  opacity: 0.38;
-  right: 10%;
-  top: auto;
-  transform: scale(0.66);
-  z-index: 1;
+  left: 13.5%;
+  opacity: 1;
+  top: 36%;
+  transform: scale(0.3) rotate(45deg);
+  z-index: 2;
+}
+
+.about-flower i:not(:nth-child(3)) {
+  display: none;
+}
+
+.about-flower i:nth-child(3) {
+  background: var(--about-ink);
+  border: 0;
 }
 
 .reveal {
@@ -925,9 +954,10 @@ a {
   }
 
   .about {
-    gap: 34px;
+    gap: 42px;
     grid-template-columns: 1fr;
-    min-height: auto;
+    min-height: calc(100svh - 78px);
+    padding: 104px 10vw 72px;
   }
 
   .about-copy {
@@ -935,21 +965,18 @@ a {
   }
 
   .about-stat {
-    bottom: auto;
-    left: auto;
-    position: relative;
+    bottom: 38px;
+    left: 10vw;
+    position: absolute;
   }
 
   .orbit-badge {
-    height: 128px;
-    right: 28px;
-    top: 86px;
-    width: 128px;
+    display: none;
   }
 
   .about-flower {
-    right: 18%;
-    top: 42%;
+    left: 28%;
+    top: 31%;
   }
 }
 
@@ -1064,23 +1091,33 @@ a {
 
   .section-shell {
     margin-bottom: 6rem;
-    width: min(100%, calc(100vw - 1rem));
+    width: 100vw;
   }
 
   .about {
-    padding: 30px 22px;
+    padding: 94px 24px 124px;
   }
 
   .about::before {
-    inset: 12px;
+    right: 12px;
+    top: 14px;
   }
 
   .about h2 {
-    font-size: clamp(40px, 13vw, 64px);
+    font-size: clamp(48px, 15vw, 72px);
   }
 
   .about-copy {
     gap: 18px;
+  }
+
+  .about-lead {
+    font-size: clamp(28px, 8.8vw, 42px) !important;
+  }
+
+  .about-stat {
+    bottom: 42px;
+    left: 24px;
   }
 
   .skills span {
@@ -1088,15 +1125,16 @@ a {
     padding: 7px 8px;
   }
 
-  .orbit-badge {
-    display: none;
+  .section-index {
+    left: 14px;
+    top: 28px;
   }
 
   .about-flower {
-    bottom: auto;
-    right: 24px;
-    top: 142px;
-    transform: scale(0.48);
+    left: auto;
+    right: 18%;
+    top: 30%;
+    transform: scale(0.26) rotate(45deg);
   }
 }
 

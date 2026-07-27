@@ -1,5 +1,4 @@
 import Intro from "@/components/intro"
-import SectionDivider from '@/components/section-divider'
 import About from '@/components/about'
 import Projects from '@/components/projects'
 import Skills from '@/components/skills'
@@ -12,7 +11,6 @@ export default function Home() {
     <main>
       <Intro/>
       <div className="flex flex-col items-center px-4">
-        <SectionDivider/>
         <About/>
         <Projects/>
         <Skills/>
