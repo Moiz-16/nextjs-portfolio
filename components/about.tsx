@@ -1,50 +1,84 @@
 "use client";
 
-import React, { useEffect } from "react";
-import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { useActiveSectionContext } from "@/context/active-section-context";
 import { useSectionInView } from "@/lib/hooks";
 
+function PixelFlower({
+  className = "",
+  variant = "coral",
+}: {
+  className?: string;
+  variant?: "coral" | "yellow" | "small";
+}) {
+  return (
+    <span
+      className={`pixel-flower pixel-flower--${variant} ${className}`}
+      aria-hidden="true"
+    >
+      <i />
+      <i />
+      <i />
+      <i />
+      <i />
+      <i />
+    </span>
+  );
+}
+
 export default function About() {
-  const { ref } = useSectionInView("About", 0.8);
+  const { ref } = useSectionInView("About", 0.6);
 
   return (
-    <motion.section
-      ref={ref}
-      className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40
-    scroll-mt-28"
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 100, y: 0 }}
-      transition={{ delay: 0.175 }}
-      id="about"
-    >
-      <SectionHeading>About me</SectionHeading>
-      <p className="mb-5">
-        My name is <span className="  font-semibold">Moiz Saleem</span>, I am
-        currently pursuing a Bachelor&apos;s degree in{" "}
-        <span className="  font-semibold">
-          Mathematics and Computer Science
-        </span>{" "}
-        at the
-        <span className=" font-semibold"> University of Bristol</span>, and I
-        have a particular interest in quantitative finance and its potential to
-        drive innovation across financial markets.
-      </p>
-      <p className="mb-5">
-        My academic background has given me a strong foundation in both pure and
-        applied mathematics, alongside practical experience in programming and
-        data analysis. I’m especially passionate about developing and optimising
-        algorithmic trading strategies, and I’m fascinated by how mathematical
-        modelling, probability, statistics, and machine learning can be used to
-        solve real-world problems in finance and beyond.
-      </p>
-      <p>
-        I’m always eager to learn, collaborate, and contribute to projects at
-        the intersection of technology and finance. Feel free to get in touch
-        via LinkedIn or email!
-      </p>
-    </motion.section>
+    <section ref={ref} className="about grid-surface section-shell" id="about">
+      <div className="section-index">01 / ABOUT</div>
+
+      <div className="about-heading reveal">
+        <p className="eyebrow">A LITTLE CONTEXT</p>
+
+        <h2>
+          Engineer by craft,
+          <br />
+          <em>mathematician</em> by training.
+        </h2>
+      </div>
+
+      <div className="about-copy reveal reveal-delay">
+        <p className="about-lead">
+          I&apos;m a Mathematics and Computer Science graduate from the
+          University of Bristol who likes turning complex systems into useful,
+          intuitive products.
+        </p>
+
+        <p>
+          My work moves between software engineering, quantitative finance,
+          applied AI and product design. Whether I&apos;m training a neural SDE,
+          speeding up a document pipeline or shaping a new app, I care about
+          elegant systems, clear thinking and the details people actually feel.
+        </p>
+
+        <div className="skills" aria-label="Core skills">
+          <span>PYTHON</span>
+          <span>JAVA</span>
+          <span>C / C++</span>
+          <span>TYPESCRIPT</span>
+          <span>PYTORCH</span>
+          <span>AWS</span>
+        </div>
+      </div>
+
+      <div className="about-stat reveal">
+        <strong>4-8x</strong>
+        <span>RESEARCH PIPELINE SPEED-UP</span>
+      </div>
+
+      <div className="orbit-badge" aria-hidden="true">
+        <span>+</span>
+        <i />
+        <i />
+        <i />
+        <i />
+      </div>
+
+      <PixelFlower className="about-flower" variant="coral" />
+    </section>
   );
 }
