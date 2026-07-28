@@ -1,9 +1,29 @@
 "use client";
 
 import { useEffect } from "react";
-import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
-import ParticlesContainer from "@/components/particles-container";
+
+function PixelFlower({
+  className = "",
+  variant = "coral",
+}: {
+  className?: string;
+  variant?: "coral" | "yellow" | "small";
+}) {
+  return (
+    <span
+      className={`pixel-flower pixel-flower--${variant} ${className}`}
+      aria-hidden="true"
+    >
+      <i />
+      <i />
+      <i />
+      <i />
+      <i />
+      <i />
+    </span>
+  );
+}
 
 function MotionEffects() {
   useEffect(() => {
@@ -44,46 +64,42 @@ export default function Intro() {
         id="home"
         aria-labelledby="hero-title"
       >
-        <ParticlesContainer />
+        <div className="cursor-glow" aria-hidden="true" />
+        <div className="hero-orbit hero-orbit--one" aria-hidden="true" />
+        <div className="hero-orbit hero-orbit--two" aria-hidden="true" />
 
-        <div className="hero-background-elements" aria-hidden="true">
-          <div className="cursor-glow" />
-          <div className="hero-orbit hero-orbit--one" />
-          <div className="hero-orbit hero-orbit--two" />
+        <span className="pixel-comet pixel-comet--one" aria-hidden="true" />
+        <span className="pixel-comet pixel-comet--two" aria-hidden="true" />
 
-          <span className="pixel-comet pixel-comet--one" />
-          <span className="pixel-comet pixel-comet--two" />
-        </div>
+        <PixelFlower className="flower-one" variant="coral" />
+        <PixelFlower className="flower-two" variant="yellow" />
+        <PixelFlower className="flower-three" variant="small" />
+        <PixelFlower className="flower-four" variant="coral" />
 
         <p className="hero-coordinates">51.5072° N&nbsp;&nbsp;0.1276° W</p>
 
         <div className="hero-kicker">
-          <span>SITE RELIABILITY ENGINEER</span>
+          <span>SOFTWARE ENGINEER</span>
           <span>QUANTITATIVE BUILDER</span>
         </div>
 
         <div className="hero-title-wrap">
-          <p className="hero-greeting">Hi, I am</p>
-
           <h1 id="hero-title">
             <span className="hero-ghost hero-ghost--one" aria-hidden="true">
-              <span>moiz</span>
-              <span>saleem</span>
+              moiz saleem
             </span>
 
             <span className="hero-ghost hero-ghost--two" aria-hidden="true">
-              <span>moiz</span>
-              <span>saleem</span>
+              moiz saleem
             </span>
 
-            <span className="hero-name">
-              <span>moiz</span>
-              <span>saleem</span>
-            </span>
+            <span className="hero-name">moiz saleem</span>
           </h1>
+
+          <PixelFlower className="title-flower" variant="yellow" />
         </div>
 
-        <p className="hero-location">BSC MATHEMATICS AND COMPUTER SCIENCE</p>
+        <p className="hero-location">BASED IN THE UK</p>
 
         <p className="hero-intro">
           I build thoughtful software at the intersection of engineering, data
@@ -91,31 +107,19 @@ export default function Intro() {
         </p>
 
         <div className="hero-footer">
-          <a href="#about">↓ SCROLL TO EXPLORE</a>
-        </div>
+          <span>
+            AVAILABLE FOR
+            <br />
+            INTERESTING IDEAS
+          </span>
 
-        <div className="hero-actions" aria-label="Home actions">
-          <a className="hero-contact-link" href="#contact" data-cursor-target>
-            CONTACT
-          </a>
-          <a
-            href="https://www.linkedin.com/in/moiz-saleem/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            data-cursor-target
-          >
-            <SiLinkedin />
-          </a>
-          <a
-            href="https://github.com/Moiz-16"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            data-cursor-target
-          >
-            <SiGithub />
-          </a>
+          <a href="#about">↓ SCROLL TO EXPLORE</a>
+
+          <span className="hero-footer-right">
+            MATHEMATICS × CS
+            <br />
+            BRISTOL
+          </span>
         </div>
       </section>
     </>
