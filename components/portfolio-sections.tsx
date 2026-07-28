@@ -220,7 +220,7 @@ function ScrollFrame({
   const scale = useTransform(
     scrollYProgress,
     [0, 0.18, 0.82, 1],
-    [0.94, 1, 1, 0.96],
+    [0.99, 1, 1, 0.995],
   );
 
   return (
@@ -575,9 +575,9 @@ export default function PortfolioSections() {
         className="projects ps-section-shell"
         id="projects"
       >
-        <ScrollFrame className="projects-inner">
-          <div className="ps-section-index">02 / SELECTED PROJECTS</div>
+        <div className="ps-section-index">02 / SELECTED PROJECTS</div>
 
+        <ScrollFrame className="projects-inner">
           <div className="projects-heading ps-reveal">
             <p className="ps-eyebrow">THINGS I&apos;VE BUILT</p>
             <h2>
@@ -606,9 +606,9 @@ export default function PortfolioSections() {
         className="experience ps-grid-surface ps-section-shell"
         id="experience"
       >
-        <ScrollFrame className="experience-inner">
-          <div className="ps-section-index">03 / EXPERIENCE</div>
+        <div className="ps-section-index">03 / EXPERIENCE</div>
 
+        <ScrollFrame className="experience-inner">
           <div className="experience-heading ps-reveal">
             <p className="ps-eyebrow">WHERE I&apos;VE BEEN</p>
             <h2>
@@ -660,9 +660,9 @@ export default function PortfolioSections() {
         className="contact ps-section-shell"
         id="contact"
       >
-        <ScrollFrame className="contact-scroll-frame">
-          <div className="ps-section-index">04 / CONTACT</div>
+        <div className="ps-section-index">04 / CONTACT</div>
 
+        <ScrollFrame className="contact-scroll-frame">
           <div className="contact-rings" aria-hidden="true">
             <i />
             <i />
