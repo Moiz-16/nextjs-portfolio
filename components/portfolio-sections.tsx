@@ -19,6 +19,7 @@ const projects = [
     tags: ["PYTORCH", "STOCHASTIC CALCULUS", "MONTE CARLO"],
     stats: ["SPX DATA", "GREEKS", "ARBITRAGE CHECKS"],
     color: "yellow",
+    previewLines: ["dS = mu(t,S)dt + sigma(t,S)dW", "Monte Carlo paths", "No-arbitrage diagnostics"],
   },
   {
     number: "02",
@@ -32,6 +33,7 @@ const projects = [
     tags: ["TYPESCRIPT", "REAL-TIME SYSTEMS", "VOICE AI"],
     stats: ["LIVE CALLS", "POLICY RISK", "IDENTITY"],
     color: "coral",
+    previewLines: ["call stream -> policy engine", "identity confidence", "fraud signal monitor"],
   },
   {
     number: "03",
@@ -45,6 +47,7 @@ const projects = [
     tags: ["SWIFT", "COMPUTER VISION", "PRODUCT DESIGN"],
     stats: ["VALUATION", "SCANNING", "PRICE HISTORY"],
     color: "green",
+    previewLines: ["collection value", "grade-aware pricing", "set completion"],
   },
   {
     number: "04",
@@ -58,6 +61,7 @@ const projects = [
     tags: ["PYTHON", "NLP", "PARALLEL COMPUTING"],
     stats: ["4-8X FASTER", "100 DOCS/MIN", "12D MATCHING"],
     color: "sky",
+    previewLines: ["SEC filing match", "DealScan linkage", "parallel extraction"],
   },
 ];
 
@@ -134,51 +138,48 @@ function ProjectCard({
   index: number;
 }) {
   return (
-    <motion.article
-      className={`project-card project-card-tile accent-${project.color}`}
-      data-cursor-target
+    <motion.div
+      className="project-card-shell"
       initial={{ opacity: 0, y: 28, scale: 0.96 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
       viewport={{ once: true, margin: "-80px" }}
     >
-      <div className="project-preview" aria-hidden="true">
-        <div className="project-preview-bar">
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className="project-preview-body">
-          <div className="project-preview-title">{project.title}</div>
-          <div className="project-preview-grid">
-            {project.stats.map((stat) => (
-              <span key={stat}>{stat}</span>
-            ))}
+      <article
+        className={`project-card project-card-template accent-${project.color}`}
+        data-cursor-target
+      >
+        <div className="project-template-preview" aria-hidden="true">
+          <div className="project-template-screen">
+            <div className="project-template-topbar">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="project-template-content">
+              <div className="project-template-title">{project.title}</div>
+              <div className="project-template-stats">
+                {project.stats.map((stat) => (
+                  <span key={stat}>{stat}</span>
+                ))}
+              </div>
+              <div className="project-template-lines">
+                {project.previewLines.map((line) => (
+                  <i key={line}>{line}</i>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="project-preview-lines">
-            <i />
-            <i />
-            <i />
-          </div>
         </div>
-      </div>
 
-      <div className="project-card-content">
-        <div className="project-card-topline">
-          <span>{project.number}</span>
-          <span>{project.category}</span>
-          <time>{project.year}</time>
+        <div className="project-template-overlay">
+          <div className="project-template-overlay-inner">
+            <div>{project.title}</div>
+            <span>{project.category}</span>
+          </div>
         </div>
-        <h3>{project.title}</h3>
-        <p>{project.summary}</p>
-        <p className="project-card-detail">{project.detail}</p>
-        <div className="project-tags">
-          {project.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
-      </div>
-    </motion.article>
+      </article>
+    </motion.div>
   );
 }
 
@@ -190,34 +191,38 @@ function ExperienceCard({
   index: number;
 }) {
   return (
-    <motion.article
-      className="experience-card"
-      data-cursor-target
+    <motion.div
+      className="experience-card-shell"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.42, delay: index * 0.08, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-70px" }}
+      transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-50px" }}
     >
-      <header>
-        <div>
-          <h3>{item.role}</h3>
-          <p>{item.company}</p>
+      <article className="experience-card" data-cursor-target>
+        <header>
+          <div>
+            <h3>{item.role}</h3>
+            <p>{item.company}</p>
+          </div>
+          <time>{item.period}</time>
+        </header>
+
+        <ul>
+          {item.description.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+
+        <div className="experience-skills">
+          {item.skills.map((skill) => (
+            <span key={skill}>
+              <i aria-hidden="true" />
+              {skill}
+            </span>
+          ))}
         </div>
-        <time>{item.period}</time>
-      </header>
-
-      <ul>
-        {item.description.map((point) => (
-          <li key={point}>{point}</li>
-        ))}
-      </ul>
-
-      <div className="experience-skills">
-        {item.skills.map((skill) => (
-          <span key={skill}>{skill}</span>
-        ))}
-      </div>
-    </motion.article>
+      </article>
+    </motion.div>
   );
 }
 
@@ -285,27 +290,21 @@ export default function PortfolioSections() {
         className="projects ps-section-shell"
         id="projects"
       >
-        <div className="ps-section-index">02 / SELECTED PROJECTS</div>
+        <div className="projects-inner">
+          <div className="projects-heading ps-reveal">
+            <p className="ps-eyebrow">Projects</p>
+            <h2>Projects</h2>
+          </div>
 
-        <div className="projects-heading ps-reveal">
-          <p className="ps-eyebrow">THINGS I&apos;VE BUILT</p>
-          <h2>
-            Selected <em>work</em>
-          </h2>
-          <p>
-            Research, infrastructure and products - built to solve real
-            problems.
-          </p>
-        </div>
-
-        <div className="project-card-grid">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.number}
-              project={project}
-              index={index}
-            />
-          ))}
+          <div className="project-card-grid">
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={project.number}
+                project={project}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -314,25 +313,23 @@ export default function PortfolioSections() {
         className="experience ps-grid-surface ps-section-shell"
         id="experience"
       >
-        <div className="ps-section-index">03 / EXPERIENCE</div>
+        <div className="experience-inner">
+          <div className="experience-heading ps-reveal">
+            <p className="ps-eyebrow">Experience</p>
+            <h2>Experience</h2>
+            <p>My professional journey.</p>
+          </div>
 
-        <div className="experience-heading ps-reveal">
-          <p className="ps-eyebrow">WHERE I&apos;VE BEEN</p>
-          <h2>
-            A timeline of
-            <br />
-            <em>making & learning.</em>
-          </h2>
-        </div>
-
-        <div className="experience-card-list">
-          {experience.map((item, index) => (
-            <ExperienceCard
-              item={item}
-              index={index}
-              key={`${item.company}-${item.period}`}
-            />
-          ))}
+          <div className="experience-card-list">
+            <div className="experience-connector" aria-hidden="true" />
+            {experience.map((item, index) => (
+              <ExperienceCard
+                item={item}
+                index={index}
+                key={`${item.company}-${item.period}`}
+              />
+            ))}
+          </div>
         </div>
 
         <PixelFlower className="experience-flower" variant="yellow" />
