@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { ReactNode, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
@@ -19,7 +19,11 @@ const projects = [
     tags: ["PYTORCH", "STOCHASTIC CALCULUS", "MONTE CARLO"],
     stats: ["SPX DATA", "GREEKS", "ARBITRAGE CHECKS"],
     color: "yellow",
-    previewLines: ["dS = mu(t,S)dt + sigma(t,S)dW", "Monte Carlo paths", "No-arbitrage diagnostics"],
+    previewLines: [
+      "dS = mu(t,S)dt + sigma(t,S)dW",
+      "Monte Carlo paths",
+      "No-arbitrage diagnostics",
+    ],
   },
   {
     number: "02",
@@ -33,7 +37,11 @@ const projects = [
     tags: ["TYPESCRIPT", "REAL-TIME SYSTEMS", "VOICE AI"],
     stats: ["LIVE CALLS", "POLICY RISK", "IDENTITY"],
     color: "coral",
-    previewLines: ["call stream -> policy engine", "identity confidence", "fraud signal monitor"],
+    previewLines: [
+      "call stream -> policy engine",
+      "identity confidence",
+      "fraud signal monitor",
+    ],
   },
   {
     number: "03",
@@ -61,7 +69,11 @@ const projects = [
     tags: ["PYTHON", "NLP", "PARALLEL COMPUTING"],
     stats: ["4-8X FASTER", "100 DOCS/MIN", "12D MATCHING"],
     color: "sky",
-    previewLines: ["SEC filing match", "DealScan linkage", "parallel extraction"],
+    previewLines: [
+      "SEC filing match",
+      "DealScan linkage",
+      "parallel extraction",
+    ],
   },
 ];
 
@@ -127,6 +139,40 @@ function PixelFlower({
       <i />
       <i />
     </span>
+  );
+}
+
+function ScrollFrame({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.82, 1],
+    [0, 1, 1, 0],
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.82, 1],
+    [0.94, 1, 1, 0.96],
+  );
+
+  return (
+    <motion.div
+      className={`scroll-effect-frame ${className}`}
+      ref={ref}
+      style={{ opacity, scale }}
+    >
+      {children}
+    </motion.div>
   );
 }
 
@@ -290,7 +336,7 @@ export default function PortfolioSections() {
         className="projects ps-section-shell"
         id="projects"
       >
-        <div className="projects-inner">
+        <ScrollFrame className="projects-inner">
           <div className="projects-heading ps-reveal">
             <p className="ps-eyebrow">Projects</p>
             <h2>Projects</h2>
@@ -305,7 +351,7 @@ export default function PortfolioSections() {
               />
             ))}
           </div>
-        </div>
+        </ScrollFrame>
       </section>
 
       <section
@@ -313,7 +359,7 @@ export default function PortfolioSections() {
         className="experience ps-grid-surface ps-section-shell"
         id="experience"
       >
-        <div className="experience-inner">
+        <ScrollFrame className="experience-inner">
           <div className="experience-heading ps-reveal">
             <p className="ps-eyebrow">Experience</p>
             <h2>Experience</h2>
@@ -330,7 +376,7 @@ export default function PortfolioSections() {
               />
             ))}
           </div>
-        </div>
+        </ScrollFrame>
 
         <PixelFlower className="experience-flower" variant="yellow" />
       </section>
@@ -340,27 +386,29 @@ export default function PortfolioSections() {
         className="contact ps-section-shell"
         id="contact"
       >
-        <div className="ps-section-index">04 / CONTACT</div>
+        <ScrollFrame className="contact-scroll-frame">
+          <div className="ps-section-index">04 / CONTACT</div>
 
-        <div className="contact-rings" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </div>
+          <div className="contact-rings" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </div>
 
-        <PixelFlower className="contact-flower" variant="coral" />
+          <PixelFlower className="contact-flower" variant="coral" />
 
-        <p className="ps-eyebrow ps-reveal">HAVE SOMETHING IN MIND?</p>
-        <h2 className="ps-reveal ps-reveal-delay">
-          Let&apos;s build something
-          <br />
-          <em>worth talking about.</em>
-        </h2>
+          <p className="ps-eyebrow ps-reveal">HAVE SOMETHING IN MIND?</p>
+          <h2 className="ps-reveal ps-reveal-delay">
+            Let&apos;s build something
+            <br />
+            <em>worth talking about.</em>
+          </h2>
 
-        <a className="contact-cta ps-reveal" href="mailto:saleem.moiz@outlook.com">
-          START A CONVERSATION
-          <FiArrowRight aria-hidden="true" />
-        </a>
+          <a className="contact-cta ps-reveal" href="mailto:saleem.moiz@outlook.com">
+            START A CONVERSATION
+            <FiArrowRight aria-hidden="true" />
+          </a>
+        </ScrollFrame>
       </section>
 
       <footer className="portfolio-footer">

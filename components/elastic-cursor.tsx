@@ -23,10 +23,11 @@ export default function ElasticCursor() {
 
     let frame = 0;
     let targetElement: HTMLElement | null = null;
+    let previousTarget: HTMLElement | null = null;
 
     const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const current = { x: pointer.x, y: pointer.y };
-    const size = { width: 42, height: 42, radius: 999 };
+    const size = { width: 50, height: 50, radius: 999 };
     const velocity = { x: 0, y: 0 };
 
     const setHidden = (hidden: boolean) => {
@@ -58,39 +59,48 @@ export default function ElasticCursor() {
       const previousY = current.y;
       const targetBounds = targetElement?.getBoundingClientRect();
 
+      if (previousTarget && previousTarget !== targetElement) {
+        previousTarget.style.transform = "";
+      }
+
       if (targetBounds) {
+        const centerX = targetBounds.left + targetBounds.width / 2;
+        const centerY = targetBounds.top + targetBounds.height / 2;
+        const pullX = Math.max(-12, Math.min(12, (pointer.x - centerX) * 0.22));
+        const pullY = Math.max(-12, Math.min(12, (pointer.y - centerY) * 0.22));
         const nextWidth = targetBounds.width + 18;
         const nextHeight = targetBounds.height + 18;
-        const nextX = targetBounds.left + targetBounds.width / 2;
-        const nextY = targetBounds.top + targetBounds.height / 2;
-        current.x += (nextX - current.x) * 0.2;
-        current.y += (nextY - current.y) * 0.2;
-        size.width += (nextWidth - size.width) * 0.22;
-        size.height += (nextHeight - size.height) * 0.22;
-        size.radius += (14 - size.radius) * 0.22;
+        current.x += (centerX + pullX * 0.4 - current.x) * 0.22;
+        current.y += (centerY + pullY * 0.4 - current.y) * 0.22;
+        size.width += (nextWidth - size.width) * 0.24;
+        size.height += (nextHeight - size.height) * 0.24;
+        size.radius += (12 - size.radius) * 0.24;
+        targetElement!.style.transform = `translate3d(${pullX}px, ${pullY}px, 0)`;
         cursor.classList.add("is-targeting");
         dot.classList.add("is-targeting");
+        previousTarget = targetElement;
       } else {
-        current.x += (pointer.x - current.x) * 0.18;
-        current.y += (pointer.y - current.y) * 0.18;
-        size.width += (42 - size.width) * 0.26;
-        size.height += (42 - size.height) * 0.26;
-        size.radius += (999 - size.radius) * 0.26;
+        current.x += (pointer.x - current.x) * 0.16;
+        current.y += (pointer.y - current.y) * 0.16;
+        size.width += (50 - size.width) * 0.24;
+        size.height += (50 - size.height) * 0.24;
+        size.radius += (999 - size.radius) * 0.24;
         cursor.classList.remove("is-targeting");
         dot.classList.remove("is-targeting");
+        previousTarget = null;
       }
 
       velocity.x = current.x - previousX;
       velocity.y = current.y - previousY;
 
       const speed = Math.min(
-        Math.hypot(velocity.x, velocity.y) / 42,
-        0.34,
+        Math.hypot(velocity.x, velocity.y) / 46,
+        0.42,
       );
       const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
 
-      cursor.style.width = `${size.width + speed * 46}px`;
-      cursor.style.height = `${Math.max(18, size.height - speed * 22)}px`;
+      cursor.style.width = `${size.width + speed * 70}px`;
+      cursor.style.height = `${Math.max(18, size.height - speed * 30)}px`;
       cursor.style.borderRadius = `${size.radius}px`;
       cursor.style.transform = `translate3d(${current.x}px, ${current.y}px, 0) translate(-50%, -50%) rotate(${angle}deg)`;
       dot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0) translate(-50%, -50%)`;
@@ -110,6 +120,7 @@ export default function ElasticCursor() {
       window.removeEventListener("pointerout", handlePointerOut);
       window.removeEventListener("pointerover", handlePointerOver);
       cancelAnimationFrame(frame);
+      if (previousTarget) previousTarget.style.transform = "";
     };
   }, []);
 
