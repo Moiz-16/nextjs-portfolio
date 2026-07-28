@@ -45,7 +45,6 @@ export default function Intro() {
         aria-labelledby="hero-title"
       >
         <ParticlesContainer />
-        <div className="cursor-glow" aria-hidden="true" />
         <div className="hero-orbit hero-orbit--one" aria-hidden="true" />
         <div className="hero-orbit hero-orbit--two" aria-hidden="true" />
 

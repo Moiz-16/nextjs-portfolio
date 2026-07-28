@@ -41,6 +41,7 @@ const measureTarget = (element: HTMLElement): TargetBounds => {
 export default function ElasticCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
+  const trailRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)").matches;
@@ -52,6 +53,9 @@ export default function ElasticCursor() {
 
     const cursor = cursorRef.current;
     const dot = dotRef.current;
+    const trails = trailRefs.current.filter(
+      (trail): trail is HTMLDivElement => Boolean(trail),
+    );
     if (!cursor || !dot) return;
 
     let frame = 0;
@@ -60,6 +64,7 @@ export default function ElasticCursor() {
 
     const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const current = { x: pointer.x, y: pointer.y };
+    const trailPositions = trails.map(() => ({ x: pointer.x, y: pointer.y }));
     const size = {
       width: BASE_CURSOR_SIZE,
       height: BASE_CURSOR_SIZE,
@@ -70,6 +75,7 @@ export default function ElasticCursor() {
     const setHidden = (hidden: boolean) => {
       cursor.classList.toggle("is-hidden", hidden);
       dot.classList.toggle("is-hidden", hidden);
+      trails.forEach((trail) => trail.classList.toggle("is-hidden", hidden));
     };
 
     const findTarget = (node: EventTarget | null) => {
@@ -82,6 +88,7 @@ export default function ElasticCursor() {
       pointer.y = event.clientY;
       cursor.classList.add("has-moved");
       dot.classList.add("has-moved");
+      trails.forEach((trail) => trail.classList.add("has-moved"));
     };
 
     const acquireTarget = (element: HTMLElement | null) => {
@@ -166,9 +173,11 @@ export default function ElasticCursor() {
       if (isTargeting) {
         cursor.classList.add("is-targeting");
         dot.classList.add("is-targeting");
+        trails.forEach((trail) => trail.classList.add("is-targeting"));
       } else {
         cursor.classList.remove("is-targeting");
         dot.classList.remove("is-targeting");
+        trails.forEach((trail) => trail.classList.remove("is-targeting"));
       }
 
       velocity.x = current.x - previousX;
@@ -186,6 +195,15 @@ export default function ElasticCursor() {
       cursor.style.borderRadius = `${size.radius}px`;
       cursor.style.transform = `translate3d(${current.x}px, ${current.y}px, 0) translate(-50%, -50%) rotate(${isTargeting ? 0 : angle}deg)`;
       dot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0) translate(-50%, -50%)`;
+      trails.forEach((trail, index) => {
+        const previous = index === 0 ? current : trailPositions[index - 1];
+        const trailPosition = trailPositions[index];
+        const trailEase = Math.max(0.08, 0.22 - index * 0.035);
+
+        trailPosition.x += (previous.x - trailPosition.x) * trailEase;
+        trailPosition.y += (previous.y - trailPosition.y) * trailEase;
+        trail.style.transform = `translate3d(${trailPosition.x}px, ${trailPosition.y}px, 0) translate(-50%, -50%) scale(${1 - index * 0.11})`;
+      });
 
       frame = requestAnimationFrame(render);
     };
@@ -213,6 +231,16 @@ export default function ElasticCursor() {
 
   return (
     <>
+      {Array.from({ length: 4 }, (_, index) => (
+        <div
+          className={`elastic-cursor-trail elastic-cursor-trail--${index + 1}`}
+          key={index}
+          ref={(node) => {
+            trailRefs.current[index] = node;
+          }}
+          aria-hidden="true"
+        />
+      ))}
       <div className="elastic-cursor" ref={cursorRef} aria-hidden="true" />
       <div className="elastic-cursor-dot" ref={dotRef} aria-hidden="true" />
     </>
