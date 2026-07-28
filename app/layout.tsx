@@ -1,8 +1,6 @@
 import Header from '@/components/header'
 import './globals.css'
 import ActiveSectionContextProvider from '@/context/active-section-context'
-import Footer from '@/components/footer'
-import ThemeSwitch from '@/components/theme-switch'
 import ThemeContextProvider from '@/context/theme-context'
 
 export const metadata = {
@@ -31,8 +29,6 @@ export default function RootLayout({
             <ActiveSectionContextProvider>
               <Header/>
               {children}
-              <Footer/>
-              <ThemeSwitch/>
             </ActiveSectionContextProvider>
           </div>
         </ThemeContextProvider>
