@@ -137,6 +137,10 @@ a {
   background: #fff;
 }
 
+.elastic-cursor-dot.is-targeting {
+  opacity: 0;
+}
+
 .elastic-cursor.is-hidden,
 .elastic-cursor-dot.is-hidden {
   opacity: 0;
