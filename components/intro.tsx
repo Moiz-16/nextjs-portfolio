@@ -84,24 +84,28 @@ export default function Intro() {
           <a className="hero-socials-contact" href="#contact" data-cursor-target>
             Contact
           </a>
-          <a
-            href="https://github.com/Moiz-16"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            data-cursor-target
-          >
-            <SiGithub />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/moiz-saleem/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            data-cursor-target
-          >
-            <SiLinkedin />
-          </a>
+          <div className="hero-socials-icons">
+            <a
+              className="hero-socials-icon"
+              href="https://github.com/Moiz-16"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              data-cursor-target
+            >
+              <SiGithub />
+            </a>
+            <a
+              className="hero-socials-icon"
+              href="https://www.linkedin.com/in/moiz-saleem/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              data-cursor-target
+            >
+              <SiLinkedin />
+            </a>
+          </div>
         </div>
 
         <div className="hero-footer">
