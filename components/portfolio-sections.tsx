@@ -197,6 +197,9 @@ const experience = [
   },
 ];
 
+const educationItems = experience.slice(0, 1);
+const experienceItems = experience.slice(1);
+
 function ScrollFrame({
   children,
   className = "",
@@ -410,8 +413,8 @@ function ExperienceCard({
       <article className="experience-card" data-cursor-target>
         <header>
           <div>
-            <h3>{item.role}</h3>
-            <p>{item.company}</p>
+            <h3>{item.company}</h3>
+            <p>{item.role}</p>
           </div>
           <time>{item.period}</time>
         </header>
@@ -596,21 +599,50 @@ export default function PortfolioSections() {
         id="experience"
       >
         <ScrollFrame className="experience-inner">
+          <div className="ps-section-index">03 / EXPERIENCE</div>
+
           <div className="experience-heading ps-reveal">
-            <p className="ps-eyebrow">Experience</p>
-            <h2>Experience</h2>
-            <p>My professional journey.</p>
+            <p className="ps-eyebrow">WHERE I&apos;VE BEEN</p>
+            <h2>
+              A timeline of
+              <br />
+              <em>making & learning.</em>
+            </h2>
+            <p>Education, research and projects that shaped how I build.</p>
           </div>
 
-          <div className="experience-card-list">
-            <div className="experience-connector" aria-hidden="true" />
-            {experience.map((item, index) => (
-              <ExperienceCard
-                item={item}
-                index={index}
-                key={`${item.company}-${item.period}`}
-              />
-            ))}
+          <div className="experience-groups">
+            <section className="experience-group" aria-labelledby="education-heading">
+              <h3 className="experience-side-label" id="education-heading">
+                Education
+              </h3>
+              <div className="experience-card-list">
+                <div className="experience-connector" aria-hidden="true" />
+                {educationItems.map((item, index) => (
+                  <ExperienceCard
+                    item={item}
+                    index={index}
+                    key={`${item.company}-${item.period}`}
+                  />
+                ))}
+              </div>
+            </section>
+
+            <section className="experience-group" aria-labelledby="experience-heading">
+              <h3 className="experience-side-label" id="experience-heading">
+                Experience
+              </h3>
+              <div className="experience-card-list">
+                <div className="experience-connector" aria-hidden="true" />
+                {experienceItems.map((item, index) => (
+                  <ExperienceCard
+                    item={item}
+                    index={index + educationItems.length}
+                    key={`${item.company}-${item.period}`}
+                  />
+                ))}
+              </div>
+            </section>
           </div>
         </ScrollFrame>
       </section>

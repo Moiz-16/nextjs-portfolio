@@ -2119,6 +2119,12 @@ a {
   letter-spacing: -0.055em;
 }
 
+.portfolio-sections .experience-heading h2 em {
+  color: var(--ps-yellow);
+  font-family: var(--hero-serif);
+  font-weight: 400;
+}
+
 .portfolio-sections .experience-heading > p {
   color: rgba(16, 16, 16, 0.58);
   font-size: 16px;
@@ -2133,6 +2139,34 @@ a {
   flex-direction: column;
   gap: clamp(32px, 4vw, 48px);
   position: relative;
+}
+
+.portfolio-sections .experience-groups {
+  display: grid;
+  gap: clamp(42px, 7vw, 86px);
+}
+
+.portfolio-sections .experience-group {
+  display: grid;
+  gap: clamp(18px, 3vw, 32px);
+  grid-template-columns: 92px minmax(0, 1fr);
+  position: relative;
+}
+
+.portfolio-sections .experience-side-label {
+  align-self: start;
+  color: var(--ps-yellow);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  margin: 0;
+  padding-top: 6px;
+  position: sticky;
+  text-transform: uppercase;
+  top: calc(var(--header-height) + 28px);
+  writing-mode: vertical-rl;
 }
 
 .portfolio-sections .experience-connector {
@@ -2613,6 +2647,15 @@ a {
 
   .portfolio-sections .experience-heading {
     padding-top: 0;
+  }
+
+  .portfolio-sections .experience-group {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-sections .experience-side-label {
+    position: static;
+    writing-mode: horizontal-tb;
   }
 
   .portfolio-sections .portfolio-footer {
