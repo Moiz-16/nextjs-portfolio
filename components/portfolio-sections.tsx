@@ -576,9 +576,17 @@ export default function PortfolioSections() {
         id="projects"
       >
         <ScrollFrame className="projects-inner">
+          <div className="ps-section-index">02 / SELECTED PROJECTS</div>
+
           <div className="projects-heading ps-reveal">
-            <p className="ps-eyebrow">Projects</p>
-            <h2>Projects</h2>
+            <p className="ps-eyebrow">THINGS I&apos;VE BUILT</p>
+            <h2>
+              Selected <em>work</em>
+            </h2>
+            <p>
+              Research, infrastructure and products built to solve real
+              problems.
+            </p>
           </div>
 
           <div className="project-card-grid">

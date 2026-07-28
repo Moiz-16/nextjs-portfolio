@@ -1427,8 +1427,12 @@ a {
 }
 
 .portfolio-sections .contact h2 {
-  font-size: clamp(48px, 7vw, 104px);
-  line-height: 0.92;
+  color: var(--ps-night);
+  font-family: var(--serif);
+  font-size: clamp(48px, 6vw, 92px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
   margin: 0;
 }
 
@@ -1934,28 +1938,48 @@ a {
 
 .portfolio-sections .projects-inner {
   margin: 0 auto;
-  max-width: 80rem;
+  max-width: 76rem;
   width: 100%;
 }
 
 .portfolio-sections .projects-heading {
-  display: block;
-  margin: 0 auto clamp(42px, 8vw, 96px);
-  max-width: 48rem;
-  text-align: center;
+  align-items: end;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1.3fr 1fr;
+  margin: 0 0 clamp(42px, 7vw, 84px);
+  text-align: left;
 }
 
 .portfolio-sections .projects-heading .ps-eyebrow {
+  grid-column: 1 / -1;
   color: rgba(16, 16, 16, 0.54);
-  margin: 0 0 12px;
+  margin: 0;
   text-transform: uppercase;
 }
 
 .portfolio-sections .projects-heading h2 {
   color: var(--ps-night);
-  font-size: clamp(42px, 5.6vw, 86px);
+  font-family: var(--serif);
+  font-size: clamp(48px, 6vw, 92px);
   font-weight: 700;
   letter-spacing: -0.055em;
+  line-height: 0.94;
+  margin: 0;
+}
+
+.portfolio-sections .projects-heading h2 em {
+  color: var(--ps-blue);
+  font-family: var(--hero-serif);
+  font-weight: 400;
+}
+
+.portfolio-sections .projects-heading > p:last-child {
+  color: rgba(16, 16, 16, 0.62);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 5px;
+  max-width: 430px;
 }
 
 .portfolio-sections .project-card-grid {
@@ -2095,7 +2119,7 @@ a {
 
 .portfolio-sections .experience-inner {
   margin: 0 auto;
-  max-width: 56rem;
+  max-width: 76rem;
   padding: 0 clamp(16px, 3vw, 32px);
   width: 100%;
 }
@@ -2114,9 +2138,12 @@ a {
 
 .portfolio-sections .experience-heading h2 {
   color: var(--ink);
-  font-size: clamp(42px, 5.6vw, 86px);
+  font-family: var(--serif);
+  font-size: clamp(48px, 6vw, 92px);
   font-weight: 700;
   letter-spacing: -0.055em;
+  line-height: 0.94;
+  margin: 0;
 }
 
 .portfolio-sections .experience-heading h2 em {
