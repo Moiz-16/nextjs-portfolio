@@ -1,29 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
+import { FiMail } from "react-icons/fi";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
-
-function PixelFlower({
-  className = "",
-  variant = "coral",
-}: {
-  className?: string;
-  variant?: "coral" | "yellow" | "small";
-}) {
-  return (
-    <span
-      className={`pixel-flower pixel-flower--${variant} ${className}`}
-      aria-hidden="true"
-    >
-      <i />
-      <i />
-      <i />
-      <i />
-      <i />
-      <i />
-    </span>
-  );
-}
 
 function MotionEffects() {
   useEffect(() => {
@@ -71,11 +51,6 @@ export default function Intro() {
         <span className="pixel-comet pixel-comet--one" aria-hidden="true" />
         <span className="pixel-comet pixel-comet--two" aria-hidden="true" />
 
-        <PixelFlower className="flower-one" variant="coral" />
-        <PixelFlower className="flower-two" variant="yellow" />
-        <PixelFlower className="flower-three" variant="small" />
-        <PixelFlower className="flower-four" variant="coral" />
-
         <p className="hero-coordinates">51.5072° N&nbsp;&nbsp;0.1276° W</p>
 
         <div className="hero-kicker">
@@ -95,8 +70,6 @@ export default function Intro() {
 
             <span className="hero-name">moiz saleem</span>
           </h1>
-
-          <PixelFlower className="title-flower" variant="yellow" />
         </div>
 
         <p className="hero-location">BASED IN THE UK</p>
@@ -105,6 +78,30 @@ export default function Intro() {
           I build thoughtful software at the intersection of engineering, data
           and markets.
         </p>
+
+        <div className="hero-socials" aria-label="Home links">
+          <a
+            href="https://www.linkedin.com/in/moiz-saleem/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            data-cursor-target
+          >
+            <SiLinkedin />
+          </a>
+          <a
+            href="https://github.com/Moiz-16"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            data-cursor-target
+          >
+            <SiGithub />
+          </a>
+          <a href="#contact" aria-label="Contact" data-cursor-target>
+            <FiMail />
+          </a>
+        </div>
 
         <div className="hero-footer">
           <span>
