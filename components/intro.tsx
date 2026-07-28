@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { FiMail } from "react-icons/fi";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
 import ParticlesContainer from "@/components/particles-container";
@@ -82,14 +81,8 @@ export default function Intro() {
         </p>
 
         <div className="hero-socials" aria-label="Home links">
-          <a
-            href="https://www.linkedin.com/in/moiz-saleem/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            data-cursor-target
-          >
-            <SiLinkedin />
+          <a className="hero-socials-contact" href="#contact" data-cursor-target>
+            Contact
           </a>
           <a
             href="https://github.com/Moiz-16"
@@ -100,8 +93,14 @@ export default function Intro() {
           >
             <SiGithub />
           </a>
-          <a href="#contact" aria-label="Contact" data-cursor-target>
-            <FiMail />
+          <a
+            href="https://www.linkedin.com/in/moiz-saleem/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            data-cursor-target
+          >
+            <SiLinkedin />
           </a>
         </div>
 
