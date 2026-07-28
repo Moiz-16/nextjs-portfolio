@@ -15,6 +15,8 @@ const MAX_CURSOR_LEAD = 8;
 type TargetBounds = {
   cx: number;
   cy: number;
+  padding: number;
+  radius: number;
   width: number;
   height: number;
 };
@@ -24,10 +26,13 @@ const clamp = (value: number, min: number, max: number) =>
 
 const measureTarget = (element: HTMLElement): TargetBounds => {
   const rect = element.getBoundingClientRect();
+  const compact = element.hasAttribute("data-cursor-compact");
 
   return {
     cx: rect.left + rect.width / 2,
     cy: rect.top + rect.height / 2,
+    padding: compact ? 3 : WRAP_PADDING,
+    radius: compact ? 5 : WRAP_RADIUS,
     width: rect.width,
     height: rect.height,
   };
@@ -147,9 +152,9 @@ export default function ElasticCursor() {
 
         nextX = targetBounds.cx + leadX;
         nextY = targetBounds.cy + leadY;
-        nextWidth = targetBounds.width + WRAP_PADDING * 2;
-        nextHeight = targetBounds.height + WRAP_PADDING * 2;
-        nextRadius = WRAP_RADIUS;
+        nextWidth = targetBounds.width + targetBounds.padding * 2;
+        nextHeight = targetBounds.height + targetBounds.padding * 2;
+        nextRadius = targetBounds.radius;
       }
 
       current.x += (nextX - current.x) * ease;

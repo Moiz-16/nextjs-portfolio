@@ -190,14 +190,16 @@ a {
 
 .wordmark {
   font-size: 15px;
+  justify-self: start;
   transition:
     color 200ms ease,
     letter-spacing 200ms ease;
+  width: max-content;
 }
 
 .wordmark:hover {
   color: var(--yellow);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
 }
 
 .wordmark span {
@@ -348,6 +350,20 @@ a {
   pointer-events: none;
   position: absolute;
   z-index: 1;
+}
+
+.hero-background-fade {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 82%,
+    rgba(248, 244, 232, 0.38) 94%,
+    var(--blue) 100%
+  );
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 3;
 }
 
 .hero-particles,
@@ -538,7 +554,7 @@ a {
   font-family: var(--hero-serif);
   font-size: clamp(18px, 1.6vw, 24px);
   font-style: italic;
-  left: 50%;
+  left: 64%;
   line-height: 1.25;
   margin: 0;
   max-width: 520px;
@@ -567,13 +583,13 @@ a {
 
 .hero-socials a {
   align-items: center;
-  background: rgba(16, 16, 16, 0.96);
-  border: 1px solid rgba(16, 16, 16, 0.14);
+  background: rgba(248, 244, 232, 0.94);
+  border: 1.5px solid rgba(16, 16, 16, 0.36);
   border-radius: 6px;
   box-shadow:
-    0 18px 34px -24px rgba(16, 16, 16, 0.95),
-    inset 0 1px 0 rgba(248, 244, 232, 0.16);
-  color: var(--blue);
+    0 18px 34px -24px rgba(16, 16, 16, 0.86),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  color: var(--ink);
   display: flex;
   font-family: var(--sans);
   font-size: 22px;
@@ -592,10 +608,10 @@ a {
 }
 
 .hero-socials .hero-socials-contact {
-  background: rgba(248, 244, 232, 0.9);
-  border-color: rgba(16, 16, 16, 0.2);
+  background: rgba(248, 244, 232, 0.94);
+  border-color: rgba(16, 16, 16, 0.36);
   box-shadow:
-    0 18px 34px -25px rgba(16, 16, 16, 0.72),
+    0 18px 34px -24px rgba(16, 16, 16, 0.86),
     inset 0 1px 0 rgba(255, 255, 255, 0.32);
   color: var(--ink);
   font-size: 16px;
@@ -606,19 +622,19 @@ a {
 
 .hero-socials a:hover,
 .hero-socials a:focus-visible {
-  background: rgba(16, 16, 16, 1);
-  border-color: rgba(16, 16, 16, 0.34);
+  background: rgba(248, 244, 232, 1);
+  border-color: rgba(16, 16, 16, 0.42);
   box-shadow:
-    0 20px 38px -24px rgba(16, 16, 16, 0.94),
-    inset 0 1px 0 rgba(248, 244, 232, 0.22);
-  color: var(--blue);
+    0 20px 38px -24px rgba(16, 16, 16, 0.82),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48);
+  color: var(--ink);
   transform: translateY(-2px);
 }
 
 .hero-socials .hero-socials-contact:hover,
 .hero-socials .hero-socials-contact:focus-visible {
-  background: rgba(16, 16, 16, 0.98);
-  color: var(--blue);
+  background: rgba(248, 244, 232, 1);
+  color: var(--ink);
 }
 
 .hero-footer {

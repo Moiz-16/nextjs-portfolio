@@ -51,6 +51,7 @@ export default function Intro() {
 
         <span className="pixel-comet pixel-comet--one" aria-hidden="true" />
         <span className="pixel-comet pixel-comet--two" aria-hidden="true" />
+        <div className="hero-background-fade" aria-hidden="true" />
 
         <p className="hero-coordinates">51.5072° N&nbsp;&nbsp;0.1276° W</p>
 

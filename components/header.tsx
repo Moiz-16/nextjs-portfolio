@@ -3,7 +3,12 @@
 export default function Header() {
   return (
     <header className="site-header">
-      <a className="wordmark" href="#home" aria-label="Moiz Saleem - home">
+      <a
+        className="wordmark"
+        href="#home"
+        aria-label="Moiz Saleem - home"
+        data-cursor-compact
+      >
         MS<span>©26</span>
       </a>
 
