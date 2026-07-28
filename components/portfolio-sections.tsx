@@ -1,7 +1,7 @@
 "use client";
 
-import { ReactNode, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
@@ -19,6 +19,8 @@ const projects = [
     tags: ["PYTORCH", "STOCHASTIC CALCULUS", "MONTE CARLO"],
     stats: ["SPX DATA", "GREEKS", "ARBITRAGE CHECKS"],
     color: "yellow",
+    image: "/tradingview_indicators.png",
+    background: "/assets/backgrounds/neural-sdes.jpg",
     previewLines: [
       "dS = mu(t,S)dt + sigma(t,S)dW",
       "Monte Carlo paths",
@@ -37,6 +39,8 @@ const projects = [
     tags: ["TYPESCRIPT", "REAL-TIME SYSTEMS", "VOICE AI"],
     stats: ["LIVE CALLS", "POLICY RISK", "IDENTITY"],
     color: "coral",
+    image: "/nexus.png",
+    background: "/assets/backgrounds/lumen.jpg",
     previewLines: [
       "call stream -> policy engine",
       "identity confidence",
@@ -55,6 +59,8 @@ const projects = [
     tags: ["SWIFT", "COMPUTER VISION", "PRODUCT DESIGN"],
     stats: ["VALUATION", "SCANNING", "PRICE HISTORY"],
     color: "green",
+    image: "/dropkick_app.png",
+    background: "/assets/backgrounds/cardfolio.jpg",
     previewLines: ["collection value", "grade-aware pricing", "set completion"],
   },
   {
@@ -69,6 +75,8 @@ const projects = [
     tags: ["PYTHON", "NLP", "PARALLEL COMPUTING"],
     stats: ["4-8X FASTER", "100 DOCS/MIN", "12D MATCHING"],
     color: "sky",
+    image: "/IMA_TMT_2025_Conference_Abstract.png",
+    background: "/assets/backgrounds/sec-dealscan.jpg",
     previewLines: [
       "SEC filing match",
       "DealScan linkage",
@@ -176,6 +184,131 @@ function ScrollFrame({
   );
 }
 
+const PAN_SPEED = 70;
+const PAN_PAUSE = 1.2;
+const MIN_SCROLL_OVERFLOW = 0.2;
+const FALLBACK_PROJECT_BG = "linear-gradient(135deg, #1e293b, #0f172a)";
+
+function ProjectScrollingPreview({
+  src,
+  alt,
+  bg,
+}: {
+  src: string;
+  alt: string;
+  bg?: string;
+}) {
+  const reduceMotion = useReducedMotion();
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [scrollPx, setScrollPx] = useState(0);
+  const [bgReady, setBgReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const img = new window.Image();
+
+    const compute = () => {
+      const viewport = viewportRef.current;
+      if (cancelled || !viewport || !img.naturalWidth) return;
+
+      const ratio = img.naturalHeight / img.naturalWidth;
+      const displayedHeight = viewport.clientWidth * ratio;
+      const overflow = displayedHeight - viewport.clientHeight;
+      setScrollPx(
+        overflow > viewport.clientHeight * MIN_SCROLL_OVERFLOW ? overflow : 0,
+      );
+    };
+
+    img.onload = compute;
+    img.src = src;
+    if (img.complete) compute();
+    window.addEventListener("resize", compute);
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("resize", compute);
+    };
+  }, [src]);
+
+  useEffect(() => {
+    if (!bg) {
+      setBgReady(false);
+      return;
+    }
+
+    let cancelled = false;
+    const img = new window.Image();
+    img.onload = () => !cancelled && setBgReady(true);
+    img.onerror = () => !cancelled && setBgReady(false);
+    img.src = bg;
+
+    return () => {
+      cancelled = true;
+    };
+  }, [bg]);
+
+  const scrolls = scrollPx > 0;
+  const animate = !reduceMotion && scrolls;
+  const pan = scrollPx / PAN_SPEED;
+  const total = pan * 2 + PAN_PAUSE * 2;
+  const times = [
+    0,
+    pan / total,
+    (pan + PAN_PAUSE) / total,
+    (pan * 2 + PAN_PAUSE) / total,
+    1,
+  ];
+
+  return (
+    <div
+      className="project-scrolling-preview"
+      role="img"
+      aria-label={alt}
+    >
+      <div
+        className="project-preview-background"
+        style={{
+          backgroundImage: bgReady && bg ? `url("${bg}")` : FALLBACK_PROJECT_BG,
+        }}
+      />
+
+      <div className="project-preview-shot" ref={viewportRef}>
+        <motion.div
+          className="project-preview-image"
+          style={{
+            backgroundImage: `url("${src}")`,
+            backgroundSize: scrolls ? "100% auto" : "cover",
+            backgroundPosition: scrolls ? "50% 0%" : "center",
+          }}
+          animate={
+            animate
+              ? {
+                  backgroundPosition: [
+                    "50% 0%",
+                    "50% 100%",
+                    "50% 100%",
+                    "50% 0%",
+                    "50% 0%",
+                  ],
+                }
+              : undefined
+          }
+          transition={
+            animate
+              ? {
+                  duration: total,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  times,
+                }
+              : undefined
+          }
+        />
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({
   project,
   index,
@@ -195,28 +328,11 @@ function ProjectCard({
         className={`project-card project-card-template accent-${project.color}`}
         data-cursor-target
       >
-        <div className="project-template-preview" aria-hidden="true">
-          <div className="project-template-screen">
-            <div className="project-template-topbar">
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="project-template-content">
-              <div className="project-template-title">{project.title}</div>
-              <div className="project-template-stats">
-                {project.stats.map((stat) => (
-                  <span key={stat}>{stat}</span>
-                ))}
-              </div>
-              <div className="project-template-lines">
-                {project.previewLines.map((line) => (
-                  <i key={line}>{line}</i>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProjectScrollingPreview
+          src={project.image}
+          alt={project.title}
+          bg={project.background}
+        />
 
         <div className="project-template-overlay">
           <div className="project-template-overlay-inner">

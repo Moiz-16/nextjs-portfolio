@@ -1789,7 +1789,7 @@ a {
   background: transparent;
   border: 0;
   border-radius: 8px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 70px -44px rgba(16, 16, 16, 0.9);
   max-width: 400px;
   overflow: hidden;
   padding: 0;
@@ -1805,126 +1805,50 @@ a {
   transform: none;
 }
 
-.portfolio-sections .project-template-preview {
-  background:
-    radial-gradient(circle at 16% 8%, rgba(248, 244, 232, 0.28), transparent 18%),
-    linear-gradient(145deg, rgba(16, 16, 16, 0.98), rgba(16, 16, 16, 0.82));
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-}
-
-.portfolio-sections .accent-coral .project-template-preview {
-  background:
-    radial-gradient(circle at 78% 12%, rgba(255, 64, 85, 0.5), transparent 25%),
-    linear-gradient(145deg, rgba(16, 16, 16, 0.98), rgba(16, 16, 16, 0.82));
-}
-
-.portfolio-sections .accent-green .project-template-preview {
-  background:
-    radial-gradient(circle at 22% 78%, rgba(37, 169, 37, 0.5), transparent 25%),
-    linear-gradient(145deg, rgba(16, 16, 16, 0.98), rgba(16, 16, 16, 0.82));
-}
-
-.portfolio-sections .accent-sky .project-template-preview {
-  background:
-    radial-gradient(circle at 78% 76%, rgba(115, 216, 255, 0.5), transparent 25%),
-    linear-gradient(145deg, rgba(16, 16, 16, 0.98), rgba(16, 16, 16, 0.82));
-}
-
-.portfolio-sections .project-template-screen {
-  animation: project-preview-pan 14s ease-in-out infinite alternate;
-  color: rgba(248, 244, 232, 0.88);
-  display: grid;
-  gap: 18px;
-  min-height: 142%;
-  padding: 16px;
-  position: relative;
-}
-
-.portfolio-sections .project-template-screen::before {
-  background:
-    linear-gradient(rgba(248, 244, 232, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(248, 244, 232, 0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
-  content: "";
+.portfolio-sections .project-scrolling-preview {
   inset: 0;
   pointer-events: none;
   position: absolute;
 }
 
-.portfolio-sections .project-template-topbar {
-  align-items: center;
-  display: flex;
-  gap: 7px;
-  height: 20px;
-  position: relative;
-  z-index: 1;
+.portfolio-sections .project-preview-background {
+  background-color: #0f172a;
+  background-position: center;
+  background-size: cover;
+  inset: 0;
+  position: absolute;
 }
 
-.portfolio-sections .project-template-topbar span {
-  background: rgba(248, 244, 232, 0.65);
-  border-radius: 999px;
-  height: 6px;
-  width: 6px;
+.portfolio-sections .project-preview-shot {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  bottom: 0;
+  box-shadow:
+    0 24px 50px -12px rgba(8, 20, 55, 0.55),
+    0 8px 18px -8px rgba(8, 20, 55, 0.45);
+  left: 22px;
+  overflow: hidden;
+  position: absolute;
+  right: 22px;
+  top: 20px;
+  transition: transform 0.5s ease-out;
 }
 
-.portfolio-sections .project-template-content {
-  align-content: start;
-  display: grid;
-  gap: 18px;
-  padding-top: clamp(10px, 4vw, 34px);
-  position: relative;
-  z-index: 1;
+.portfolio-sections .project-card-template:hover .project-preview-shot {
+  transform: scale(1.02);
 }
 
-.portfolio-sections .project-template-title {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2.1vw, 34px);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 0.95;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-.portfolio-sections .project-template-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-
-.portfolio-sections .project-template-stats span {
-  border: 1px solid rgba(248, 244, 232, 0.34);
-  border-radius: 8px;
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.08em;
-  padding: 5px 7px;
-}
-
-.portfolio-sections .project-template-lines {
-  display: grid;
-  gap: 10px;
-}
-
-.portfolio-sections .project-template-lines i {
-  background: rgba(248, 244, 232, 0.08);
-  border: 1px solid rgba(248, 244, 232, 0.12);
-  border-radius: 8px;
-  display: block;
-  font-family: var(--mono);
-  font-size: 9px;
-  font-style: normal;
-  letter-spacing: 0.04em;
-  padding: 13px 12px;
+.portfolio-sections .project-preview-image {
+  background-repeat: no-repeat;
+  inset: 0;
+  position: absolute;
 }
 
 .portfolio-sections .project-template-overlay {
   background: linear-gradient(
     to top,
-    var(--blue),
-    rgba(248, 244, 232, 0.82),
+    var(--ps-paper),
+    rgba(240, 236, 223, 0.82),
     transparent
   );
   bottom: 0;
@@ -1951,18 +1875,18 @@ a {
 }
 
 .portfolio-sections .project-template-overlay-inner div {
-  color: var(--ink);
+  color: var(--ps-night);
   font-family: var(--sans);
   font-size: 18px;
   line-height: 1.15;
   text-align: left;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
 .portfolio-sections .project-template-overlay-inner span {
-  background: var(--ink);
+  background: var(--ps-night);
   border-radius: 8px;
-  color: var(--blue);
+  color: var(--ps-paper);
   font-family: var(--mono);
   font-size: 11px;
   line-height: 1.35;
