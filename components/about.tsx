@@ -28,7 +28,7 @@ export default function About() {
   const { ref } = useSectionInView("About", 0.6);
 
   return (
-    <section ref={ref} className="about grid-surface section-shell" id="about">
+    <section ref={ref} className="about section-shell" id="about">
       <div className="section-index">01 / ABOUT</div>
 
       <div className="about-heading reveal">
