@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { BsEnvelope, BsGithub, BsLinkedin } from "react-icons/bs";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
 import ParticlesContainer from "@/components/particles-container";
 
@@ -94,25 +94,27 @@ export default function Intro() {
           <a href="#about">↓ SCROLL TO EXPLORE</a>
         </div>
 
-        <div className="hero-actions" aria-label="Contact links">
+        <div className="hero-actions" aria-label="Home actions">
+          <a className="hero-contact-link" href="#contact" data-cursor-target>
+            CONTACT
+          </a>
           <a
             href="https://www.linkedin.com/in/moiz-saleem/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
+            data-cursor-target
           >
-            <BsLinkedin />
+            <SiLinkedin />
           </a>
           <a
             href="https://github.com/Moiz-16"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
+            data-cursor-target
           >
-            <BsGithub />
-          </a>
-          <a href="#contact" aria-label="Contact">
-            <BsEnvelope />
+            <SiGithub />
           </a>
         </div>
       </section>

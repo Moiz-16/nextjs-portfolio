@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
 
 const projects = [
@@ -15,6 +17,7 @@ const projects = [
     detail:
       "Built in PyTorch with Monte Carlo pricing, Greeks estimation and arbitrage checks across SPX option data.",
     tags: ["PYTORCH", "STOCHASTIC CALCULUS", "MONTE CARLO"],
+    stats: ["SPX DATA", "GREEKS", "ARBITRAGE CHECKS"],
     color: "yellow",
   },
   {
@@ -27,6 +30,7 @@ const projects = [
     detail:
       "Designed to sit above Vapi, Retell and Twilio, inspect live calls and surface policy, identity and fraud risks without replacing the underlying agent.",
     tags: ["TYPESCRIPT", "REAL-TIME SYSTEMS", "VOICE AI"],
+    stats: ["LIVE CALLS", "POLICY RISK", "IDENTITY"],
     color: "coral",
   },
   {
@@ -39,6 +43,7 @@ const projects = [
     detail:
       "Combines collection valuation, cross-market price history, grade-aware pricing, set-completion intelligence and rapid scanning.",
     tags: ["SWIFT", "COMPUTER VISION", "PRODUCT DESIGN"],
+    stats: ["VALUATION", "SCANNING", "PRICE HISTORY"],
     color: "green",
   },
   {
@@ -51,6 +56,7 @@ const projects = [
     detail:
       "Created a twelve-dimensional similarity model and parallel filing pipeline processing 50-100 documents per minute, delivering a 4-8x speed-up.",
     tags: ["PYTHON", "NLP", "PARALLEL COMPUTING"],
+    stats: ["4-8X FASTER", "100 DOCS/MIN", "12D MATCHING"],
     color: "sky",
   },
 ];
@@ -60,28 +66,41 @@ const experience = [
     period: "2026-NOW",
     role: "Software Engineer",
     company: "JPMorganChase",
-    description: "Engineering reliable software at global scale.",
+    description: [
+      "Engineering reliable software at global scale.",
+      "Working across production systems where correctness, observability and clarity matter.",
+    ],
+    skills: ["RELIABILITY", "SYSTEM DESIGN", "ENGINEERING"],
   },
   {
     period: "2025",
     role: "Research Intern",
     company: "University of Bristol",
-    description:
+    description: [
       "Built data-intensive systems for large-scale financial research.",
+      "Designed document-matching and parallel processing workflows for SEC filing analysis.",
+    ],
+    skills: ["PYTHON", "NLP", "DATA PIPELINES"],
   },
   {
     period: "2025",
     role: "Quantitative Analyst",
     company: "Bristol Trading Society",
-    description:
+    description: [
       "Explored neural networks for options pricing with PyTorch.",
+      "Compared learned stochastic models against classical pricing baselines.",
+    ],
+    skills: ["PYTORCH", "OPTIONS", "RESEARCH"],
   },
   {
     period: "2024",
     role: "Software Engineering Fellow",
     company: "Headstarter AI",
-    description:
+    description: [
       "Shipped five AI products through rapid, collaborative build cycles.",
+      "Worked through product scoping, implementation and iteration under tight timelines.",
+    ],
+    skills: ["NEXT.JS", "AI", "PRODUCT"],
   },
 ];
 
@@ -104,6 +123,101 @@ function PixelFlower({
       <i />
       <i />
     </span>
+  );
+}
+
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[number];
+  index: number;
+}) {
+  return (
+    <motion.article
+      className={`project-card project-card-tile accent-${project.color}`}
+      data-cursor-target
+      initial={{ opacity: 0, y: 28, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-80px" }}
+    >
+      <div className="project-preview" aria-hidden="true">
+        <div className="project-preview-bar">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="project-preview-body">
+          <div className="project-preview-title">{project.title}</div>
+          <div className="project-preview-grid">
+            {project.stats.map((stat) => (
+              <span key={stat}>{stat}</span>
+            ))}
+          </div>
+          <div className="project-preview-lines">
+            <i />
+            <i />
+            <i />
+          </div>
+        </div>
+      </div>
+
+      <div className="project-card-content">
+        <div className="project-card-topline">
+          <span>{project.number}</span>
+          <span>{project.category}</span>
+          <time>{project.year}</time>
+        </div>
+        <h3>{project.title}</h3>
+        <p>{project.summary}</p>
+        <p className="project-card-detail">{project.detail}</p>
+        <div className="project-tags">
+          {project.tags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function ExperienceCard({
+  item,
+  index,
+}: {
+  item: (typeof experience)[number];
+  index: number;
+}) {
+  return (
+    <motion.article
+      className="experience-card"
+      data-cursor-target
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.42, delay: index * 0.08, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-70px" }}
+    >
+      <header>
+        <div>
+          <h3>{item.role}</h3>
+          <p>{item.company}</p>
+        </div>
+        <time>{item.period}</time>
+      </header>
+
+      <ul>
+        {item.description.map((point) => (
+          <li key={point}>{point}</li>
+        ))}
+      </ul>
+
+      <div className="experience-skills">
+        {item.skills.map((skill) => (
+          <span key={skill}>{skill}</span>
+        ))}
+      </div>
+    </motion.article>
   );
 }
 
@@ -184,34 +298,13 @@ export default function PortfolioSections() {
           </p>
         </div>
 
-        <div className="project-list">
-          {projects.map((project) => (
-            <details
-              className={`project-card accent-${project.color} ps-reveal`}
+        <div className="project-card-grid">
+          {projects.map((project, index) => (
+            <ProjectCard
               key={project.number}
-            >
-              <summary>
-                <span className="project-number">{project.number}</span>
-                <span className="project-meta">
-                  {project.category}
-                  <small>{project.year}</small>
-                </span>
-                <span className="project-title">{project.title}</span>
-                <span className="project-summary">{project.summary}</span>
-                <span className="project-open" aria-hidden="true">
-                  +
-                </span>
-              </summary>
-
-              <div className="project-detail">
-                <p>{project.detail}</p>
-                <div className="project-tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </details>
+              project={project}
+              index={index}
+            />
           ))}
         </div>
       </section>
@@ -232,21 +325,15 @@ export default function PortfolioSections() {
           </h2>
         </div>
 
-        <ol className="timeline">
+        <div className="experience-card-list">
           {experience.map((item, index) => (
-            <li className="ps-reveal" key={`${item.company}-${item.period}`}>
-              <span className="timeline-count">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <time>{item.period}</time>
-              <div className="timeline-role">
-                <h3>{item.role}</h3>
-                <p>{item.company}</p>
-              </div>
-              <p className="timeline-description">{item.description}</p>
-            </li>
+            <ExperienceCard
+              item={item}
+              index={index}
+              key={`${item.company}-${item.period}`}
+            />
           ))}
-        </ol>
+        </div>
 
         <PixelFlower className="experience-flower" variant="yellow" />
       </section>
@@ -277,28 +364,36 @@ export default function PortfolioSections() {
           START A CONVERSATION
           <FiArrowRight aria-hidden="true" />
         </a>
-
-        <footer className="contact-footer">
-          <a href="#home">MOIZ SALEEM (C) 2026</a>
-          <div>
-            <a
-              href="https://github.com/Moiz-16"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GITHUB
-            </a>
-            <a
-              href="https://www.linkedin.com/in/moiz-saleem/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LINKEDIN
-            </a>
-          </div>
-          <a href="#home">BACK TO TOP</a>
-        </footer>
       </section>
+
+      <footer className="portfolio-footer">
+        <p>2026 Moiz Saleem. All rights reserved.</p>
+        <div className="portfolio-footer-socials" aria-label="Social links">
+          <a
+            href="https://github.com/Moiz-16"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+            data-cursor-target
+          >
+            <SiGithub />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/moiz-saleem/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            data-cursor-target
+          >
+            <SiLinkedin />
+          </a>
+        </div>
+        <nav>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#home">Back to top</a>
+        </nav>
+      </footer>
     </div>
   );
 }

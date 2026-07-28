@@ -2,6 +2,21 @@ import Header from '@/components/header'
 import './globals.css'
 import ActiveSectionContextProvider from '@/context/active-section-context'
 import ThemeContextProvider from '@/context/theme-context'
+import ElasticCursor from '@/components/elastic-cursor'
+import ScrollProgress from '@/components/scroll-progress'
+import { Space_Grotesk, Unbounded } from 'next/font/google'
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+})
+
+const unbounded = Unbounded({
+  subsets: ['latin'],
+  variable: '--font-unbounded',
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'Moiz | Personal Portfolio',
@@ -15,7 +30,10 @@ export default function RootLayout({
 }) {
   return (
     
-    <html lang="en" className='!scroll-smooth ' >
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${unbounded.variable} !scroll-smooth`}
+    >
       <body>
         {/* <div className=' bg-[#1e96fc] absolute top[-6rem] -z-10 right-[11rem] h-[29.25rem]
          w-[31.25rem] rounded-full blur-[9rem] sm:w-[68.75rem]'></div>
@@ -27,8 +45,10 @@ export default function RootLayout({
         <ThemeContextProvider>
           <div className="relative z-10">
             <ActiveSectionContextProvider>
+              <ScrollProgress/>
               <Header/>
               {children}
+              <ElasticCursor/>
             </ActiveSectionContextProvider>
           </div>
         </ThemeContextProvider>
