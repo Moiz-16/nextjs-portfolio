@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { FiMail } from "react-icons/fi";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
+import ParticlesContainer from "@/components/particles-container";
 
 function MotionEffects() {
   useEffect(() => {
@@ -44,6 +45,7 @@ export default function Intro() {
         id="home"
         aria-labelledby="hero-title"
       >
+        <ParticlesContainer />
         <div className="cursor-glow" aria-hidden="true" />
         <div className="hero-orbit hero-orbit--one" aria-hidden="true" />
         <div className="hero-orbit hero-orbit--two" aria-hidden="true" />
