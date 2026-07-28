@@ -536,8 +536,8 @@ a {
   background-color: var(--about-surface);
   color: var(--about-ink);
   display: grid;
-  gap: clamp(52px, 8vw, 130px);
-  grid-template-columns: minmax(0, 1fr) minmax(390px, 0.86fr);
+  gap: clamp(44px, 6vw, 96px);
+  grid-template-columns: minmax(0, 0.95fr) minmax(390px, 0.82fr);
   min-height: calc(100svh - 78px);
   padding: clamp(92px, 15vh, 158px) clamp(52px, 6vw, 116px)
     clamp(42px, 6vh, 72px);
@@ -604,6 +604,7 @@ a {
 
 .about-heading {
   align-self: center;
+  max-width: 680px;
 }
 
 .eyebrow {
@@ -612,11 +613,11 @@ a {
 }
 
 .about h2 {
-  font-family: var(--serif);
-  font-size: clamp(72px, 5.7vw, 112px);
+  font-family: var(--hero-serif);
+  font-size: clamp(62px, 5.1vw, 98px);
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 0.9;
+  line-height: 0.94;
   margin: 0;
 }
 
@@ -628,21 +629,21 @@ a {
 .about-copy {
   align-self: center;
   display: grid;
-  gap: 12px;
-  max-width: 640px;
+  gap: 16px;
+  max-width: 580px;
 }
 
 .about-copy p {
-  font-size: clamp(15px, 0.95vw, 18px);
-  line-height: 1.72;
+  font-size: clamp(16px, 1vw, 18px);
+  line-height: 1.66;
   margin: 0;
 }
 
 .about-lead {
-  font-family: var(--serif);
-  font-size: clamp(34px, 2.4vw, 48px) !important;
+  font-family: var(--hero-serif);
+  font-size: clamp(28px, 2vw, 38px) !important;
   font-style: italic;
-  line-height: 1.18 !important;
+  line-height: 1.16 !important;
 }
 
 .skills {
