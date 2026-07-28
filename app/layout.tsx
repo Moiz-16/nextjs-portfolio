@@ -4,7 +4,6 @@ import ActiveSectionContextProvider from '@/context/active-section-context'
 import Footer from '@/components/footer'
 import ThemeSwitch from '@/components/theme-switch'
 import ThemeContextProvider from '@/context/theme-context'
-import ParticlesContainer from '@/components/particles-container'
 
 export const metadata = {
   title: 'Moiz | Personal Portfolio',
@@ -28,7 +27,6 @@ export default function RootLayout({
 
 
         <ThemeContextProvider>
-          <ParticlesContainer />
           <div className="relative z-10">
             <ActiveSectionContextProvider>
               <Header/>

@@ -13,6 +13,15 @@
 
   --pointer-x: 50vw;
   --pointer-y: 50vh;
+  --hero-background-fade: linear-gradient(
+    to bottom,
+    black 0%,
+    black 50%,
+    rgba(0, 0, 0, 0.72) 62%,
+    rgba(0, 0, 0, 0.18) 76%,
+    transparent 88%,
+    transparent 100%
+  );
 
   --mono:
     var(--font-geist-mono),
@@ -164,7 +173,7 @@ a {
   left: 0;
   mix-blend-mode: multiply;
   pointer-events: none;
-  position: fixed;
+  position: absolute;
   top: 0;
   transform: translate3d(
     calc(var(--pointer-x) - 50%),
@@ -172,7 +181,7 @@ a {
     0
   );
   width: 520px;
-  z-index: 90;
+  z-index: 3;
 }
 
 /* Animated grid */
@@ -185,6 +194,7 @@ a {
 
 .hero {
   height: max(720px, 100svh);
+  isolation: isolate;
   min-height: 720px;
   overflow: hidden;
   padding: 78px 5vw 34px;
@@ -195,8 +205,11 @@ a {
   border: 1px solid rgba(16, 16, 16, 0.16);
   content: "";
   inset: 15% 8%;
+  -webkit-mask-image: var(--hero-background-fade);
+  mask-image: var(--hero-background-fade);
   pointer-events: none;
   position: absolute;
+  z-index: 2;
 }
 
 .hero::after {
@@ -221,26 +234,35 @@ a {
   content: "";
   inset: 0;
   animation: grid-drift 20s linear infinite;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 0%,
-    black 50%,
-    rgba(0, 0, 0, 0.72) 62%,
-    rgba(0, 0, 0, 0.18) 76%,
-    transparent 88%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    black 0%,
-    black 50%,
-    rgba(0, 0, 0, 0.72) 62%,
-    rgba(0, 0, 0, 0.18) 76%,
-    transparent 88%,
-    transparent 100%
-  );
+  -webkit-mask-image: var(--hero-background-fade);
+  mask-image: var(--hero-background-fade);
   pointer-events: none;
   position: absolute;
+  z-index: 1;
+}
+
+.hero-particles,
+.hero-background-elements {
+  inset: 0;
+  -webkit-mask-image: var(--hero-background-fade);
+  mask-image: var(--hero-background-fade);
+  pointer-events: none;
+  position: absolute;
+}
+
+.hero-particles {
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-particle-glow {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.hero-background-elements {
+  z-index: 2;
 }
 
 .hero-kicker {

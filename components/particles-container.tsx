@@ -26,10 +26,10 @@ export default function ParticlesContainer() {
 
   return (
     <ParticlesProvider init={particlesInit}>
-      <>
+      <div className="hero-particles" aria-hidden="true">
         <Particles
           id="tsparticles"
-          className="pointer-events-none fixed inset-0 z-0 h-screen w-full bg-transparent"
+          className="pointer-events-none absolute inset-0 h-full w-full bg-transparent"
           options={{
             fullScreen: { enable: false },
             fpsLimit: 60,
@@ -119,13 +119,13 @@ export default function ParticlesContainer() {
         />
         <div
           ref={glowRef}
-          className="pointer-events-none fixed inset-0 z-0"
+          className="hero-particle-glow"
           style={{
             background:
               "radial-gradient(circle 8rem at var(--mouse-x, -20rem) var(--mouse-y, -20rem), rgba(16, 16, 16, 0.055), rgba(16, 16, 16, 0.025) 34%, transparent 72%)"
           }}
         />
-      </>
+      </div>
     </ParticlesProvider>
   );
 }

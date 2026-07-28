@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { BsEnvelope, BsGithub, BsLinkedin } from "react-icons/bs";
 import { useSectionInView } from "@/lib/hooks";
+import ParticlesContainer from "@/components/particles-container";
 
 function MotionEffects() {
   useEffect(() => {
@@ -37,19 +38,22 @@ export default function Intro() {
     <>
       <MotionEffects />
 
-      <div className="cursor-glow" aria-hidden="true" />
-
       <section
         ref={ref}
         className="hero grid-surface"
         id="home"
         aria-labelledby="hero-title"
       >
-        <div className="hero-orbit hero-orbit--one" aria-hidden="true" />
-        <div className="hero-orbit hero-orbit--two" aria-hidden="true" />
+        <ParticlesContainer />
 
-        <span className="pixel-comet pixel-comet--one" aria-hidden="true" />
-        <span className="pixel-comet pixel-comet--two" aria-hidden="true" />
+        <div className="hero-background-elements" aria-hidden="true">
+          <div className="cursor-glow" />
+          <div className="hero-orbit hero-orbit--one" />
+          <div className="hero-orbit hero-orbit--two" />
+
+          <span className="pixel-comet pixel-comet--one" />
+          <span className="pixel-comet pixel-comet--two" />
+        </div>
 
         <p className="hero-coordinates">51.5072° N&nbsp;&nbsp;0.1276° W</p>
 
