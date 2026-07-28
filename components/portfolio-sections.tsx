@@ -4,151 +4,198 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { SiGithub, SiLinkedin } from "react-icons/si";
+import toast from "react-hot-toast";
+import { sendEmail } from "@/actions/sendEmail";
 import { useSectionInView } from "@/lib/hooks";
 
-const projects = [
+type ProjectAccent = "yellow" | "coral" | "green" | "sky";
+
+type ProjectItem = {
+  number: string;
+  title: string;
+  category: string;
+  year: string;
+  tags: string[];
+  color: ProjectAccent;
+  image: string;
+  background: string;
+};
+
+const projects: ProjectItem[] = [
   {
     number: "01",
-    title: "Neural SDEs",
-    category: "QUANT RESEARCH",
-    year: "2026",
-    summary:
-      "A research-led options pricing system comparing learned stochastic dynamics with Black-Scholes and Heston.",
-    detail:
-      "Built in PyTorch with Monte Carlo pricing, Greeks estimation and arbitrage checks across SPX option data.",
-    tags: ["PYTORCH", "STOCHASTIC CALCULUS", "MONTE CARLO"],
-    stats: ["SPX DATA", "GREEKS", "ARBITRAGE CHECKS"],
+    title: "Nexus - Internship Application Tracker",
+    category: "PRODUCT / AI",
+    year: "2025",
+    tags: ["NEXT.JS", "TAILWIND", "TYPESCRIPT"],
     color: "yellow",
-    image: "/tradingview_indicators.png",
-    background: "/assets/backgrounds/neural-sdes.jpg",
-    previewLines: [
-      "dS = mu(t,S)dt + sigma(t,S)dW",
-      "Monte Carlo paths",
-      "No-arbitrage diagnostics",
-    ],
+    image: "/nexus.png",
+    background: "/assets/backgrounds/nexus.jpg",
   },
   {
     number: "02",
-    title: "Lumen",
-    category: "AI / INFRASTRUCTURE",
-    year: "2026",
-    summary:
-      "A real-time compliance and fraud-monitoring layer for production voice agents.",
-    detail:
-      "Designed to sit above Vapi, Retell and Twilio, inspect live calls and surface policy, identity and fraud risks without replacing the underlying agent.",
-    tags: ["TYPESCRIPT", "REAL-TIME SYSTEMS", "VOICE AI"],
-    stats: ["LIVE CALLS", "POLICY RISK", "IDENTITY"],
+    title: "IMC Prosperity 3 Challenge",
+    category: "QUANT / COMPETITION",
+    year: "2025",
+    tags: ["PYTHON", "PANDAS", "NUMPY"],
     color: "coral",
-    image: "/nexus.png",
-    background: "/assets/backgrounds/lumen.jpg",
-    previewLines: [
-      "call stream -> policy engine",
-      "identity confidence",
-      "fraud signal monitor",
-    ],
+    image: "/imc_prosperity.png",
+    background: "/assets/backgrounds/imc-prosperity.jpg",
   },
   {
     number: "03",
-    title: "Cardfolio",
-    category: "PRODUCT / MOBILE",
-    year: "2026",
-    summary:
-      "A smarter portfolio and market-intelligence app for trading-card collectors.",
-    detail:
-      "Combines collection valuation, cross-market price history, grade-aware pricing, set-completion intelligence and rapid scanning.",
-    tags: ["SWIFT", "COMPUTER VISION", "PRODUCT DESIGN"],
-    stats: ["VALUATION", "SCANNING", "PRICE HISTORY"],
+    title: "Quantum Bank Heist: QAOA Path Optimisation",
+    category: "QUANTUM / OPTIMISATION",
+    year: "2025",
+    tags: ["PYTHON", "QISKIT", "QUANTUM"],
     color: "green",
-    image: "/dropkick_app.png",
-    background: "/assets/backgrounds/cardfolio.jpg",
-    previewLines: ["collection value", "grade-aware pricing", "set completion"],
+    image: "/qhack_2025.png",
+    background: "/assets/backgrounds/qhack.jpg",
   },
   {
     number: "04",
-    title: "SEC x DealScan",
-    category: "DATA ENGINEERING",
+    title: "IMA TMT 2025 Conference Talk",
+    category: "RESEARCH / FINANCE",
     year: "2025",
-    summary:
-      "A high-throughput research pipeline linking corporate filings to syndicated loan records.",
-    detail:
-      "Created a twelve-dimensional similarity model and parallel filing pipeline processing 50-100 documents per minute, delivering a 4-8x speed-up.",
-    tags: ["PYTHON", "NLP", "PARALLEL COMPUTING"],
-    stats: ["4-8X FASTER", "100 DOCS/MIN", "12D MATCHING"],
+    tags: ["RESEARCH", "QUANT FINANCE"],
     color: "sky",
     image: "/IMA_TMT_2025_Conference_Abstract.png",
-    background: "/assets/backgrounds/sec-dealscan.jpg",
-    previewLines: [
-      "SEC filing match",
-      "DealScan linkage",
-      "parallel extraction",
-    ],
+    background: "/assets/backgrounds/ima-tmt.jpg",
+  },
+  {
+    number: "05",
+    title: "TradingView Strategy Indicators",
+    category: "TRADING / INDICATORS",
+    year: "2025",
+    tags: ["PINE SCRIPT", "DATA ANALYSIS"],
+    color: "yellow",
+    image: "/tradingview_indicators.png",
+    background: "/assets/backgrounds/tradingview.jpg",
+  },
+  {
+    number: "06",
+    title: "Forex/Crypto Trading Bot",
+    category: "ALGORITHMIC TRADING",
+    year: "2025",
+    tags: ["PYTHON", "PANDAS", "MQL"],
+    color: "coral",
+    image: "/fx_trading_bot.png",
+    background: "/assets/backgrounds/fx-bot.jpg",
+  },
+  {
+    number: "07",
+    title: "ChatGPT News Trader",
+    category: "AI / TRADING",
+    year: "2025",
+    tags: ["JAVASCRIPT", "OPENAI", "API"],
+    color: "green",
+    image: "/gpt_bot.png",
+    background: "/assets/backgrounds/news-trader.jpg",
+  },
+  {
+    number: "08",
+    title: "Scotland Yard AI",
+    category: "GAME AI",
+    year: "2024",
+    tags: ["JAVA", "OOP", "ALGORITHMS"],
+    color: "sky",
+    image: "/scotlandyard_ai.png",
+    background: "/assets/backgrounds/scotland-yard.jpg",
+  },
+  {
+    number: "09",
+    title: "Self Driving Car AI",
+    category: "REINFORCEMENT LEARNING",
+    year: "2024",
+    tags: ["PYTHON", "PYTORCH", "DQN"],
+    color: "yellow",
+    image: "/self_driving_car.png",
+    background: "/assets/backgrounds/self-driving.jpg",
+  },
+  {
+    number: "10",
+    title: "Mobile App Prototype",
+    category: "MOBILE / PRODUCT",
+    year: "2024",
+    tags: ["FLUTTER", "DART", "UI/UX"],
+    color: "coral",
+    image: "/dropkick_app.png",
+    background: "/assets/backgrounds/mobile-app.jpg",
+  },
+  {
+    number: "11",
+    title: "HE+ Research Project",
+    category: "RESEARCH / QUANTUM",
+    year: "2021",
+    tags: ["RESEARCH", "QUANTUM", "RSA"],
+    color: "green",
+    image: "/he_project.png",
+    background: "/assets/backgrounds/he-research.jpg",
   },
 ];
 
 const experience = [
   {
-    period: "2026-NOW",
-    role: "Software Engineer",
-    company: "JPMorganChase",
+    period: "SEP 2023 - JUN 2026",
+    role: "BSc Mathematics and Computer Science",
+    company: "University of Bristol",
     description: [
-      "Engineering reliable software at global scale.",
-      "Working across production systems where correctness, observability and clarity matter.",
+      "Studied a blend of rigorous mathematics and practical computer science.",
+      "Covered imperative and functional programming, object-oriented programming, algorithms, probability, statistics and linear algebra.",
     ],
-    skills: ["RELIABILITY", "SYSTEM DESIGN", "ENGINEERING"],
+    skills: ["MATHEMATICS", "COMPUTER SCIENCE", "BRISTOL"],
   },
   {
-    period: "2025",
+    period: "JUN 2025 - AUG 2025",
     role: "Research Intern",
     company: "University of Bristol",
     description: [
-      "Built data-intensive systems for large-scale financial research.",
-      "Designed document-matching and parallel processing workflows for SEC filing analysis.",
+      "Devised a process for maximising links between financial databases using textual analysis and natural language processing.",
+      "Built research tooling for document matching, entity comparison and large-scale data workflows.",
     ],
-    skills: ["PYTHON", "NLP", "DATA PIPELINES"],
+    skills: ["PYTHON", "NLP", "DATA LINKING"],
   },
   {
-    period: "2025",
-    role: "Quantitative Analyst",
-    company: "Bristol Trading Society",
+    period: "MAR 2025 - PRESENT",
+    role: "Founder",
+    company: "Nexus",
     description: [
-      "Explored neural networks for options pricing with PyTorch.",
-      "Compared learned stochastic models against classical pricing baselines.",
+      "Created an intelligent platform to streamline internship applications for students.",
+      "Built a centralised dashboard with AI-assisted data entry, application insights and interview preparation tools.",
     ],
-    skills: ["PYTORCH", "OPTIONS", "RESEARCH"],
+    skills: ["PRODUCT", "AI", "NEXT.JS"],
   },
   {
-    period: "2024",
-    role: "Software Engineering Fellow",
-    company: "Headstarter AI",
+    period: "JUN 2024 - JAN 2025",
+    role: "Applied Data Science Lab",
+    company: "WorldQuant University",
     description: [
-      "Shipped five AI products through rapid, collaborative build cycles.",
-      "Worked through product scoping, implementation and iteration under tight timelines.",
+      "Developed an ARMA time-series model for forecasting particulate matter levels in Kenya using MongoDB datasets.",
+      "Built a machine-learning pipeline with feature encoding and imputation to predict apartment prices in Argentina.",
     ],
-    skills: ["NEXT.JS", "AI", "PRODUCT"],
+    skills: ["DATA SCIENCE", "MONGODB", "TIME SERIES"],
+  },
+  {
+    period: "FEB 2024 - MAR 2024",
+    role: "AI Foundation Bootcamp",
+    company: "Encode Club",
+    description: [
+      "Explored the architecture and applications of large language models including ChatGPT and LLaMA-2.",
+      "Integrated the ChatGPT API with a local web UI and experimented with Stable Diffusion text-to-image workflows.",
+    ],
+    skills: ["LLMS", "PROMPTING", "AI"],
+  },
+  {
+    period: "AUG 2021",
+    role: "Quantum Technology Research",
+    company: "KETS Quantum Security LTD",
+    description: [
+      "Collaborated on a group research project into quantum technology and computing fundamentals.",
+      "Presented the findings to the company and engaged with external experts to deepen industry understanding.",
+    ],
+    skills: ["QUANTUM", "RESEARCH", "PRESENTATION"],
   },
 ];
-
-function PixelFlower({
-  className = "",
-  variant = "coral",
-}: {
-  className?: string;
-  variant?: "coral" | "yellow";
-}) {
-  return (
-    <span
-      className={`ps-pixel-flower ps-pixel-flower--${variant} ${className}`}
-      aria-hidden="true"
-    >
-      <i />
-      <i />
-      <i />
-      <i />
-      <i />
-      <i />
-    </span>
-  );
-}
 
 function ScrollFrame({
   children,
@@ -388,6 +435,79 @@ function ExperienceCard({
   );
 }
 
+function ContactForm() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  return (
+    <form
+      className="reference-contact-form ps-reveal ps-reveal-delay"
+      ref={formRef}
+      action={async (formData) => {
+        setIsSubmitting(true);
+
+        try {
+          const { error } = await sendEmail(formData);
+
+          if (error) {
+            toast.error(error);
+            return;
+          }
+
+          toast.success("Message sent successfully.");
+          formRef.current?.reset();
+        } finally {
+          setIsSubmitting(false);
+        }
+      }}
+    >
+      <div className="contact-form-row">
+        <label className="contact-input-group">
+          <span>Full name</span>
+          <input
+            autoComplete="name"
+            name="senderName"
+            placeholder="Moiz Saleem"
+            type="text"
+          />
+        </label>
+
+        <label className="contact-input-group">
+          <span>Email address</span>
+          <input
+            autoComplete="email"
+            name="senderEmail"
+            placeholder="you@example.com"
+            required
+            type="email"
+          />
+        </label>
+      </div>
+
+      <label className="contact-input-group">
+        <span>Your message</span>
+        <textarea
+          name="message"
+          placeholder="Tell me about your project, idea or opportunity."
+          required
+          rows={7}
+        />
+      </label>
+
+      <p className="contact-form-note">
+        I&apos;ll never share your details. Straight to my inbox, nothing noisy.
+      </p>
+
+      <button className="contact-submit" disabled={isSubmitting} type="submit">
+        <span>{isSubmitting ? "Sending..." : "Send message"}</span>
+        <FiArrowRight aria-hidden="true" />
+        <i aria-hidden="true" />
+        <i aria-hidden="true" />
+      </button>
+    </form>
+  );
+}
+
 export default function PortfolioSections() {
   const projectsView = useSectionInView("Projects", 0.25);
   const experienceView = useSectionInView("Experience", 0.25);
@@ -461,7 +581,7 @@ export default function PortfolioSections() {
           <div className="project-card-grid">
             {projects.map((project, index) => (
               <ProjectCard
-                key={project.number}
+                key={project.title}
                 project={project}
                 index={index}
               />
@@ -493,8 +613,6 @@ export default function PortfolioSections() {
             ))}
           </div>
         </ScrollFrame>
-
-        <PixelFlower className="experience-flower" variant="yellow" />
       </section>
 
       <section
@@ -511,19 +629,22 @@ export default function PortfolioSections() {
             <i />
           </div>
 
-          <PixelFlower className="contact-flower" variant="coral" />
+          <div className="contact-layout">
+            <div className="contact-copy">
+              <p className="ps-eyebrow ps-reveal">HAVE SOMETHING IN MIND?</p>
+              <h2 className="ps-reveal ps-reveal-delay">
+                Let&apos;s build something
+                <br />
+                <em>worth talking about.</em>
+              </h2>
+              <p className="contact-summary ps-reveal">
+                Send a note about software, research, quant ideas or anything
+                ambitious enough to be interesting.
+              </p>
+            </div>
 
-          <p className="ps-eyebrow ps-reveal">HAVE SOMETHING IN MIND?</p>
-          <h2 className="ps-reveal ps-reveal-delay">
-            Let&apos;s build something
-            <br />
-            <em>worth talking about.</em>
-          </h2>
-
-          <a className="contact-cta ps-reveal" href="mailto:saleem.moiz@outlook.com">
-            START A CONVERSATION
-            <FiArrowRight aria-hidden="true" />
-          </a>
+            <ContactForm />
+          </div>
         </ScrollFrame>
       </section>
 
