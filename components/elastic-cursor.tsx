@@ -1,248 +1,364 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
 
-const TARGET_SELECTOR =
-  "a, button, summary, input, textarea, .cursor-can-hover, [data-cursor-target]";
-const BASE_CURSOR_SIZE = 38;
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+
+const TARGET_SELECTOR = ".cursor-can-hover, [data-cursor-target]";
+
+function useTicker(callback: () => void, paused: boolean) {
+  useEffect(() => {
+    if (!paused && callback) {
+      gsap.ticker.add(callback);
+    }
+
+    return () => {
+      gsap.ticker.remove(callback);
+    };
+  }, [callback, paused]);
+}
+
+function useInstance<T>(create: () => T): T {
+  const ref = useRef<T | null>(null);
+  if (ref.current === null) ref.current = create();
+  return ref.current;
+}
+
+function getScale(diffX: number, diffY: number) {
+  const distance = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+  return Math.min(distance / 735, 0.35);
+}
+
+function getAngle(diffX: number, diffY: number) {
+  return (Math.atan2(diffY, diffX) * 180) / Math.PI;
+}
+
+const clamp = (v: number, min: number, max: number) =>
+  Math.max(min, Math.min(max, v));
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+const CURSOR_DIAMETER = 50;
 const WRAP_PADDING = 8;
-const WRAP_RADIUS = 8;
-const WRAP_EASE = 0.16;
-const FREE_EASE = 0.18;
-const CURSOR_LEAD = 0.1;
-const MAX_CURSOR_LEAD = 8;
+const WRAP_RADIUS = 12;
+const WRAP_EASE = 0.2;
+const TARGET_PULL = 0.35;
+const TARGET_EASE = 0.25;
+const TARGET_MAX_PULL = 12;
+const CURSOR_PARALLAX = 0.12;
+const CURSOR_MAX_LEAD = 10;
 
-type TargetBounds = {
-  cx: number;
-  cy: number;
-  padding: number;
-  radius: number;
+const wrapsTarget = true;
+const movesTarget = true;
+
+type Base = {
+  left: number;
+  top: number;
   width: number;
   height: number;
+  cx: number;
+  cy: number;
 };
 
-const clamp = (value: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, value));
+type ActiveTarget = {
+  el: HTMLElement | null;
+  base: Base | null;
+  offX: number;
+  offY: number;
+};
 
-const measureTarget = (element: HTMLElement): TargetBounds => {
-  const rect = element.getBoundingClientRect();
-  const compact = element.hasAttribute("data-cursor-compact");
+type Setters = Record<string, Function>;
+
+function measure(el: HTMLElement): Base {
+  const r = el.getBoundingClientRect();
 
   return {
-    cx: rect.left + rect.width / 2,
-    cy: rect.top + rect.height / 2,
-    padding: compact ? 3 : WRAP_PADDING,
-    radius: compact ? 5 : WRAP_RADIUS,
-    width: rect.width,
-    height: rect.height,
+    left: r.left,
+    top: r.top,
+    width: r.width,
+    height: r.height,
+    cx: r.left + r.width / 2,
+    cy: r.top + r.height / 2,
   };
-};
+}
 
 export default function ElasticCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const jellyRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
-  const trailRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const [cursorMoved, setCursorMoved] = useState(false);
+  const cursorMovedRef = useRef(false);
+  const isHiddenRef = useRef(false);
+  const isDisabledRef = useRef(false);
+
+  const pos = useInstance(() => ({ x: 0, y: 0 }));
+  const vel = useInstance(() => ({ x: 0, y: 0 }));
+  const pointer = useInstance(() => ({ x: 0, y: 0 }));
+  const jelly = useInstance(() => ({
+    x: 0,
+    y: 0,
+    w: CURSOR_DIAMETER,
+    h: CURSOR_DIAMETER,
+    r: CURSOR_DIAMETER / 2,
+    sx: 1,
+    sy: 1,
+  }));
+  const active = useInstance<ActiveTarget>(() => ({
+    el: null,
+    base: null,
+    offX: 0,
+    offY: 0,
+  }));
+  const set = useInstance<Setters>(() => ({}));
+
+  useLayoutEffect(() => {
+    const jellyEl = jellyRef.current;
+    const dotEl = dotRef.current;
+    if (!jellyEl || !dotEl) return;
+
+    gsap.set(jellyEl, { xPercent: -50, yPercent: -50 });
+    gsap.set(dotEl, { xPercent: -50, yPercent: -50 });
+    set.x = gsap.quickSetter(jellyEl, "x", "px");
+    set.y = gsap.quickSetter(jellyEl, "y", "px");
+    set.r = gsap.quickSetter(jellyEl, "rotate", "deg");
+    set.sx = gsap.quickSetter(jellyEl, "scaleX");
+    set.sy = gsap.quickSetter(jellyEl, "scaleY");
+    set.width = gsap.quickSetter(jellyEl, "width", "px");
+    set.height = gsap.quickSetter(jellyEl, "height", "px");
+    set.radius = gsap.quickSetter(jellyEl, "borderRadius", "px");
+    set.opacity = gsap.quickSetter(jellyEl, "opacity");
+    set.dotX = gsap.quickSetter(dotEl, "x", "px");
+    set.dotY = gsap.quickSetter(dotEl, "y", "px");
+    set.dotOpacity = gsap.quickSetter(dotEl, "opacity");
+  });
+
+  const render = useCallback(() => {
+    if (!set.x) return;
+
+    set.dotX(pointer.x);
+    set.dotY(pointer.y);
+
+    const el = active.el;
+    const wrapping = !!el && wrapsTarget;
+    const moveTarget = !!el && movesTarget;
+    const hidden = isHiddenRef.current;
+
+    if (moveTarget && el && active.base) {
+      const b = active.base;
+      const pullX = clamp(
+        (pointer.x - b.cx) * TARGET_PULL,
+        -TARGET_MAX_PULL,
+        TARGET_MAX_PULL,
+      );
+      const pullY = clamp(
+        (pointer.y - b.cy) * TARGET_PULL,
+        -TARGET_MAX_PULL,
+        TARGET_MAX_PULL,
+      );
+
+      active.offX = lerp(active.offX, pullX, TARGET_EASE);
+      active.offY = lerp(active.offY, pullY, TARGET_EASE);
+      gsap.set(el, { x: active.offX, y: active.offY });
+    }
+
+    if (wrapping && active.base) {
+      const b = active.base;
+      const leadX = clamp(
+        (pointer.x - b.cx) * CURSOR_PARALLAX,
+        -CURSOR_MAX_LEAD,
+        CURSOR_MAX_LEAD,
+      );
+      const leadY = clamp(
+        (pointer.y - b.cy) * CURSOR_PARALLAX,
+        -CURSOR_MAX_LEAD,
+        CURSOR_MAX_LEAD,
+      );
+      const tx = b.cx + active.offX + leadX;
+      const ty = b.cy + active.offY + leadY;
+
+      jelly.x = lerp(jelly.x, tx, WRAP_EASE);
+      jelly.y = lerp(jelly.y, ty, WRAP_EASE);
+      jelly.w = lerp(jelly.w, b.width + WRAP_PADDING * 2, WRAP_EASE);
+      jelly.h = lerp(jelly.h, b.height + WRAP_PADDING * 2, WRAP_EASE);
+      jelly.r = lerp(jelly.r, WRAP_RADIUS, WRAP_EASE);
+      jelly.sx = lerp(jelly.sx, 1, 0.3);
+      jelly.sy = lerp(jelly.sy, 1, 0.3);
+
+      set.x(jelly.x);
+      set.y(jelly.y);
+      set.width(jelly.w);
+      set.height(jelly.h);
+      set.radius(jelly.r);
+      set.sx(jelly.sx);
+      set.sy(jelly.sy);
+      set.r(0);
+      set.opacity(hidden ? 0 : 1);
+      set.dotOpacity(0);
+    } else {
+      const rotation = getAngle(vel.x, vel.y);
+      const scale = getScale(vel.x, vel.y);
+
+      jelly.x = pos.x;
+      jelly.y = pos.y;
+      jelly.w = lerp(jelly.w, CURSOR_DIAMETER + scale * 300, 0.4);
+      jelly.h = lerp(jelly.h, CURSOR_DIAMETER, 0.4);
+      jelly.r = lerp(jelly.r, CURSOR_DIAMETER / 2, 0.4);
+      jelly.sx = 1 + scale;
+      jelly.sy = 1 - scale * 2;
+
+      set.x(pos.x);
+      set.y(pos.y);
+      set.width(jelly.w);
+      set.height(jelly.h);
+      set.radius(jelly.r);
+      set.r(rotation);
+      set.sx(jelly.sx);
+      set.sy(jelly.sy);
+      set.opacity(hidden ? 0 : 1);
+      set.dotOpacity(hidden ? 0 : 1);
+    }
+  }, []);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)").matches;
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const mobile = window.matchMedia("(max-width: 768px)").matches;
+    isDisabledRef.current = !finePointer || reducedMotion || mobile;
+  }, []);
 
-    if (!finePointer || reducedMotion) return;
+  useEffect(() => {
+    if (isDisabledRef.current) return;
 
-    const cursor = cursorRef.current;
-    const dot = dotRef.current;
-    const trails = trailRefs.current.filter(
-      (trail): trail is HTMLDivElement => Boolean(trail),
-    );
-    if (!cursor || !dot) return;
+    const onMove = (e: MouseEvent) => {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
 
-    let frame = 0;
-    let targetElement: HTMLElement | null = null;
-    let targetBounds: TargetBounds | null = null;
-
-    const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    const current = { x: pointer.x, y: pointer.y };
-    const trailPositions = trails.map(() => ({ x: pointer.x, y: pointer.y }));
-    const size = {
-      width: BASE_CURSOR_SIZE,
-      height: BASE_CURSOR_SIZE,
-      radius: BASE_CURSOR_SIZE / 2,
-    };
-    const velocity = { x: 0, y: 0 };
-
-    const setHidden = (hidden: boolean) => {
-      cursor.classList.toggle("is-hidden", hidden);
-      dot.classList.toggle("is-hidden", hidden);
-      trails.forEach((trail) => trail.classList.toggle("is-hidden", hidden));
-    };
-
-    const findTarget = (node: EventTarget | null) => {
-      if (!(node instanceof Element)) return null;
-      return node.closest<HTMLElement>(TARGET_SELECTOR);
-    };
-
-    const handlePointerMove = (event: PointerEvent) => {
-      pointer.x = event.clientX;
-      pointer.y = event.clientY;
-      cursor.classList.add("has-moved");
-      dot.classList.add("has-moved");
-      trails.forEach((trail) => trail.classList.add("has-moved"));
-    };
-
-    const acquireTarget = (element: HTMLElement | null) => {
-      if (!element || element === targetElement) return;
-
-      targetElement = element;
-      targetBounds = measureTarget(element);
-    };
-
-    const releaseTarget = () => {
-      targetElement = null;
-      targetBounds = null;
-    };
-
-    const handlePointerOver = (event: PointerEvent) => {
-      setHidden(false);
-      acquireTarget(findTarget(event.target));
-    };
-
-    const handlePointerOutOfTarget = (event: PointerEvent) => {
-      if (!targetElement) return;
-
-      const nextTarget = findTarget(event.relatedTarget);
-      if (nextTarget === targetElement) return;
-
-      releaseTarget();
-    };
-
-    const handlePointerOut = (event: PointerEvent) => {
-      if (!event.relatedTarget) setHidden(true);
-    };
-
-    const updateTargetBounds = () => {
-      if (!targetElement?.isConnected) {
-        releaseTarget();
-        return;
+      if (!cursorMovedRef.current) {
+        cursorMovedRef.current = true;
+        setCursorMoved(true);
       }
 
-      targetBounds = measureTarget(targetElement);
-    };
-
-    const render = () => {
-      const previousX = current.x;
-      const previousY = current.y;
-      if (targetElement?.isConnected) {
-        targetBounds = measureTarget(targetElement);
-      }
-
-      const isTargeting = Boolean(targetElement?.isConnected && targetBounds);
-      const ease = isTargeting ? WRAP_EASE : FREE_EASE;
-      let nextX = pointer.x;
-      let nextY = pointer.y;
-      let nextWidth = BASE_CURSOR_SIZE;
-      let nextHeight = BASE_CURSOR_SIZE;
-      let nextRadius = BASE_CURSOR_SIZE / 2;
-
-      if (isTargeting && targetBounds) {
-        const leadX = clamp(
-          (pointer.x - targetBounds.cx) * CURSOR_LEAD,
-          -MAX_CURSOR_LEAD,
-          MAX_CURSOR_LEAD,
-        );
-        const leadY = clamp(
-          (pointer.y - targetBounds.cy) * CURSOR_LEAD,
-          -MAX_CURSOR_LEAD,
-          MAX_CURSOR_LEAD,
-        );
-
-        nextX = targetBounds.cx + leadX;
-        nextY = targetBounds.cy + leadY;
-        nextWidth = targetBounds.width + targetBounds.padding * 2;
-        nextHeight = targetBounds.height + targetBounds.padding * 2;
-        nextRadius = targetBounds.radius;
-      }
-
-      current.x += (nextX - current.x) * ease;
-      current.y += (nextY - current.y) * ease;
-      size.width += (nextWidth - size.width) * ease;
-      size.height += (nextHeight - size.height) * ease;
-      size.radius += (nextRadius - size.radius) * ease;
-
-      if (isTargeting) {
-        cursor.classList.add("is-targeting");
-        dot.classList.add("is-targeting");
-        trails.forEach((trail) => trail.classList.add("is-targeting"));
-      } else {
-        cursor.classList.remove("is-targeting");
-        dot.classList.remove("is-targeting");
-        trails.forEach((trail) => trail.classList.remove("is-targeting"));
-      }
-
-      velocity.x = current.x - previousX;
-      velocity.y = current.y - previousY;
-
-      const speed = Math.min(
-        Math.hypot(velocity.x, velocity.y) / 62,
-        0.16,
-      );
-      const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
-      const stretch = isTargeting ? 0 : speed;
-
-      cursor.style.width = `${size.width + stretch * 14}px`;
-      cursor.style.height = `${Math.max(28, size.height - stretch * 7)}px`;
-      cursor.style.borderRadius = `${size.radius}px`;
-      cursor.style.transform = `translate3d(${current.x}px, ${current.y}px, 0) translate(-50%, -50%) rotate(${isTargeting ? 0 : angle}deg)`;
-      dot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0) translate(-50%, -50%)`;
-      trails.forEach((trail, index) => {
-        const previous = index === 0 ? current : trailPositions[index - 1];
-        const trailPosition = trailPositions[index];
-        const trailEase = Math.max(0.08, 0.22 - index * 0.035);
-
-        trailPosition.x += (previous.x - trailPosition.x) * trailEase;
-        trailPosition.y += (previous.y - trailPosition.y) * trailEase;
-        trail.style.transform = `translate3d(${trailPosition.x}px, ${trailPosition.y}px, 0) translate(-50%, -50%) scale(${1 - index * 0.11})`;
+      gsap.to(pos, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 1.5,
+        ease: "elastic.out(1, 0.5)",
+        onUpdate: () => {
+          vel.x = (e.clientX - pos.x) * 1.2;
+          vel.y = (e.clientY - pos.y) * 1.2;
+        },
       });
 
-      frame = requestAnimationFrame(render);
+      const hide = !!(e.target as Element | null)?.closest?.(
+        '[data-no-custom-cursor="true"]',
+      );
+      isHiddenRef.current = hide;
+      document.body.style.cursor = hide ? "auto" : "";
     };
 
-    window.addEventListener("pointermove", handlePointerMove, {
-      passive: true,
-    });
-    window.addEventListener("pointerout", handlePointerOut);
-    window.addEventListener("pointerover", handlePointerOver);
-    document.addEventListener("pointerout", handlePointerOutOfTarget);
-    window.addEventListener("scroll", updateTargetBounds, { passive: true });
-    window.addEventListener("resize", updateTargetBounds);
-    frame = requestAnimationFrame(render);
+    window.addEventListener("mousemove", onMove);
 
     return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerout", handlePointerOut);
-      window.removeEventListener("pointerover", handlePointerOver);
-      document.removeEventListener("pointerout", handlePointerOutOfTarget);
-      window.removeEventListener("scroll", updateTargetBounds);
-      window.removeEventListener("resize", updateTargetBounds);
-      cancelAnimationFrame(frame);
+      window.removeEventListener("mousemove", onMove);
+      document.body.style.cursor = "";
     };
   }, []);
 
+  useEffect(() => {
+    if (isDisabledRef.current) return;
+
+    const acquire = (el: HTMLElement) => {
+      gsap.killTweensOf(el);
+      active.el = el;
+      active.base = measure(el);
+      active.offX = 0;
+      active.offY = 0;
+      jelly.x = pos.x;
+      jelly.y = pos.y;
+      if (movesTarget) el.style.willChange = "transform";
+    };
+
+    const release = () => {
+      const el = active.el;
+      if (el && movesTarget) {
+        gsap.to(el, {
+          x: 0,
+          y: 0,
+          duration: 0.7,
+          ease: "elastic.out(1, 0.35)",
+          clearProps: "transform",
+          onComplete: () => {
+            el.style.willChange = "";
+          },
+        });
+      }
+
+      active.el = null;
+      active.base = null;
+      active.offX = 0;
+      active.offY = 0;
+    };
+
+    const onOver = (e: Event) => {
+      const target = e.target as Element | null;
+      if (target?.closest?.('[data-no-custom-cursor="true"]')) {
+        if (active.el) release();
+        return;
+      }
+
+      const t = target?.closest?.(TARGET_SELECTOR) as HTMLElement | null;
+      if (t === active.el) return;
+      if (active.el) release();
+      if (t) acquire(t);
+    };
+
+    const onLeave = () => {
+      if (active.el) release();
+    };
+
+    const onScroll = () => {
+      if (!active.el || !active.base) return;
+      const r = active.el.getBoundingClientRect();
+      active.base.left = r.left - active.offX;
+      active.base.top = r.top - active.offY;
+      active.base.width = r.width;
+      active.base.height = r.height;
+      active.base.cx = active.base.left + r.width / 2;
+      active.base.cy = active.base.top + r.height / 2;
+    };
+
+    document.addEventListener("pointerover", onOver);
+    document.addEventListener("mouseleave", onLeave);
+    window.addEventListener("blur", onLeave);
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener("pointerover", onOver);
+      document.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("blur", onLeave);
+      window.removeEventListener("scroll", onScroll);
+      if (active.el) release();
+    };
+  }, []);
+
+  useTicker(render, !cursorMoved || isDisabledRef.current);
+
   return (
     <>
-      {Array.from({ length: 4 }, (_, index) => (
-        <div
-          className={`elastic-cursor-trail elastic-cursor-trail--${index + 1}`}
-          key={index}
-          ref={(node) => {
-            trailRefs.current[index] = node;
-          }}
-          aria-hidden="true"
-        />
-      ))}
-      <div className="elastic-cursor" ref={cursorRef} aria-hidden="true" />
-      <div className="elastic-cursor-dot" ref={dotRef} aria-hidden="true" />
+      <div
+        ref={jellyRef}
+        className="jelly-blob"
+        style={{
+          width: CURSOR_DIAMETER,
+          height: CURSOR_DIAMETER,
+          borderRadius: CURSOR_DIAMETER / 2,
+          boxSizing: "border-box",
+        }}
+        aria-hidden="true"
+      />
+      <div ref={dotRef} className="jelly-dot" aria-hidden="true" />
     </>
   );
 }

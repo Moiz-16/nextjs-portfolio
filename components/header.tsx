@@ -4,10 +4,9 @@ export default function Header() {
   return (
     <header className="site-header">
       <a
-        className="wordmark"
+        className="wordmark cursor-can-hover"
         href="#home"
         aria-label="Moiz Saleem - home"
-        data-cursor-compact
       >
         MS<span>©26</span>
       </a>
