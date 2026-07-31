@@ -3665,8 +3665,38 @@ html.dark {
   max-width: 10ch;
 }
 
+.about .about-heading h2 {
+  color: var(--about-ink);
+  font-family: var(--serif);
+  font-size: clamp(58px, 8vw, 118px);
+  font-weight: 700;
+  line-height: 0.92;
+  max-width: 12ch;
+}
+
+.about .about-heading h2 em {
+  color: var(--about-ink);
+  font-family: var(--hero-serif);
+  font-weight: 400;
+}
+
 .about-copy {
   max-width: 34rem;
+}
+
+.about .about-copy .about-lead {
+  color: var(--about-ink);
+  font-family: var(--sans);
+  font-size: clamp(24px, 2.4vw, 38px) !important;
+  font-style: normal;
+  font-weight: 650;
+  line-height: 1.12 !important;
+}
+
+.about .about-copy p:not(.about-lead) {
+  color: var(--about-card-muted);
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.58;
 }
 
 .about-stat {
@@ -3785,254 +3815,7 @@ html.dark {
   width: 100%;
 }
 
-/* About redesign */
-
-.about.about-redesign {
-  background:
-    linear-gradient(180deg, rgba(248, 244, 232, 0.92), var(--surface) 38%),
-    var(--surface);
-  display: block;
-  min-height: auto;
-  padding-bottom: var(--site-section-y);
-  padding-top: var(--site-section-y);
-}
-
-html.dark .about.about-redesign {
-  background:
-    linear-gradient(180deg, rgba(15, 23, 42, 0.78), var(--surface) 42%),
-    var(--surface);
-}
-
-.about.about-redesign::before,
-.about.about-redesign::after {
-  display: none;
-}
-
-.about-redesign .section-index {
-  z-index: 3;
-}
-
-.about-shell {
-  display: grid;
-  gap: clamp(18px, 2.5vw, 32px);
-  margin: 0 auto;
-  max-width: var(--site-content-width);
-  position: relative;
-  width: 100%;
-  z-index: 2;
-}
-
-.about-hero-card {
-  background:
-    linear-gradient(135deg, rgba(255, 253, 245, 0.62), transparent 130%),
-    rgba(248, 244, 232, 0.5);
-  border: 1px solid var(--about-card-border);
-  border-radius: 8px;
-  padding: clamp(24px, 4vw, 48px);
-}
-
-html.dark .about-hero-card {
-  background:
-    linear-gradient(135deg, rgba(30, 41, 59, 0.5), transparent 130%),
-    rgba(15, 23, 42, 0.48);
-}
-
-.about-hero-grid {
-  align-items: end;
-  display: grid;
-  gap: clamp(28px, 5vw, 72px);
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.82fr);
-}
-
-.about-redesign .about-heading {
-  align-self: end;
-  max-width: none;
-}
-
-.about-status-pill {
-  border: 1px solid var(--about-card-border);
-  border-radius: 999px;
-  color: var(--about-card-muted);
-  display: inline-flex;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  margin-bottom: clamp(18px, 2vw, 28px);
-  padding: 9px 12px;
-  text-transform: uppercase;
-}
-
-.about-redesign h2 {
-  color: var(--about-ink);
-  font-family: var(--serif);
-  font-size: clamp(58px, 8vw, 118px);
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 0.92;
-  max-width: 12ch;
-}
-
-.about-redesign h2 em {
-  color: var(--about-ink);
-  font-family: var(--hero-serif);
-  font-weight: 400;
-}
-
-.about-redesign .about-copy {
-  align-self: end;
-  gap: clamp(14px, 1.6vw, 18px);
-  max-width: 42rem;
-}
-
-.about-redesign .about-copy p {
-  color: var(--about-card-muted);
-  font-size: clamp(16px, 1.25vw, 19px);
-  line-height: 1.58;
-}
-
-.about-redesign .about-lead {
-  color: var(--about-ink) !important;
-  font-family: var(--sans);
-  font-size: clamp(24px, 2.4vw, 38px) !important;
-  font-style: normal;
-  font-weight: 650;
-  line-height: 1.12 !important;
-}
-
-.about-highlight-grid {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.about-highlight {
-  background: var(--about-card);
-  border: 1px solid var(--about-card-border);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 150px;
-  padding: clamp(16px, 2vw, 22px);
-}
-
-.about-highlight--large {
-  grid-column: span 2;
-}
-
-.about-highlight span {
-  color: var(--about-card-muted);
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.about-highlight h3 {
-  color: var(--about-ink);
-  font-family: var(--sans);
-  font-size: clamp(22px, 2.2vw, 34px);
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.05;
-  margin: auto 0 0;
-}
-
-.about-highlight p {
-  color: var(--about-card-muted);
-  font-size: 14px;
-  line-height: 1.45;
-  margin: 0;
-}
-
-.about-highlight--skills {
-  justify-content: space-between;
-}
-
-.about-highlight--skills .skills {
-  gap: 7px;
-  margin: 0;
-}
-
-.about-redesign .skills span {
-  border-color: var(--about-card-border);
-  border-radius: 999px;
-  color: var(--about-ink);
-  font-size: 9px;
-  padding: 8px 10px;
-}
-
-.about-redesign .about-dashboard {
-  gap: 12px;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-
-.about-redesign .about-panel {
-  background: var(--about-card);
-  border-radius: 8px;
-  min-height: 118px;
-  padding: 15px;
-}
-
-.about-redesign .about-panel--graph {
-  grid-column: span 6;
-}
-
-.about-redesign .about-panel--latest,
-.about-redesign .about-panel--metric,
-.about-redesign .about-panel--reading,
-.about-redesign .about-panel--country,
-.about-redesign .about-panel--travel,
-.about-redesign .about-panel--quote,
-.about-redesign .about-panel--queue,
-.about-redesign .about-panel--game,
-.about-redesign .about-panel--lego,
-.about-redesign .about-panel--learning {
-  grid-column: span 3;
-}
-
-.about-redesign .about-panel--life,
-.about-redesign .about-panel--photo-roll {
-  grid-column: span 6;
-}
-
-.about-redesign .about-stat,
-.about-redesign .orbit-badge,
-.about-redesign .about-flower {
-  display: none;
-}
-
 @media (max-width: 1100px) {
-  .about-hero-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-redesign .about-dashboard {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .about-redesign .about-panel--graph,
-  .about-redesign .about-panel--life,
-  .about-redesign .about-panel--photo-roll {
-    grid-column: span 6;
-  }
-
-  .about-redesign .about-panel--latest,
-  .about-redesign .about-panel--metric,
-  .about-redesign .about-panel--reading,
-  .about-redesign .about-panel--country,
-  .about-redesign .about-panel--travel,
-  .about-redesign .about-panel--quote,
-  .about-redesign .about-panel--queue,
-  .about-redesign .about-panel--game,
-  .about-redesign .about-panel--lego,
-  .about-redesign .about-panel--learning {
-    grid-column: span 3;
-  }
-
   .portfolio-sections .project-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -4046,14 +3829,6 @@ html.dark .about-hero-card {
 @media (max-width: 900px) {
   .about {
     grid-template-columns: 1fr;
-  }
-
-  .about-highlight-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .about-highlight--large {
-    grid-column: span 2;
   }
 
   .about-heading,
@@ -4101,33 +3876,6 @@ html.dark .about-hero-card {
 
   .portfolio-sections .project-card-grid {
     grid-template-columns: 1fr;
-  }
-
-  .about-hero-card {
-    padding: 22px;
-  }
-
-  .about-highlight-grid,
-  .about-redesign .about-dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .about-highlight,
-  .about-highlight--large,
-  .about-redesign .about-panel--graph,
-  .about-redesign .about-panel--latest,
-  .about-redesign .about-panel--metric,
-  .about-redesign .about-panel--reading,
-  .about-redesign .about-panel--country,
-  .about-redesign .about-panel--travel,
-  .about-redesign .about-panel--quote,
-  .about-redesign .about-panel--queue,
-  .about-redesign .about-panel--game,
-  .about-redesign .about-panel--lego,
-  .about-redesign .about-panel--life,
-  .about-redesign .about-panel--learning,
-  .about-redesign .about-panel--photo-roll {
-    grid-column: span 1;
   }
 
   .portfolio-sections .project-preview-shot {
