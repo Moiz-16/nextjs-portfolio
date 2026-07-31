@@ -347,26 +347,26 @@ export default function About() {
         <p className="eyebrow">A LITTLE CONTEXT</p>
 
         <h2>
-          Engineer by craft,
+          I build calm
           <br />
-          <em>mathematician</em> by
+          <em>systems for messy</em>
           <br />
-          training.
+          problems.
         </h2>
       </div>
 
       <div className="about-copy reveal reveal-delay">
         <p className="about-lead">
-          I&apos;m a Mathematics and Computer Science graduate from the
-          University of Bristol who likes turning complex systems into useful,
-          intuitive products.
+          I&apos;m a Mathematics and Computer Science graduate from the University
+          of Bristol, drawn to reliability engineering, quantitative systems and
+          products that make complex workflows feel usable.
         </p>
 
         <p>
-          My work moves between software engineering, quantitative finance,
-          applied AI and product design. Whether I&apos;m training a neural SDE,
-          speeding up a document pipeline or shaping a new app, I care about
-          elegant systems, clear thinking and the details people actually feel.
+          My work usually starts with a knot: noisy data, brittle
+          infrastructure, slow research loops or an idea that needs becoming a
+          real interface. I like finding the structure underneath, building the
+          tool, and polishing the details until the system feels obvious.
         </p>
 
         <div className="skills" aria-label="Core skills">

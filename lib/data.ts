@@ -142,6 +142,30 @@ export const projectsData = [
     link: "",
   },
   {
+    title: "Mobile App Games",
+    description:
+    "Built mobile-first game experiments focused on quick sessions, responsive touch interactions, scoring loops and polished feedback across small screens.",
+    tags: ["Mobile", "TypeScript", "Game Design"],
+    imageUrl: appImg,
+    link: "",
+  },
+  {
+    title: "Neural SDE Dissertation Project",
+    description:
+    "Final-year dissertation exploring neural stochastic differential equations for modelling continuous-time dynamics under uncertainty, combining stochastic calculus with PyTorch experimentation.",
+    tags: ["Python", "PyTorch", "SDEs", "Research"],
+    imageUrl: tmtImg,
+    link: "",
+  },
+  {
+    title: "HPC Code Optimisation",
+    description:
+    "Optimised scientific code by profiling bottlenecks, improving memory access patterns and tightening computational routines for faster research-style workloads.",
+    tags: ["C", "C++", "Profiling", "HPC"],
+    imageUrl: heImg,
+    link: "",
+  },
+  {
     title: "TradingView Strategy Indicators",
     description:
     "Actively developing and optimising algorithmic trading strategies across multiple asset classes, including equities, forex, and cryptocurrencies, using Pine Script on TradingView.",
