@@ -1,7 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { BsBook, BsGithub, BsGlobe2 } from "react-icons/bs";
+import {
+  BsAirplane,
+  BsBook,
+  BsBookHalf,
+  BsCamera,
+  BsCodeSlash,
+  BsGithub,
+  BsGlobe2,
+  BsJoystick,
+  BsLightbulb,
+  BsQuote,
+} from "react-icons/bs";
 import { useSectionInView } from "@/lib/hooks";
 
 type GitHubEvent = {
@@ -220,6 +231,74 @@ function AboutDashboard() {
         </span>
         <h3>Indonesia</h3>
         <p>Jakarta - most recent travel pin</p>
+      </article>
+
+      <article className="about-panel about-panel--travel">
+        <span className="about-panel-label">
+          <BsAirplane aria-hidden="true" />
+          Travel list
+        </span>
+        <h3>Japan, Türkiye, Morocco</h3>
+        <p>Next three places I&apos;d like to explore.</p>
+      </article>
+
+      <article className="about-panel about-panel--quote">
+        <span className="about-panel-label">
+          <BsQuote aria-hidden="true" />
+          Favourite quote
+        </span>
+        <h3>Make failure boring.</h3>
+        <p>A useful little rule for software, systems and life.</p>
+      </article>
+
+      <article className="about-panel about-panel--queue">
+        <span className="about-panel-label">
+          <BsBookHalf aria-hidden="true" />
+          Book queue
+        </span>
+        <h3>Same As Ever - Morgan Housel</h3>
+        <p>Next after Iliad.</p>
+      </article>
+
+      <article className="about-panel about-panel--game">
+        <span className="about-panel-label">
+          <BsJoystick aria-hidden="true" />
+          Favourite game
+        </span>
+        <h3>Catan: Starfarers</h3>
+        <p>Trade, explore and over-negotiate slightly.</p>
+      </article>
+
+      <article className="about-panel about-panel--life">
+        <span className="about-panel-label">
+          <BsCodeSlash aria-hidden="true" />
+          If not coding
+        </span>
+        <h3>Reading, travelling, training or trying new food.</h3>
+        <p>Usually with a notes app open somewhere nearby.</p>
+      </article>
+
+      <article className="about-panel about-panel--learning">
+        <span className="about-panel-label">
+          <BsLightbulb aria-hidden="true" />
+          One thing I&apos;m learning
+        </span>
+        <h3>Kubernetes internals</h3>
+        <p>Reliability gets more interesting when the abstractions leak.</p>
+      </article>
+
+      <article className="about-panel about-panel--photo-roll">
+        <span className="about-panel-label">
+          <BsCamera aria-hidden="true" />
+          Photo roll
+        </span>
+        <div className="photo-roll-strip" aria-hidden="true">
+          <span>Jakarta</span>
+          <span>Bristol</span>
+          <span>London</span>
+          <span>Next</span>
+        </div>
+        <p>Tiny memory pins from places, walks and weekends.</p>
       </article>
     </div>
   );
