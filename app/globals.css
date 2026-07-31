@@ -952,11 +952,14 @@ html.dark .orbit-badge-ring::before {
 
 .about-panel {
   background:
-    linear-gradient(135deg, var(--about-card), transparent 130%),
-    var(--about-surface);
-  border: 1px solid var(--about-card-border);
+    radial-gradient(circle at 20% 0%, rgba(248, 244, 232, 0.08), transparent 34%),
+    linear-gradient(145deg, rgba(17, 23, 34, 0.98), rgba(8, 11, 16, 0.98));
+  border: 1px solid rgba(112, 137, 182, 0.28);
   border-radius: 8px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 40px rgba(0, 0, 0, 0.14);
+  color: var(--surface);
   display: flex;
   flex-direction: column;
   gap: 11px;
@@ -964,10 +967,56 @@ html.dark .orbit-badge-ring::before {
   overflow: hidden;
   padding: 16px;
   position: relative;
+  transition:
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    transform 260ms ease;
+}
+
+.about-panel::before {
+  background:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 35%,
+      rgba(255, 255, 255, 0.05) 43%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.05) 57%,
+      transparent 65%,
+      transparent 100%
+    );
+  content: "";
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-120%);
+  transition:
+    opacity 260ms ease,
+    transform 820ms cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+.about-panel:hover {
+  border-color: rgba(180, 200, 244, 0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 22px 54px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.about-panel:hover::before {
+  opacity: 1;
+  transform: translateX(120%);
+}
+
+.about-panel > * {
+  position: relative;
+  z-index: 2;
 }
 
 .about-panel::after {
-  background: var(--about-accent);
+  background: rgba(115, 216, 255, 0.9);
   border-radius: 999px;
   content: "";
   height: 4px;
@@ -1039,7 +1088,7 @@ html.dark .orbit-badge-ring::before {
 
 .tech-stack-icons span {
   align-items: center;
-  color: var(--about-ink);
+  color: var(--surface);
   display: flex;
   justify-content: center;
   min-height: clamp(34px, 4.2vw, 58px);
@@ -1077,6 +1126,7 @@ html.dark .orbit-badge-ring::before {
 }
 
 .about-panel-topline > strong {
+  color: var(--surface);
   font-family: var(--sans);
   font-size: 12px;
 }
@@ -1084,7 +1134,7 @@ html.dark .orbit-badge-ring::before {
 .about-panel-label,
 .about-panel-kicker {
   align-items: center;
-  color: var(--about-card-muted);
+  color: rgba(248, 244, 232, 0.58);
   display: inline-flex;
   font-family: var(--mono);
   font-size: 8px;
@@ -1095,10 +1145,10 @@ html.dark .orbit-badge-ring::before {
 }
 
 .about-panel-label {
-  background: var(--about-card-soft);
-  border: 1px solid var(--about-card-border);
+  background: rgba(11, 16, 28, 0.88);
+  border: 1px solid rgba(112, 137, 182, 0.34);
   border-radius: 999px;
-  color: var(--about-ink);
+  color: var(--surface);
   padding: 6px 9px;
   width: fit-content;
 }
@@ -1109,6 +1159,7 @@ html.dark .orbit-badge-ring::before {
 }
 
 .about-panel h3 {
+  color: var(--surface);
   font-family: var(--sans);
   font-size: clamp(17px, 1.55vw, 24px);
   font-weight: 650;
@@ -1120,7 +1171,7 @@ html.dark .orbit-badge-ring::before {
 
 .about-panel p,
 .about-panel small {
-  color: var(--about-card-muted);
+  color: rgba(248, 244, 232, 0.62);
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 650;
@@ -1136,10 +1187,11 @@ html.dark .orbit-badge-ring::before {
 }
 
 .about-panel--latest p strong {
-  color: var(--about-accent);
+  color: var(--surface);
 }
 
 .about-panel--metric > strong {
+  color: var(--surface);
   font-family: var(--sans);
   font-size: clamp(36px, 4.8vw, 62px);
   font-weight: 500;
@@ -1162,26 +1214,26 @@ html.dark .orbit-badge-ring::before {
 }
 
 .commit-cell {
-  background: var(--commit-zero);
+  background: rgba(82, 101, 133, 0.42);
   border-radius: 3px;
   height: 10px;
   width: 10px;
 }
 
 .commit-cell--1 {
-  background: var(--commit-one);
+  background: rgba(20, 184, 166, 0.5);
 }
 
 .commit-cell--2 {
-  background: var(--commit-two);
+  background: rgba(45, 212, 191, 0.64);
 }
 
 .commit-cell--3 {
-  background: var(--commit-three);
+  background: rgba(94, 234, 212, 0.78);
 }
 
 .commit-cell--4 {
-  background: var(--commit-four);
+  background: rgba(153, 246, 228, 0.95);
 }
 
 .photo-roll-strip {
@@ -1195,11 +1247,11 @@ html.dark .orbit-badge-ring::before {
   align-items: end;
   background:
     linear-gradient(to top, rgba(0, 0, 0, 0.44), transparent 62%),
-    radial-gradient(circle at 62% 28%, var(--about-card-soft), transparent 42%),
-    var(--about-card);
-  border: 1px solid var(--about-card-border);
+    radial-gradient(circle at 62% 28%, rgba(115, 216, 255, 0.1), transparent 42%),
+    rgba(13, 19, 30, 0.94);
+  border: 1px solid rgba(112, 137, 182, 0.28);
   border-radius: 7px;
-  color: var(--about-ink);
+  color: var(--surface);
   display: flex;
   font-family: var(--mono);
   font-size: 8px;
