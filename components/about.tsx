@@ -13,7 +13,16 @@ import {
   BsJoystick,
   BsLightbulb,
   BsQuote,
+  BsStack,
 } from "react-icons/bs";
+import { FaJava } from "react-icons/fa";
+import {
+  SiAmazonaws,
+  SiCplusplus,
+  SiPytorch,
+  SiPython,
+  SiTypescript,
+} from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
 
 type GitHubEvent = {
@@ -214,6 +223,42 @@ function AboutDashboard() {
         <span className="about-panel-kicker">LAST 7D</span>
         <strong>{githubStats.sevenDayCommits}</strong>
         <p>commits</p>
+      </article>
+
+      <article className="about-panel about-panel--tech-stack">
+        <span className="about-panel-label">
+          <BsStack aria-hidden="true" />
+          Tech stack
+        </span>
+
+        <div className="tech-stack-icons" aria-label="Technologies">
+          <span aria-label="Python" title="Python">
+            <SiPython aria-hidden="true" />
+          </span>
+          <span aria-label="Java" title="Java">
+            <FaJava aria-hidden="true" />
+          </span>
+          <span aria-label="C / C++" title="C / C++">
+            <SiCplusplus aria-hidden="true" />
+          </span>
+          <span aria-label="TypeScript" title="TypeScript">
+            <SiTypescript aria-hidden="true" />
+          </span>
+          <span aria-label="PyTorch" title="PyTorch">
+            <SiPytorch aria-hidden="true" />
+          </span>
+          <span aria-label="AWS" title="AWS">
+            <SiAmazonaws aria-hidden="true" />
+          </span>
+        </div>
+
+        <div className="tech-stack-copy">
+          <h3>Tech stacks I&apos;m familiar with</h3>
+          <p>
+            Python, Java, C / C++, TypeScript, PyTorch and AWS across research,
+            product and reliability-focused work.
+          </p>
+        </div>
       </article>
 
       <article className="about-panel about-panel--reading">
