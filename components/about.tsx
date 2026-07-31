@@ -402,15 +402,19 @@ export default function About() {
 
       <div className="about-copy reveal reveal-delay">
         <p className="about-lead">
-          I&apos;m drawn to problems where structure matters: messy data, complex
-          systems, sharp product ideas and the space between them.
+          I&apos;m a Mathematics and Computer Science graduate from the University
+          of Bristol, now heading into Site Reliability Engineering at JPMorgan
+          Chase.
         </p>
 
         <p>
-          My favourite work usually starts as a tangle of notes, models, edge
-          cases and half-formed questions. I like finding the underlying shape,
-          building the tool, and polishing the details until the result feels
-          clear, dependable and useful.
+          My work spans neural SDE research, trading bots, HPC code
+          optimisation, product design and quantitative finance, including an
+          invited IMA TMT talk on cointegration-based trading strategies. I
+          previously founded Nexus, an internship application platform for
+          students, and I like building tools where complex ideas become clear,
+          useful systems. Away from software, I&apos;m into word puzzles,
+          reading, travelling, training, trying new food, Lego and board games.
         </p>
       </div>
 
