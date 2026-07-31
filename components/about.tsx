@@ -314,89 +314,80 @@ function AboutDashboard() {
   );
 }
 
-function PixelFlower({
-  className = "",
-  variant = "coral",
-}: {
-  className?: string;
-  variant?: "coral" | "yellow" | "small";
-}) {
-  return (
-    <span
-      className={`pixel-flower pixel-flower--${variant} ${className}`}
-      aria-hidden="true"
-    >
-      <i />
-      <i />
-      <i />
-      <i />
-      <i />
-      <i />
-    </span>
-  );
-}
-
 export default function About() {
   const { ref } = useSectionInView("About", 0.6);
 
   return (
-    <section ref={ref} className="about section-shell" id="about">
+    <section ref={ref} className="about about-redesign section-shell" id="about">
       <div className="section-index">01 / ABOUT</div>
 
-      <div className="about-heading reveal">
-        <p className="eyebrow">A LITTLE CONTEXT ABOUT ME</p>
+      <div className="about-shell">
+        <div className="about-hero-card reveal">
+          <p className="eyebrow">A LITTLE CONTEXT ABOUT ME</p>
 
-        <h2>
-          I build calm
-          <br />
-          <em>systems for messy</em>
-          <br />
-          problems.
-        </h2>
-      </div>
+          <div className="about-hero-grid">
+            <div className="about-heading">
+              <span className="about-status-pill">
+                Incoming Consumer Banking SRE
+              </span>
 
-      <div className="about-copy reveal reveal-delay">
-        <p className="about-lead">
-          I&apos;m a Mathematics and Computer Science graduate from the University
-          of Bristol, drawn to reliability engineering, quantitative systems and
-          products that make complex workflows feel usable.
-        </p>
+              <h2>
+                Maths, code,
+                <br />
+                <em>reliable systems.</em>
+              </h2>
+            </div>
 
-        <p>
-          My work usually starts with a knot: noisy data, brittle
-          infrastructure, slow research loops or an idea that needs becoming a
-          real interface. I like finding the structure underneath, building the
-          tool, and polishing the details until the system feels obvious.
-        </p>
+            <div className="about-copy">
+              <p className="about-lead">
+                I&apos;ve just graduated from the University of Bristol with a
+                BSc in Mathematics and Computer Science.
+              </p>
 
-        <div className="skills" aria-label="Core skills">
-          <span>PYTHON</span>
-          <span>JAVA</span>
-          <span>C / C++</span>
-          <span>TYPESCRIPT</span>
-          <span>PYTORCH</span>
-          <span>AWS</span>
+              <p>
+                Next, I&apos;m joining JPMorgan Chase as a Consumer Banking Site
+                Reliability Engineer, working where software, infrastructure and
+                reliability meet. I&apos;m interested in systems that stay
+                observable, resilient and calm when real users depend on them.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="about-stat reveal">
-        <strong>4-8x</strong>
-        <span>RESEARCH PIPELINE SPEED-UP</span>
-      </div>
+        <div className="about-highlight-grid reveal reveal-delay">
+          <article className="about-highlight about-highlight--large">
+            <span>Graduated</span>
+            <h3>BSc Mathematics and Computer Science</h3>
+            <p>University of Bristol</p>
+          </article>
 
-      <AboutDashboard />
+          <article className="about-highlight">
+            <span>Joining</span>
+            <h3>JPMorgan Chase</h3>
+            <p>Consumer Banking Site Reliability Engineer</p>
+          </article>
 
-      <div className="orbit-badge" aria-hidden="true">
-        <span>+</span>
-        <div className="orbit-badge-ring">
-          <i />
-          <i />
-          <i />
-          <i />
+          <article className="about-highlight">
+            <span>Focus</span>
+            <h3>Reliability at scale</h3>
+            <p>Infrastructure, observability, performance and production systems.</p>
+          </article>
+
+          <article className="about-highlight about-highlight--skills">
+            <span>Toolbox</span>
+            <div className="skills" aria-label="Core skills">
+              <span>PYTHON</span>
+              <span>JAVA</span>
+              <span>C / C++</span>
+              <span>TYPESCRIPT</span>
+              <span>PYTORCH</span>
+              <span>AWS</span>
+            </div>
+          </article>
         </div>
-      </div>
 
-      <PixelFlower className="about-flower" variant="coral" />
+        <AboutDashboard />
+      </div>
     </section>
   );
 }
