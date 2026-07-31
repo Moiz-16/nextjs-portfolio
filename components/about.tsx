@@ -424,7 +424,9 @@ export default function About() {
         <p className="eyebrow">A LITTLE CONTEXT ABOUT ME</p>
 
         <h2>
-          Maths, code,
+          Maths,
+          <br />
+          code,
           <br />
           <em>reliable</em>
           <br />
