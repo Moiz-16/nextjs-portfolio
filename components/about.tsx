@@ -5,6 +5,7 @@ import {
   BsAirplane,
   BsBook,
   BsBookHalf,
+  BsBricks,
   BsCamera,
   BsCodeSlash,
   BsGithub,
@@ -267,6 +268,15 @@ function AboutDashboard() {
         </span>
         <h3>Catan: Starfarers</h3>
         <p>Trade, explore and over-negotiate slightly.</p>
+      </article>
+
+      <article className="about-panel about-panel--lego">
+        <span className="about-panel-label">
+          <BsBricks aria-hidden="true" />
+          Current Lego set
+        </span>
+        <h3>LEGO Icons Concorde</h3>
+        <p>Engineering nostalgia in tiny white bricks.</p>
       </article>
 
       <article className="about-panel about-panel--life">

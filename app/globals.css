@@ -939,8 +939,9 @@ html.dark .orbit-badge-ring::before {
   align-self: start;
   display: grid;
   gap: 10px;
+  grid-auto-flow: dense;
   grid-column: 1 / -1;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(220px, 0.8fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   position: relative;
   z-index: 2;
 }
@@ -978,11 +979,12 @@ html.dark .orbit-badge-ring::before {
 }
 
 .about-panel--graph {
-  grid-column: span 2;
-  min-height: 204px;
+  grid-column: span 3;
+  min-height: 178px;
 }
 
 .about-panel--latest {
+  grid-column: span 2;
   justify-content: space-between;
 }
 
@@ -996,8 +998,9 @@ html.dark .orbit-badge-ring::before {
 }
 
 .about-panel--metric {
+  grid-column: span 1;
   justify-content: space-between;
-  min-height: 132px;
+  min-height: 112px;
 }
 
 .about-panel--reading,
@@ -1006,15 +1009,17 @@ html.dark .orbit-badge-ring::before {
 .about-panel--quote,
 .about-panel--queue,
 .about-panel--game,
+.about-panel--lego,
 .about-panel--life,
 .about-panel--learning,
 .about-panel--photo-roll {
+  grid-column: span 2;
   min-height: 132px;
 }
 
 .about-panel--life,
 .about-panel--photo-roll {
-  grid-column: span 2;
+  grid-column: span 3;
 }
 
 .about-panel-topline {
@@ -1089,7 +1094,7 @@ html.dark .orbit-badge-ring::before {
 
 .about-panel--metric > strong {
   font-family: var(--sans);
-  font-size: clamp(42px, 5.4vw, 78px);
+  font-size: clamp(36px, 4.8vw, 62px);
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 0.8;
@@ -1097,11 +1102,11 @@ html.dark .orbit-badge-ring::before {
 
 .commit-graph {
   display: grid;
-  gap: 5px;
+  gap: 4px;
   grid-auto-flow: column;
-  grid-auto-columns: 11px;
-  grid-template-rows: repeat(7, 11px);
-  min-height: 104px;
+  grid-auto-columns: 10px;
+  grid-template-rows: repeat(7, 10px);
+  min-height: 88px;
   overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: 10px;
@@ -1112,8 +1117,8 @@ html.dark .orbit-badge-ring::before {
 .commit-cell {
   background: var(--commit-zero);
   border-radius: 3px;
-  height: 11px;
-  width: 11px;
+  height: 10px;
+  width: 10px;
 }
 
 .commit-cell--1 {
@@ -1136,7 +1141,7 @@ html.dark .orbit-badge-ring::before {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  min-height: 82px;
+  min-height: 70px;
 }
 
 .photo-roll-strip span {
@@ -1154,7 +1159,7 @@ html.dark .orbit-badge-ring::before {
   font-weight: 700;
   justify-content: center;
   letter-spacing: 0.1em;
-  min-height: 82px;
+  min-height: 70px;
   overflow: hidden;
   padding: 9px 7px;
   position: relative;
@@ -3197,8 +3202,24 @@ html.dark .portfolio-sections .contact-rings i {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .about-panel,
+  .about-panel--metric,
+  .about-panel--reading,
+  .about-panel--country,
+  .about-panel--travel,
+  .about-panel--quote,
+  .about-panel--queue,
+  .about-panel--game,
+  .about-panel--lego,
+  .about-panel--learning {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+
   .about-panel--graph,
-  .about-panel--latest {
+  .about-panel--latest,
+  .about-panel--life,
+  .about-panel--photo-roll {
     grid-column: 1 / -1;
   }
 
@@ -3487,10 +3508,12 @@ html.dark .portfolio-sections .contact-rings i {
   .about-panel--quote,
   .about-panel--queue,
   .about-panel--game,
+  .about-panel--lego,
   .about-panel--life,
   .about-panel--learning,
   .about-panel--photo-roll {
     grid-column: 1;
+    grid-row: auto;
     min-height: auto;
   }
 
