@@ -76,8 +76,8 @@ export default function Intro() {
         <p className="hero-location">BASED IN THE UK</p>
 
         <p className="hero-intro">
-          I build thoughtful software at the intersection of engineering, data
-          and markets.
+          Bristol Maths and Computer Science graduate building across software,
+          data and systems as an incoming Site Reliability Engineer.
         </p>
 
         <div className="hero-socials" aria-label="Home links">
