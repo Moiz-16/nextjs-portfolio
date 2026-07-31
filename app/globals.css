@@ -3767,12 +3767,18 @@ html.dark {
 
 .portfolio-sections .projects-heading {
   column-gap: 20px;
+  grid-template-columns: minmax(0, 1.32fr) minmax(300px, 0.78fr);
   row-gap: var(--site-eyebrow-gap);
 }
 
 .portfolio-sections .projects-heading .ps-eyebrow {
   grid-column: 1 / -1;
   margin-bottom: 0;
+}
+
+.portfolio-sections .projects-heading > p:last-child {
+  justify-self: end;
+  margin-left: clamp(34px, 5vw, 88px);
 }
 
 .about h2,
@@ -3965,6 +3971,11 @@ html.dark {
 
   .portfolio-sections .projects-heading {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-sections .projects-heading > p:last-child {
+    justify-self: start;
+    margin-left: 0;
   }
 
   .portfolio-sections .experience-group {
