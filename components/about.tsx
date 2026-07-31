@@ -256,7 +256,7 @@ function AboutDashboard() {
           <h3>Tech stacks I&apos;m familiar with</h3>
           <p>
             Python, Java, C / C++, TypeScript, PyTorch and AWS across research,
-            product and reliability-focused work.
+            product experiments and systems-focused work.
           </p>
         </div>
       </article>
@@ -339,7 +339,7 @@ function AboutDashboard() {
           One thing I&apos;m learning
         </span>
         <h3>Kubernetes internals</h3>
-        <p>Reliability gets more interesting when the abstractions leak.</p>
+        <p>Systems get more interesting when the abstractions leak.</p>
       </article>
 
       <article className="about-panel about-panel--photo-roll">
@@ -392,27 +392,26 @@ export default function About() {
         <p className="eyebrow">A LITTLE CONTEXT ABOUT ME</p>
 
         <h2>
-          Maths, code,
+          Curious by
           <br />
-          <em>reliable</em>
+          <em>default,</em>
           <br />
-          systems.
+          rigorous by habit.
         </h2>
       </div>
 
       <div className="about-copy reveal reveal-delay">
         <p className="about-lead">
-          I&apos;ve just graduated from the University of Bristol with a BSc in
-          Mathematics and Computer Science.
+          I&apos;m drawn to problems where structure matters: messy data, complex
+          systems, sharp product ideas and the space between them.
         </p>
 
         <p>
-          Next, I&apos;m joining JPMorgan Chase as a Consumer Banking Site
-          Reliability Engineer, working where software, infrastructure and
-          reliability meet. I&apos;m interested in systems that stay observable,
-          resilient and calm when real users depend on them.
+          My favourite work usually starts as a tangle of notes, models, edge
+          cases and half-formed questions. I like finding the underlying shape,
+          building the tool, and polishing the details until the result feels
+          clear, dependable and useful.
         </p>
-
       </div>
 
       <AboutDashboard />
