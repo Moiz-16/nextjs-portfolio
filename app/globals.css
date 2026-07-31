@@ -3572,6 +3572,14 @@ html.dark .portfolio-sections .contact-rings i {
   --site-section-x: clamp(24px, 6vw, 96px);
   --site-section-y: clamp(84px, 11vw, 136px);
   --site-heading-size: clamp(46px, 5.7vw, 86px);
+  --site-section-muted: rgba(16, 16, 16, 0.62);
+  --site-eyebrow-gap: clamp(14px, 1.4vw, 18px);
+  --site-eyebrow-size: clamp(10px, 0.72vw, 11px);
+  --site-eyebrow-tracking: 0.13em;
+}
+
+html.dark {
+  --site-section-muted: rgba(248, 244, 232, 0.64);
 }
 
 .section-shell,
@@ -3609,8 +3617,40 @@ html.dark .portfolio-sections .contact-rings i {
 
 .section-index,
 .portfolio-sections .ps-section-index {
+  color: var(--site-section-muted);
+  font-family: var(--mono);
+  font-size: var(--site-eyebrow-size);
+  font-weight: 700;
   left: clamp(16px, 2vw, 28px);
+  letter-spacing: var(--site-eyebrow-tracking);
+  line-height: 1.1;
+  text-transform: uppercase;
   top: clamp(42px, 6vw, 84px);
+}
+
+.about-heading .eyebrow,
+.portfolio-sections .projects-heading .ps-eyebrow,
+.portfolio-sections .experience-heading .ps-eyebrow,
+.portfolio-sections .contact-copy .ps-eyebrow {
+  color: var(--site-section-muted);
+  font-family: var(--mono);
+  font-size: var(--site-eyebrow-size);
+  font-weight: 700;
+  letter-spacing: var(--site-eyebrow-tracking);
+  line-height: 1.1;
+  margin: 0 0 var(--site-eyebrow-gap);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.portfolio-sections .projects-heading {
+  column-gap: 20px;
+  row-gap: var(--site-eyebrow-gap);
+}
+
+.portfolio-sections .projects-heading .ps-eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
 }
 
 .about h2,
@@ -3668,12 +3708,8 @@ html.dark .portfolio-sections .contact-rings i {
   text-align: left;
 }
 
-.portfolio-sections .experience-heading .ps-eyebrow {
-  color: rgba(248, 244, 232, 0.62);
-}
-
 .portfolio-sections .experience-heading > p {
-  color: rgba(248, 244, 232, 0.7);
+  color: var(--site-section-muted);
   margin-left: 0;
   margin-right: 0;
   text-align: left;
