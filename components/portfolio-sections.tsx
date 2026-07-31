@@ -609,7 +609,6 @@ export default function PortfolioSections() {
 
         <ScrollFrame className="projects-inner">
           <div className="projects-heading ps-reveal">
-            <p className="ps-eyebrow">THINGS I&apos;VE BUILT</p>
             <h2>
               Things I&apos;ve <em>built</em>
             </h2>
@@ -640,7 +639,6 @@ export default function PortfolioSections() {
 
         <ScrollFrame className="experience-inner">
           <div className="experience-heading ps-reveal">
-            <p className="ps-eyebrow">A TIMELINE OF BUILDING AND LEARNING</p>
             <h2>
               A timeline of
               <br />
