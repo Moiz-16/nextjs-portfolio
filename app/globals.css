@@ -3668,9 +3668,9 @@ html.dark {
 .about .about-heading h2 {
   color: var(--about-ink);
   font-family: var(--serif);
-  font-size: clamp(58px, 8vw, 118px);
+  font-size: var(--site-heading-size);
   font-weight: 700;
-  line-height: 0.92;
+  line-height: 0.96;
   max-width: 12ch;
 }
 
