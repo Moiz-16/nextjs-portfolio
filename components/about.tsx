@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   BsAirplane,
   BsBook,
@@ -140,6 +140,7 @@ function buildGitHubStats(events: GitHubEvent[]): GitHubStats {
 }
 
 function AboutDashboard() {
+  const dashboardRef = useRef<HTMLDivElement>(null);
   const [githubStats, setGithubStats] = useState<GitHubStats>(
     FALLBACK_GITHUB_STATS,
   );
@@ -174,6 +175,37 @@ function AboutDashboard() {
     };
   }, []);
 
+  useEffect(() => {
+    const dashboard = dashboardRef.current;
+    if (!dashboard) return;
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const panel = (event.target as Element).closest(".about-panel");
+      if (!(panel instanceof HTMLElement) || !dashboard.contains(panel)) return;
+
+      const rect = panel.getBoundingClientRect();
+      panel.style.setProperty("--panel-x", `${event.clientX - rect.left}px`);
+      panel.style.setProperty("--panel-y", `${event.clientY - rect.top}px`);
+    };
+
+    const handlePointerLeave = () => {
+      dashboard.querySelectorAll<HTMLElement>(".about-panel").forEach((panel) => {
+        panel.style.setProperty("--panel-x", "50%");
+        panel.style.setProperty("--panel-y", "50%");
+      });
+    };
+
+    dashboard.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
+    dashboard.addEventListener("pointerleave", handlePointerLeave);
+
+    return () => {
+      dashboard.removeEventListener("pointermove", handlePointerMove);
+      dashboard.removeEventListener("pointerleave", handlePointerLeave);
+    };
+  }, []);
+
   const graphCells = useMemo(
     () =>
       githubStats.graph.map((level, index) => (
@@ -187,7 +219,7 @@ function AboutDashboard() {
   );
 
   return (
-    <div className="about-dashboard reveal reveal-dashboard">
+    <div className="about-dashboard reveal reveal-dashboard" ref={dashboardRef}>
       <article className="about-panel about-panel--graph">
         <div className="about-panel-topline">
           <span className="about-panel-label">
