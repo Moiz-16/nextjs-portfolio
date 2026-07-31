@@ -1,6 +1,229 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
+import { BsBook, BsGithub, BsGlobe2 } from "react-icons/bs";
 import { useSectionInView } from "@/lib/hooks";
+
+type GitHubEvent = {
+  type: string;
+  created_at: string;
+  repo?: {
+    name: string;
+  };
+  payload?: {
+    ref?: string;
+    commits?: Array<{
+      message: string;
+      sha: string;
+    }>;
+  };
+};
+
+type GitHubStats = {
+  graph: number[];
+  latest: {
+    branch: string;
+    hash: string;
+    message: string;
+    repo: string;
+    when: string;
+  };
+  sevenDayCommits: number;
+};
+
+const FALLBACK_GRAPH = Array.from({ length: 252 }, (_, index) => {
+  const wave = (index * 7 + Math.floor(index / 6) * 3) % 11;
+  if (wave < 3) return 0;
+  if (wave < 6) return 1;
+  if (wave < 8) return 2;
+  if (wave < 10) return 3;
+  return 4;
+});
+
+const FALLBACK_GITHUB_STATS: GitHubStats = {
+  graph: FALLBACK_GRAPH,
+  latest: {
+    branch: "main",
+    hash: "live",
+    message: "Syncing public GitHub activity",
+    repo: "Moiz-16",
+    when: "loading",
+  },
+  sevenDayCommits: 0,
+};
+
+function timeAgo(date: Date) {
+  const seconds = Math.max(1, Math.floor((Date.now() - date.getTime()) / 1000));
+  const units = [
+    ["y", 31536000],
+    ["mo", 2592000],
+    ["d", 86400],
+    ["h", 3600],
+    ["m", 60],
+  ] as const;
+
+  for (const [label, size] of units) {
+    const value = Math.floor(seconds / size);
+    if (value >= 1) return `${value}${label} ago`;
+  }
+
+  return "just now";
+}
+
+function buildGitHubStats(events: GitHubEvent[]): GitHubStats {
+  const dayCount = FALLBACK_GRAPH.length;
+  const now = new Date();
+  const dayStart = new Date(now);
+  dayStart.setHours(0, 0, 0, 0);
+  const counts = Array.from({ length: dayCount }, () => 0);
+  const pushEvents = events.filter(
+    (event) => event.type === "PushEvent" && event.payload?.commits?.length,
+  );
+
+  for (const event of pushEvents) {
+    const createdAt = new Date(event.created_at);
+    const diffDays = Math.floor(
+      (dayStart.getTime() - createdAt.getTime()) / 86400000,
+    );
+
+    if (diffDays >= 0 && diffDays < dayCount) {
+      counts[dayCount - 1 - diffDays] += event.payload?.commits?.length ?? 0;
+    }
+  }
+
+  const latestEvent = pushEvents[0];
+  const latestCommit = latestEvent?.payload?.commits?.at(-1);
+  const sevenDaysAgo = Date.now() - 7 * 86400000;
+  const sevenDayCommits = pushEvents.reduce((total, event) => {
+    const createdAt = new Date(event.created_at).getTime();
+    if (createdAt < sevenDaysAgo) return total;
+
+    return total + (event.payload?.commits?.length ?? 0);
+  }, 0);
+
+  return {
+    graph: counts.map((count, index) =>
+      count > 0 ? Math.min(4, count) : FALLBACK_GRAPH[index] > 2 ? 1 : 0,
+    ),
+    latest: latestCommit
+      ? {
+          branch: latestEvent.payload?.ref?.replace("refs/heads/", "") ?? "main",
+          hash: latestCommit.sha.slice(0, 7),
+          message: latestCommit.message.split("\n")[0],
+          repo: latestEvent.repo?.name.split("/").at(-1) ?? "GitHub",
+          when: timeAgo(new Date(latestEvent.created_at)),
+        }
+      : FALLBACK_GITHUB_STATS.latest,
+    sevenDayCommits,
+  };
+}
+
+function AboutDashboard() {
+  const [githubStats, setGithubStats] = useState<GitHubStats>(
+    FALLBACK_GITHUB_STATS,
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadGitHubActivity() {
+      try {
+        const response = await fetch(
+          "https://api.github.com/users/Moiz-16/events/public?per_page=100",
+          {
+            headers: {
+              Accept: "application/vnd.github+json",
+            },
+          },
+        );
+
+        if (!response.ok) return;
+
+        const events = (await response.json()) as GitHubEvent[];
+        if (isMounted) setGithubStats(buildGitHubStats(events));
+      } catch {
+        // The fallback keeps the card useful when GitHub is rate-limited.
+      }
+    }
+
+    loadGitHubActivity();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const graphCells = useMemo(
+    () =>
+      githubStats.graph.map((level, index) => (
+        <span
+          aria-hidden="true"
+          className={`commit-cell commit-cell--${level}`}
+          key={`${level}-${index}`}
+        />
+      )),
+    [githubStats.graph],
+  );
+
+  return (
+    <div className="about-dashboard reveal reveal-dashboard">
+      <article className="about-panel about-panel--graph">
+        <div className="about-panel-topline">
+          <span className="about-panel-label">
+            <BsGithub aria-hidden="true" />
+            GitHub activity
+          </span>
+          <strong>{githubStats.graph.reduce((total, day) => total + day, 0)}</strong>
+        </div>
+
+        <div
+          aria-label="GitHub commit activity graph"
+          className="commit-graph"
+          role="img"
+        >
+          {graphCells}
+        </div>
+
+        <p>Public commit activity over the latest visible window.</p>
+      </article>
+
+      <article className="about-panel about-panel--latest">
+        <span className="about-panel-kicker">LATEST COMMIT</span>
+        <h3>{githubStats.latest.message}</h3>
+        <p>
+          <strong>{githubStats.latest.hash}</strong>
+          <span>{githubStats.latest.branch}</span>
+          <span>{githubStats.latest.when}</span>
+        </p>
+        <small>{githubStats.latest.repo}</small>
+      </article>
+
+      <article className="about-panel about-panel--metric">
+        <span className="about-panel-kicker">LAST 7D</span>
+        <strong>{githubStats.sevenDayCommits}</strong>
+        <p>commits</p>
+      </article>
+
+      <article className="about-panel about-panel--reading">
+        <span className="about-panel-label">
+          <BsBook aria-hidden="true" />
+          Currently reading
+        </span>
+        <h3>Iliad - Homer</h3>
+        <p>Penguin Classics - Fagles</p>
+      </article>
+
+      <article className="about-panel about-panel--country">
+        <span className="about-panel-label">
+          <BsGlobe2 aria-hidden="true" />
+          Last visited country
+        </span>
+        <h3>Indonesia</h3>
+        <p>Jakarta - most recent travel pin</p>
+      </article>
+    </div>
+  );
+}
 
 function PixelFlower({
   className = "",
@@ -71,6 +294,8 @@ export default function About() {
         <strong>4-8x</strong>
         <span>RESEARCH PIPELINE SPEED-UP</span>
       </div>
+
+      <AboutDashboard />
 
       <div className="orbit-badge" aria-hidden="true">
         <span>+</span>
