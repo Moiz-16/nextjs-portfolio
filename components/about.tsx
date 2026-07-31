@@ -392,11 +392,11 @@ export default function About() {
         <p className="eyebrow">A LITTLE CONTEXT ABOUT ME</p>
 
         <h2>
-          Curious by
+          Maths, code,
           <br />
-          <em>default,</em>
+          <em>reliable</em>
           <br />
-          rigorous by habit.
+          systems.
         </h2>
       </div>
 
