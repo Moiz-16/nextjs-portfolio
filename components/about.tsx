@@ -368,19 +368,6 @@ export default function About() {
           resilient and calm when real users depend on them.
         </p>
 
-        <div className="skills" aria-label="Core skills">
-          <span>PYTHON</span>
-          <span>JAVA</span>
-          <span>C / C++</span>
-          <span>TYPESCRIPT</span>
-          <span>PYTORCH</span>
-          <span>AWS</span>
-        </div>
-      </div>
-
-      <div className="about-stat reveal">
-        <strong>SRE</strong>
-        <span>CONSUMER BANKING / JPMORGAN CHASE</span>
       </div>
 
       <AboutDashboard />
