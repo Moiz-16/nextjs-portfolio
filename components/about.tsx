@@ -344,7 +344,7 @@ export default function About() {
       <div className="section-index">01 / ABOUT</div>
 
       <div className="about-heading reveal">
-        <p className="eyebrow">A LITTLE CONTEXT</p>
+        <p className="eyebrow">A LITTLE CONTEXT ABOUT ME</p>
 
         <h2>
           I build calm

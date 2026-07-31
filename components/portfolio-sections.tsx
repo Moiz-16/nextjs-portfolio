@@ -640,7 +640,7 @@ export default function PortfolioSections() {
 
         <ScrollFrame className="experience-inner">
           <div className="experience-heading ps-reveal">
-            <p className="ps-eyebrow">WHERE I&apos;VE BEEN</p>
+            <p className="ps-eyebrow">A TIMELINE OF BUILDING AND LEARNING</p>
             <h2>
               A timeline of
               <br />
@@ -701,7 +701,7 @@ export default function PortfolioSections() {
 
           <div className="contact-layout">
             <div className="contact-copy">
-              <p className="ps-eyebrow ps-reveal">HAVE SOMETHING IN MIND?</p>
+              <p className="ps-eyebrow ps-reveal">GET IN TOUCH</p>
               <h2 className="ps-reveal ps-reveal-delay">
                 Let&apos;s build something
                 <br />
