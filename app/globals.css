@@ -3766,7 +3766,7 @@ html.dark {
 }
 
 .portfolio-sections .projects-heading {
-  align-items: end;
+  align-items: center;
   column-gap: clamp(28px, 4vw, 72px);
   grid-template-columns: minmax(0, max-content) minmax(280px, 420px);
   justify-content: start;
@@ -3779,9 +3779,9 @@ html.dark {
 }
 
 .portfolio-sections .projects-heading > p:last-child {
-  align-self: end;
+  align-self: center;
   justify-self: start;
-  margin-bottom: clamp(3px, 0.6vw, 10px);
+  margin-bottom: 0;
   margin-left: 0;
   max-width: 440px;
 }
@@ -3865,7 +3865,7 @@ html.dark {
 }
 
 .portfolio-sections .experience-heading {
-  align-items: end;
+  align-items: center;
   column-gap: clamp(28px, 4vw, 72px);
   display: grid;
   grid-template-columns: minmax(0, max-content) minmax(280px, 420px);
@@ -3883,10 +3883,10 @@ html.dark {
 }
 
 .portfolio-sections .experience-heading > p {
-  align-self: end;
+  align-self: center;
   color: var(--site-section-muted);
   justify-self: start;
-  margin-bottom: clamp(3px, 0.6vw, 10px);
+  margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
   max-width: 440px;
