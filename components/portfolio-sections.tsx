@@ -438,9 +438,11 @@ function ProjectCard({
 function ExperienceCard({
   item,
   index,
+  showTimelineYear,
 }: {
   item: (typeof experience)[number];
   index: number;
+  showTimelineYear: boolean;
 }) {
   const timelineYear = getTimelineYear(item.period);
 
@@ -452,8 +454,13 @@ function ExperienceCard({
       transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
       viewport={{ once: true, margin: "-50px" }}
     >
-      <div className="experience-timeline-marker" aria-hidden="true">
-        <span>{timelineYear}</span>
+      <div
+        className={`experience-timeline-marker ${
+          showTimelineYear ? "has-year" : ""
+        }`}
+        aria-hidden="true"
+      >
+        {showTimelineYear ? <span>{timelineYear}</span> : null}
       </div>
 
       <article className="experience-card" data-cursor-target>
@@ -674,6 +681,7 @@ export default function PortfolioSections() {
                   <ExperienceCard
                     item={item}
                     index={index}
+                    showTimelineYear
                     key={`${item.company}-${item.period}`}
                   />
                 ))}
@@ -690,6 +698,11 @@ export default function PortfolioSections() {
                   <ExperienceCard
                     item={item}
                     index={index + educationItems.length}
+                    showTimelineYear={
+                      index === 0 ||
+                      getTimelineYear(item.period) !==
+                        getTimelineYear(experienceItems[index - 1].period)
+                    }
                     key={`${item.company}-${item.period}`}
                   />
                 ))}
