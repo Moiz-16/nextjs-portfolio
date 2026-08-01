@@ -230,6 +230,16 @@ const experience = [
 const educationItems = experience.slice(0, 1);
 const experienceItems = experience.slice(1);
 
+function getTimelineYear(period: string) {
+  const years = Array.from(period.matchAll(/\b\d{4}\b/g), (match) => match[0]);
+
+  if (years.length > 1 && years[0] !== years[years.length - 1]) {
+    return `${years[0]}-${years[years.length - 1].slice(2)}`;
+  }
+
+  return years[0] ?? period;
+}
+
 function ScrollFrame({
   children,
   className = "",
@@ -432,6 +442,8 @@ function ExperienceCard({
   item: (typeof experience)[number];
   index: number;
 }) {
+  const timelineYear = getTimelineYear(item.period);
+
   return (
     <motion.div
       className="experience-card-shell"
@@ -440,6 +452,10 @@ function ExperienceCard({
       transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
       viewport={{ once: true, margin: "-50px" }}
     >
+      <div className="experience-timeline-marker" aria-hidden="true">
+        <span>{timelineYear}</span>
+      </div>
+
       <article className="experience-card" data-cursor-target>
         <header>
           <div>

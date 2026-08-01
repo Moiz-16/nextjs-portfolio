@@ -3926,6 +3926,69 @@ html.dark {
   gap: clamp(18px, 3vw, 32px);
 }
 
+.portfolio-sections .experience-connector {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--ps-blue) 48%, transparent) 12%,
+    rgba(16, 16, 16, 0.16) 50%,
+    color-mix(in srgb, var(--ps-blue) 48%, transparent) 88%,
+    transparent
+  );
+  bottom: 24px;
+  left: 42px;
+  top: 24px;
+}
+
+.portfolio-sections .experience-card-shell {
+  align-items: start;
+  display: grid;
+  gap: clamp(14px, 2vw, 22px);
+  grid-template-columns: 84px minmax(0, 1fr);
+}
+
+.portfolio-sections .experience-timeline-marker {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  padding-top: clamp(22px, 2.5vw, 30px);
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-sections .experience-timeline-marker::after {
+  background: var(--ps-blue);
+  border: 3px solid var(--ps-paper);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(16, 16, 16, 0.16);
+  content: "";
+  height: 11px;
+  left: 50%;
+  position: absolute;
+  top: calc(clamp(22px, 2.5vw, 30px) + 34px);
+  transform: translate(-50%, -50%);
+  width: 11px;
+}
+
+.portfolio-sections .experience-timeline-marker span {
+  background: var(--ps-paper);
+  border: 1px solid rgba(16, 16, 16, 0.16);
+  border-radius: 999px;
+  color: var(--ps-blue);
+  display: inline-flex;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  justify-content: center;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  min-width: 68px;
+  padding: 8px 10px;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
 .portfolio-sections .experience-card {
   padding: clamp(20px, 2.5vw, 30px);
 }
@@ -4014,6 +4077,18 @@ html.dark {
     position: static;
     writing-mode: horizontal-tb;
   }
+
+  .portfolio-sections .experience-connector {
+    left: 36px;
+  }
+
+  .portfolio-sections .experience-card-shell {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .portfolio-sections .experience-timeline-marker span {
+    min-width: 60px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -4038,6 +4113,24 @@ html.dark {
 
   .portfolio-sections .project-card-grid {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-sections .experience-connector {
+    display: none;
+  }
+
+  .portfolio-sections .experience-card-shell {
+    display: block;
+  }
+
+  .portfolio-sections .experience-timeline-marker {
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    padding-top: 0;
+  }
+
+  .portfolio-sections .experience-timeline-marker::after {
+    display: none;
   }
 
   .portfolio-sections .project-preview-shot {
