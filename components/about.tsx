@@ -25,23 +25,13 @@ import {
 } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
 
-type GitHubEvent = {
-  type: string;
-  created_at: string;
-  repo?: {
-    name: string;
-  };
-  payload?: {
-    ref?: string;
-    commits?: Array<{
-      message: string;
-      sha: string;
-    }>;
-  };
+type GitHubActivityDay = {
+  level: number;
+  count: number;
 };
 
 type GitHubStats = {
-  graph: number[];
+  graph: GitHubActivityDay[];
   latest: {
     branch: string;
     hash: string;
@@ -49,95 +39,29 @@ type GitHubStats = {
     repo: string;
     when: string;
   };
+  source: string;
+  totalContributions: number;
   sevenDayCommits: number;
 };
 
-const FALLBACK_GRAPH = Array.from({ length: 252 }, (_, index) => {
-  const wave = (index * 7 + Math.floor(index / 6) * 3) % 11;
-  if (wave < 3) return 0;
-  if (wave < 6) return 1;
-  if (wave < 8) return 2;
-  if (wave < 10) return 3;
-  return 4;
-});
+const FALLBACK_GRAPH: GitHubActivityDay[] = Array.from({ length: 371 }, () => ({
+  count: 0,
+  level: 0,
+}));
 
 const FALLBACK_GITHUB_STATS: GitHubStats = {
   graph: FALLBACK_GRAPH,
   latest: {
     branch: "main",
-    hash: "live",
-    message: "Syncing public GitHub activity",
+    hash: "sync",
+    message: "Fetching public GitHub activity",
     repo: "Moiz-16",
     when: "loading",
   },
+  source: "GitHub",
+  totalContributions: 0,
   sevenDayCommits: 0,
 };
-
-function timeAgo(date: Date) {
-  const seconds = Math.max(1, Math.floor((Date.now() - date.getTime()) / 1000));
-  const units = [
-    ["y", 31536000],
-    ["mo", 2592000],
-    ["d", 86400],
-    ["h", 3600],
-    ["m", 60],
-  ] as const;
-
-  for (const [label, size] of units) {
-    const value = Math.floor(seconds / size);
-    if (value >= 1) return `${value}${label} ago`;
-  }
-
-  return "just now";
-}
-
-function buildGitHubStats(events: GitHubEvent[]): GitHubStats {
-  const dayCount = FALLBACK_GRAPH.length;
-  const now = new Date();
-  const dayStart = new Date(now);
-  dayStart.setHours(0, 0, 0, 0);
-  const counts = Array.from({ length: dayCount }, () => 0);
-  const pushEvents = events.filter(
-    (event) => event.type === "PushEvent" && event.payload?.commits?.length,
-  );
-
-  for (const event of pushEvents) {
-    const createdAt = new Date(event.created_at);
-    const diffDays = Math.floor(
-      (dayStart.getTime() - createdAt.getTime()) / 86400000,
-    );
-
-    if (diffDays >= 0 && diffDays < dayCount) {
-      counts[dayCount - 1 - diffDays] += event.payload?.commits?.length ?? 0;
-    }
-  }
-
-  const latestEvent = pushEvents[0];
-  const latestCommit = latestEvent?.payload?.commits?.at(-1);
-  const sevenDaysAgo = Date.now() - 7 * 86400000;
-  const sevenDayCommits = pushEvents.reduce((total, event) => {
-    const createdAt = new Date(event.created_at).getTime();
-    if (createdAt < sevenDaysAgo) return total;
-
-    return total + (event.payload?.commits?.length ?? 0);
-  }, 0);
-
-  return {
-    graph: counts.map((count, index) =>
-      count > 0 ? Math.min(4, count) : FALLBACK_GRAPH[index] > 2 ? 1 : 0,
-    ),
-    latest: latestCommit
-      ? {
-          branch: latestEvent.payload?.ref?.replace("refs/heads/", "") ?? "main",
-          hash: latestCommit.sha.slice(0, 7),
-          message: latestCommit.message.split("\n")[0],
-          repo: latestEvent.repo?.name.split("/").at(-1) ?? "GitHub",
-          when: timeAgo(new Date(latestEvent.created_at)),
-        }
-      : FALLBACK_GITHUB_STATS.latest,
-    sevenDayCommits,
-  };
-}
 
 function AboutDashboard() {
   const dashboardRef = useRef<HTMLDivElement>(null);
@@ -150,19 +74,12 @@ function AboutDashboard() {
 
     async function loadGitHubActivity() {
       try {
-        const response = await fetch(
-          "https://api.github.com/users/Moiz-16/events/public?per_page=100",
-          {
-            headers: {
-              Accept: "application/vnd.github+json",
-            },
-          },
-        );
+        const response = await fetch("/api/github-activity");
 
         if (!response.ok) return;
 
-        const events = (await response.json()) as GitHubEvent[];
-        if (isMounted) setGithubStats(buildGitHubStats(events));
+        const stats = (await response.json()) as GitHubStats;
+        if (isMounted) setGithubStats(stats);
       } catch {
         // The fallback keeps the card useful when GitHub is rate-limited.
       }
@@ -208,11 +125,12 @@ function AboutDashboard() {
 
   const graphCells = useMemo(
     () =>
-      githubStats.graph.map((level, index) => (
+      githubStats.graph.map((day, index) => (
         <span
           aria-hidden="true"
-          className={`commit-cell commit-cell--${level}`}
-          key={`${level}-${index}`}
+          className={`commit-cell commit-cell--${day.level}`}
+          key={`${day.count}-${index}`}
+          title={`${day.count} contributions`}
         />
       )),
     [githubStats.graph],
@@ -220,28 +138,8 @@ function AboutDashboard() {
 
   return (
     <div className="about-dashboard reveal reveal-dashboard" ref={dashboardRef}>
-      <article className="about-panel about-panel--graph">
-        <div className="about-panel-topline">
-          <span className="about-panel-label">
-            <BsGithub aria-hidden="true" />
-            GitHub activity
-          </span>
-          <strong>{githubStats.graph.reduce((total, day) => total + day, 0)}</strong>
-        </div>
-
-        <div
-          aria-label="GitHub commit activity graph"
-          className="commit-graph"
-          role="img"
-        >
-          {graphCells}
-        </div>
-
-        <p>Public commit activity over the latest visible window.</p>
-      </article>
-
       <article className="about-panel about-panel--latest">
-        <span className="about-panel-kicker">LATEST COMMIT</span>
+        <span className="about-panel-kicker">RECENT WORK</span>
         <h3>{githubStats.latest.message}</h3>
         <p>
           <strong>{githubStats.latest.hash}</strong>
@@ -255,6 +153,35 @@ function AboutDashboard() {
         <span className="about-panel-kicker">LAST 7D</span>
         <strong>{githubStats.sevenDayCommits}</strong>
         <p>commits</p>
+      </article>
+
+      <article className="about-panel about-panel--reading">
+        <span className="about-panel-label">
+          <BsBook aria-hidden="true" />
+          Currently reading
+        </span>
+        <h3>Iliad - Homer</h3>
+        <p>Penguin Classics - Fagles</p>
+      </article>
+
+      <article className="about-panel about-panel--graph">
+        <div className="about-panel-topline">
+          <span className="about-panel-label">
+            <BsGithub aria-hidden="true" />
+            GitHub activity
+          </span>
+          <strong>{githubStats.totalContributions}</strong>
+        </div>
+
+        <div
+          aria-label="GitHub contribution activity graph"
+          className="commit-graph"
+          role="img"
+        >
+          {graphCells}
+        </div>
+
+        <p>{githubStats.source}</p>
       </article>
 
       <article className="about-panel about-panel--tech-stack">
@@ -291,15 +218,6 @@ function AboutDashboard() {
             product experiments and systems-focused work.
           </p>
         </div>
-      </article>
-
-      <article className="about-panel about-panel--reading">
-        <span className="about-panel-label">
-          <BsBook aria-hidden="true" />
-          Currently reading
-        </span>
-        <h3>Iliad - Homer</h3>
-        <p>Penguin Classics - Fagles</p>
       </article>
 
       <article className="about-panel about-panel--country">
