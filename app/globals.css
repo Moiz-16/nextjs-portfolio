@@ -1070,8 +1070,8 @@ html.dark .about-panel::before {
 }
 
 .about-panel--graph {
-  grid-column: span 6;
-  min-height: 172px;
+  grid-column: span 4;
+  min-height: 112px;
 }
 
 .about-panel--latest {
@@ -1090,7 +1090,7 @@ html.dark .about-panel::before {
 }
 
 .about-panel--metric {
-  grid-column: span 3;
+  grid-column: span 2;
   justify-content: space-between;
   min-height: 112px;
 }
@@ -1119,6 +1119,10 @@ html.dark .about-panel::before {
 .about-panel--life,
 .about-panel--photo-roll {
   grid-column: span 6;
+}
+
+.about-panel--life {
+  grid-column: span 12;
 }
 
 .tech-stack-icons {

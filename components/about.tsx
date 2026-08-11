@@ -192,21 +192,6 @@ function AboutDashboard() {
         <small>{githubStats.latest.repo}</small>
       </article>
 
-      <article className="about-panel about-panel--metric">
-        <span className="about-panel-kicker">LAST 7D</span>
-        <strong>{githubStats.sevenDayCommits}</strong>
-        <p>commits</p>
-      </article>
-
-      <article className="about-panel about-panel--reading">
-        <span className="about-panel-label">
-          <BsBook aria-hidden="true" />
-          Currently reading
-        </span>
-        <h3>{dashboardContent.reading.title}</h3>
-        <p>{dashboardContent.reading.detail}</p>
-      </article>
-
       <article className="about-panel about-panel--graph">
         <div className="about-panel-topline">
           <span className="about-panel-label">
@@ -225,6 +210,12 @@ function AboutDashboard() {
         </div>
 
         <p>Last 30 days - {githubStats.source}</p>
+      </article>
+
+      <article className="about-panel about-panel--metric">
+        <span className="about-panel-kicker">LAST 7D</span>
+        <strong>{githubStats.sevenDayCommits}</strong>
+        <p>commits</p>
       </article>
 
       <article className="about-panel about-panel--tech-stack">
@@ -263,6 +254,33 @@ function AboutDashboard() {
         </div>
       </article>
 
+      <article className="about-panel about-panel--learning">
+        <span className="about-panel-label">
+          <BsLightbulb aria-hidden="true" />
+          One thing I&apos;m learning
+        </span>
+        <h3>{dashboardContent.learning.title}</h3>
+        <p>{dashboardContent.learning.detail}</p>
+      </article>
+
+      <article className="about-panel about-panel--reading">
+        <span className="about-panel-label">
+          <BsBook aria-hidden="true" />
+          Currently reading
+        </span>
+        <h3>{dashboardContent.reading.title}</h3>
+        <p>{dashboardContent.reading.detail}</p>
+      </article>
+
+      <article className="about-panel about-panel--queue">
+        <span className="about-panel-label">
+          <BsBookHalf aria-hidden="true" />
+          Book queue
+        </span>
+        <h3>{dashboardContent.queue.title}</h3>
+        <p>{dashboardContent.queue.detail}</p>
+      </article>
+
       <article className="about-panel about-panel--country">
         <span className="about-panel-label">
           <BsGlobe2 aria-hidden="true" />
@@ -281,6 +299,19 @@ function AboutDashboard() {
         <p>{dashboardContent.travel.detail}</p>
       </article>
 
+      <article className="about-panel about-panel--photo-roll">
+        <span className="about-panel-label">
+          <BsCamera aria-hidden="true" />
+          Photo roll
+        </span>
+        <div className="photo-roll-strip" aria-hidden="true">
+          {dashboardContent.photoRoll.places.map((place) => (
+            <span key={place}>{place}</span>
+          ))}
+        </div>
+        <p>{dashboardContent.photoRoll.detail}</p>
+      </article>
+
       <article className="about-panel about-panel--quote">
         <span className="about-panel-label">
           <BsQuote aria-hidden="true" />
@@ -288,15 +319,6 @@ function AboutDashboard() {
         </span>
         <h3>{dashboardContent.quote.title}</h3>
         <p>{dashboardContent.quote.detail}</p>
-      </article>
-
-      <article className="about-panel about-panel--queue">
-        <span className="about-panel-label">
-          <BsBookHalf aria-hidden="true" />
-          Book queue
-        </span>
-        <h3>{dashboardContent.queue.title}</h3>
-        <p>{dashboardContent.queue.detail}</p>
       </article>
 
       <article className="about-panel about-panel--game">
@@ -324,28 +346,6 @@ function AboutDashboard() {
         </span>
         <h3>{dashboardContent.life.title}</h3>
         <p>{dashboardContent.life.detail}</p>
-      </article>
-
-      <article className="about-panel about-panel--learning">
-        <span className="about-panel-label">
-          <BsLightbulb aria-hidden="true" />
-          One thing I&apos;m learning
-        </span>
-        <h3>{dashboardContent.learning.title}</h3>
-        <p>{dashboardContent.learning.detail}</p>
-      </article>
-
-      <article className="about-panel about-panel--photo-roll">
-        <span className="about-panel-label">
-          <BsCamera aria-hidden="true" />
-          Photo roll
-        </span>
-        <div className="photo-roll-strip" aria-hidden="true">
-          {dashboardContent.photoRoll.places.map((place) => (
-            <span key={place}>{place}</span>
-          ))}
-        </div>
-        <p>{dashboardContent.photoRoll.detail}</p>
       </article>
     </div>
   );
