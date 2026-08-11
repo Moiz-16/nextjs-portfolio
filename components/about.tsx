@@ -44,7 +44,7 @@ type GitHubStats = {
   sevenDayCommits: number;
 };
 
-const FALLBACK_GRAPH: GitHubActivityDay[] = Array.from({ length: 371 }, () => ({
+const FALLBACK_GRAPH: GitHubActivityDay[] = Array.from({ length: 30 }, () => ({
   count: 0,
   level: 0,
 }));
@@ -61,6 +61,49 @@ const FALLBACK_GITHUB_STATS: GitHubStats = {
   source: "GitHub",
   totalContributions: 0,
   sevenDayCommits: 0,
+};
+
+const dashboardContent = {
+  reading: {
+    title: "Iliad - Homer",
+    detail: "Penguin Classics - Fagles",
+  },
+  country: {
+    title: "Indonesia",
+    detail: "Jakarta - most recent travel pin",
+  },
+  travel: {
+    title: "Japan, Türkiye, Morocco",
+    detail: "Next three places I'd like to explore.",
+  },
+  quote: {
+    title: "Make failure boring.",
+    detail: "A useful little rule for software, systems and life.",
+  },
+  queue: {
+    title: "Same As Ever - Morgan Housel",
+    detail: "Next after Iliad.",
+  },
+  game: {
+    title: "Catan: Starfarers",
+    detail: "Trade, explore and over-negotiate slightly.",
+  },
+  lego: {
+    title: "LEGO Icons Concorde",
+    detail: "Engineering nostalgia in tiny white bricks.",
+  },
+  life: {
+    title: "Reading, travelling, training or trying new food.",
+    detail: "Usually with a notes app open somewhere nearby.",
+  },
+  learning: {
+    title: "Kubernetes internals",
+    detail: "Systems get more interesting when the abstractions leak.",
+  },
+  photoRoll: {
+    places: ["Jakarta", "Bristol", "London", "Next"],
+    detail: "Tiny memory pins from places, walks and weekends.",
+  },
 };
 
 function AboutDashboard() {
@@ -160,8 +203,8 @@ function AboutDashboard() {
           <BsBook aria-hidden="true" />
           Currently reading
         </span>
-        <h3>Iliad - Homer</h3>
-        <p>Penguin Classics - Fagles</p>
+        <h3>{dashboardContent.reading.title}</h3>
+        <p>{dashboardContent.reading.detail}</p>
       </article>
 
       <article className="about-panel about-panel--graph">
@@ -181,7 +224,7 @@ function AboutDashboard() {
           {graphCells}
         </div>
 
-        <p>{githubStats.source}</p>
+        <p>Last 30 days - {githubStats.source}</p>
       </article>
 
       <article className="about-panel about-panel--tech-stack">
@@ -225,8 +268,8 @@ function AboutDashboard() {
           <BsGlobe2 aria-hidden="true" />
           Last visited country
         </span>
-        <h3>Indonesia</h3>
-        <p>Jakarta - most recent travel pin</p>
+        <h3>{dashboardContent.country.title}</h3>
+        <p>{dashboardContent.country.detail}</p>
       </article>
 
       <article className="about-panel about-panel--travel">
@@ -234,8 +277,8 @@ function AboutDashboard() {
           <BsAirplane aria-hidden="true" />
           Travel list
         </span>
-        <h3>Japan, Türkiye, Morocco</h3>
-        <p>Next three places I&apos;d like to explore.</p>
+        <h3>{dashboardContent.travel.title}</h3>
+        <p>{dashboardContent.travel.detail}</p>
       </article>
 
       <article className="about-panel about-panel--quote">
@@ -243,8 +286,8 @@ function AboutDashboard() {
           <BsQuote aria-hidden="true" />
           Favourite quote
         </span>
-        <h3>Make failure boring.</h3>
-        <p>A useful little rule for software, systems and life.</p>
+        <h3>{dashboardContent.quote.title}</h3>
+        <p>{dashboardContent.quote.detail}</p>
       </article>
 
       <article className="about-panel about-panel--queue">
@@ -252,8 +295,8 @@ function AboutDashboard() {
           <BsBookHalf aria-hidden="true" />
           Book queue
         </span>
-        <h3>Same As Ever - Morgan Housel</h3>
-        <p>Next after Iliad.</p>
+        <h3>{dashboardContent.queue.title}</h3>
+        <p>{dashboardContent.queue.detail}</p>
       </article>
 
       <article className="about-panel about-panel--game">
@@ -261,8 +304,8 @@ function AboutDashboard() {
           <BsJoystick aria-hidden="true" />
           Favourite game
         </span>
-        <h3>Catan: Starfarers</h3>
-        <p>Trade, explore and over-negotiate slightly.</p>
+        <h3>{dashboardContent.game.title}</h3>
+        <p>{dashboardContent.game.detail}</p>
       </article>
 
       <article className="about-panel about-panel--lego">
@@ -270,8 +313,8 @@ function AboutDashboard() {
           <BsBricks aria-hidden="true" />
           Current Lego set
         </span>
-        <h3>LEGO Icons Concorde</h3>
-        <p>Engineering nostalgia in tiny white bricks.</p>
+        <h3>{dashboardContent.lego.title}</h3>
+        <p>{dashboardContent.lego.detail}</p>
       </article>
 
       <article className="about-panel about-panel--life">
@@ -279,8 +322,8 @@ function AboutDashboard() {
           <BsCodeSlash aria-hidden="true" />
           If not coding
         </span>
-        <h3>Reading, travelling, training or trying new food.</h3>
-        <p>Usually with a notes app open somewhere nearby.</p>
+        <h3>{dashboardContent.life.title}</h3>
+        <p>{dashboardContent.life.detail}</p>
       </article>
 
       <article className="about-panel about-panel--learning">
@@ -288,8 +331,8 @@ function AboutDashboard() {
           <BsLightbulb aria-hidden="true" />
           One thing I&apos;m learning
         </span>
-        <h3>Kubernetes internals</h3>
-        <p>Systems get more interesting when the abstractions leak.</p>
+        <h3>{dashboardContent.learning.title}</h3>
+        <p>{dashboardContent.learning.detail}</p>
       </article>
 
       <article className="about-panel about-panel--photo-roll">
@@ -298,12 +341,11 @@ function AboutDashboard() {
           Photo roll
         </span>
         <div className="photo-roll-strip" aria-hidden="true">
-          <span>Jakarta</span>
-          <span>Bristol</span>
-          <span>London</span>
-          <span>Next</span>
+          {dashboardContent.photoRoll.places.map((place) => (
+            <span key={place}>{place}</span>
+          ))}
         </div>
-        <p>Tiny memory pins from places, walks and weekends.</p>
+        <p>{dashboardContent.photoRoll.detail}</p>
       </article>
     </div>
   );

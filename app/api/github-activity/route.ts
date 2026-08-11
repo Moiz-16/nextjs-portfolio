@@ -32,7 +32,7 @@ type GitHubCommit = {
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME ?? "Moiz-16";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
 const DAY_MS = 86400000;
-const GRAPH_DAYS = 371;
+const GRAPH_DAYS = 30;
 
 export const dynamic = "force-dynamic";
 
@@ -201,7 +201,7 @@ async function contributionGraphFromGitHub() {
   if (!GITHUB_TOKEN) return null;
 
   const to = new Date();
-  const from = new Date(to.getTime() - 365 * DAY_MS);
+  const from = new Date(to.getTime() - (GRAPH_DAYS - 1) * DAY_MS);
   const weekFrom = new Date(to.getTime() - 7 * DAY_MS);
 
   const query = `
