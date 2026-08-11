@@ -1121,6 +1121,11 @@ html.dark .about-panel::before {
   grid-column: span 6;
 }
 
+.about-panel--photo-roll {
+  grid-row: span 2;
+  min-height: 262px;
+}
+
 .about-panel--life {
   grid-column: span 12;
 }
@@ -1284,9 +1289,10 @@ html.dark .about-panel::before {
 
 .photo-roll-strip {
   display: grid;
-  gap: 7px;
+  flex: 1;
+  gap: clamp(8px, 1vw, 12px);
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  min-height: 64px;
+  min-height: 172px;
 }
 
 .photo-roll-strip span {
@@ -1304,7 +1310,7 @@ html.dark .about-panel::before {
   font-weight: 700;
   justify-content: center;
   letter-spacing: 0.1em;
-  min-height: 64px;
+  min-height: 172px;
   overflow: hidden;
   padding: 9px 7px;
   position: relative;
@@ -1314,13 +1320,13 @@ html.dark .about-panel::before {
 .photo-roll-strip span::before {
   background: var(--about-accent);
   content: "";
-  height: 24px;
+  height: clamp(34px, 4vw, 58px);
   left: 50%;
   opacity: 0.12;
   position: absolute;
-  top: 16px;
+  top: 22%;
   transform: translateX(-50%) rotate(18deg);
-  width: 38px;
+  width: clamp(52px, 6vw, 82px);
 }
 
 .orbit-badge {
@@ -3369,6 +3375,11 @@ html.dark .portfolio-sections .contact-rings i {
     grid-column: 1 / -1;
   }
 
+  .about-panel--photo-roll {
+    grid-row: auto;
+    min-height: 220px;
+  }
+
   .about-stat {
     bottom: 38px;
     left: 10vw;
@@ -3677,11 +3688,11 @@ html.dark .portfolio-sections .contact-rings i {
   .photo-roll-strip {
     gap: 7px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    min-height: 72px;
+    min-height: 156px;
   }
 
   .photo-roll-strip span {
-    min-height: 72px;
+    min-height: 156px;
   }
 
   .about-lead {
