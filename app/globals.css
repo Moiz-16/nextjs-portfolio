@@ -938,23 +938,23 @@ html.dark .orbit-badge-ring::before {
 .about-dashboard {
   --about-panel-gap: clamp(10px, 1.2vw, 14px);
   --about-panel-padding: clamp(14px, 1.35vw, 18px);
-  --about-card: #151515;
-  --about-card-border: rgba(248, 244, 232, 0.11);
-  --about-card-muted: rgba(232, 229, 220, 0.46);
-  --about-card-soft: rgba(248, 244, 232, 0.055);
-  --about-accent: #00c8e8;
-  --commit-zero: #222222;
-  --commit-one: #164e53;
-  --commit-two: #0b7285;
-  --commit-three: #00a6c8;
-  --commit-four: #34dfff;
+  --about-card: rgba(248, 244, 232, 0.68);
+  --about-card-border: rgba(16, 16, 16, 0.13);
+  --about-card-muted: rgba(16, 16, 16, 0.5);
+  --about-card-soft: rgba(16, 16, 16, 0.045);
+  --about-accent: var(--ps-blue);
+  --commit-zero: rgba(16, 16, 16, 0.08);
+  --commit-one: rgba(8, 70, 216, 0.24);
+  --commit-two: rgba(8, 70, 216, 0.46);
+  --commit-three: rgba(8, 70, 216, 0.68);
+  --commit-four: rgba(8, 70, 216, 0.92);
   align-self: start;
   background:
-    radial-gradient(circle at 82% 12%, rgba(0, 200, 232, 0.08), transparent 16%),
-    #080808;
-  border: 1px solid rgba(248, 244, 232, 0.08);
+    radial-gradient(circle at 82% 12%, rgba(8, 70, 216, 0.08), transparent 18%),
+    linear-gradient(180deg, rgba(248, 244, 232, 0.54), rgba(248, 244, 232, 0.32));
+  border: 1px solid rgba(16, 16, 16, 0.1);
   border-radius: 8px;
-  color: rgba(248, 244, 232, 0.88);
+  color: var(--about-ink);
   display: grid;
   gap: clamp(10px, 1vw, 14px);
   grid-auto-flow: dense;
@@ -963,6 +963,23 @@ html.dark .orbit-badge-ring::before {
   padding: clamp(14px, 2vw, 24px);
   position: relative;
   z-index: 2;
+}
+
+html.dark .about-dashboard {
+  --about-card: rgba(15, 23, 42, 0.72);
+  --about-card-border: rgba(148, 163, 184, 0.22);
+  --about-card-muted: rgba(226, 232, 240, 0.56);
+  --about-card-soft: rgba(148, 163, 184, 0.08);
+  --about-accent: hsl(210 40% 98%);
+  --commit-zero: rgba(30, 41, 59, 0.86);
+  --commit-one: rgba(8, 70, 216, 0.38);
+  --commit-two: rgba(8, 104, 255, 0.58);
+  --commit-three: rgba(72, 149, 255, 0.78);
+  --commit-four: rgba(190, 220, 255, 0.96);
+  background:
+    radial-gradient(circle at 82% 12%, rgba(72, 149, 255, 0.1), transparent 18%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.3));
+  border-color: rgba(148, 163, 184, 0.16);
 }
 
 .reveal-dashboard {
@@ -976,7 +993,7 @@ html.dark .orbit-badge-ring::before {
     linear-gradient(var(--about-card), var(--about-card)) padding-box,
     radial-gradient(
       180px circle at var(--panel-x) var(--panel-y),
-      rgba(16, 16, 16, 0.5),
+      rgba(8, 70, 216, 0.72),
       var(--about-card-border) 45%,
       var(--about-card-border) 100%
     ) border-box;
@@ -1044,7 +1061,7 @@ html.dark .about-panel::before {
   border-radius: 999px;
   content: "";
   height: 4px;
-  opacity: 0.95;
+  opacity: 0.9;
   position: absolute;
   right: 16px;
   top: 16px;
@@ -1114,7 +1131,7 @@ html.dark .about-panel::before {
 
 .tech-stack-icons span {
   align-items: center;
-  color: rgba(248, 244, 232, 0.86);
+  color: var(--about-ink);
   display: flex;
   justify-content: center;
   min-height: clamp(30px, 3.4vw, 48px);
@@ -1152,7 +1169,7 @@ html.dark .about-panel::before {
 }
 
 .about-panel-topline > strong {
-  color: rgba(248, 244, 232, 0.9);
+  color: var(--about-ink);
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 500;
@@ -1186,7 +1203,7 @@ html.dark .about-panel::before {
 }
 
 .about-panel h3 {
-  color: rgba(248, 244, 232, 0.86);
+  color: var(--about-ink);
   font-family: var(--mono);
   font-size: clamp(17px, 1.35vw, 22px);
   font-weight: 500;
@@ -1218,7 +1235,7 @@ html.dark .about-panel::before {
 }
 
 .about-panel--metric > strong {
-  color: rgba(248, 244, 232, 0.92);
+  color: var(--about-ink);
   font-family: var(--mono);
   font-size: clamp(36px, 4.4vw, 58px);
   font-weight: 400;
@@ -1273,12 +1290,12 @@ html.dark .about-panel::before {
 .photo-roll-strip span {
   align-items: end;
   background:
-    linear-gradient(to top, rgba(0, 0, 0, 0.44), transparent 62%),
-    radial-gradient(circle at 62% 28%, rgba(0, 200, 232, 0.12), transparent 42%),
+    linear-gradient(to top, rgba(8, 70, 216, 0.12), transparent 62%),
+    radial-gradient(circle at 62% 28%, rgba(8, 70, 216, 0.14), transparent 42%),
     var(--about-card);
   border: 1px solid var(--about-card-border);
   border-radius: 7px;
-  color: rgba(248, 244, 232, 0.86);
+  color: var(--about-ink);
   display: flex;
   font-family: var(--mono);
   font-size: 8px;
