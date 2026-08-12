@@ -936,8 +936,12 @@ html.dark .orbit-badge-ring::before {
 }
 
 .about-dashboard {
-  --about-panel-gap: clamp(10px, 1.2vw, 14px);
-  --about-panel-padding: clamp(14px, 1.35vw, 18px);
+  --about-body-size: clamp(10px, 0.82vw, 11px);
+  --about-label-size: clamp(8px, 0.72vw, 9px);
+  --about-panel-gap: 12px;
+  --about-panel-padding: clamp(15px, 1.25vw, 18px);
+  --about-panel-row: clamp(118px, 9.3vw, 136px);
+  --about-title-size: clamp(16px, 1.14vw, 19px);
   --about-card: rgba(248, 244, 232, 0.68);
   --about-card-border: rgba(16, 16, 16, 0.13);
   --about-card-muted: rgba(16, 16, 16, 0.5);
@@ -958,6 +962,7 @@ html.dark .orbit-badge-ring::before {
   display: grid;
   gap: clamp(10px, 1vw, 14px);
   grid-auto-flow: dense;
+  grid-auto-rows: var(--about-panel-row);
   grid-column: 1 / -1;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   padding: clamp(14px, 2vw, 24px);
@@ -1003,7 +1008,7 @@ html.dark .about-dashboard {
   display: flex;
   flex-direction: column;
   gap: var(--about-panel-gap);
-  min-height: 104px;
+  min-height: 0;
   overflow: hidden;
   padding: var(--about-panel-padding);
   position: relative;
@@ -1071,18 +1076,16 @@ html.dark .about-panel::before {
 
 .about-panel--graph {
   grid-column: span 4;
-  min-height: 112px;
 }
 
 .about-panel--latest {
   grid-column: span 6;
   justify-content: space-between;
-  min-height: 112px;
 }
 
 .about-panel--latest h3 {
   display: -webkit-box;
-  font-size: clamp(17px, 1.45vw, 22px);
+  font-size: var(--about-title-size);
   max-width: 100%;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -1092,14 +1095,11 @@ html.dark .about-panel::before {
 .about-panel--metric {
   grid-column: span 2;
   justify-content: space-between;
-  min-height: 112px;
 }
 
 .about-panel--tech-stack {
-  gap: clamp(14px, 2vw, 22px);
   grid-column: span 6;
-  min-height: 172px;
-  padding: clamp(16px, 1.8vw, 22px);
+  grid-row: span 2;
 }
 
 .about-panel--reading,
@@ -1123,7 +1123,6 @@ html.dark .about-panel::before {
 
 .about-panel--photo-roll {
   grid-row: span 2;
-  min-height: 262px;
 }
 
 .about-panel--life {
@@ -1143,13 +1142,13 @@ html.dark .about-panel::before {
   color: var(--about-ink);
   display: flex;
   justify-content: center;
-  min-height: clamp(30px, 3.4vw, 48px);
+  min-height: clamp(30px, 3vw, 42px);
   opacity: 0.82;
 }
 
 .tech-stack-icons svg {
-  height: clamp(24px, 2.8vw, 40px);
-  width: clamp(24px, 2.8vw, 40px);
+  height: clamp(23px, 2.45vw, 36px);
+  width: clamp(23px, 2.45vw, 36px);
 }
 
 .tech-stack-copy {
@@ -1158,16 +1157,16 @@ html.dark .about-panel::before {
 }
 
 .about-panel .tech-stack-copy h3 {
-  font-size: clamp(20px, 1.8vw, 28px);
+  font-size: clamp(18px, 1.35vw, 22px);
   max-width: none;
 }
 
 .about-panel .tech-stack-copy p {
-  font-family: var(--sans);
-  font-size: clamp(13px, 1vw, 16px);
+  font-family: var(--mono);
+  font-size: var(--about-body-size);
   font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1.45;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
 }
 
 .about-panel-topline {
@@ -1190,7 +1189,7 @@ html.dark .about-panel::before {
   color: var(--about-card-muted);
   display: inline-flex;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--about-label-size, 10px);
   font-weight: 700;
   gap: 6px;
   letter-spacing: 0.18em;
@@ -1214,7 +1213,7 @@ html.dark .about-panel::before {
 .about-panel h3 {
   color: var(--about-ink);
   font-family: var(--mono);
-  font-size: clamp(17px, 1.35vw, 22px);
+  font-size: var(--about-title-size, clamp(17px, 1.25vw, 20px));
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.2;
@@ -1226,7 +1225,7 @@ html.dark .about-panel::before {
 .about-panel small {
   color: var(--about-card-muted);
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--about-body-size, 11px);
   font-weight: 600;
   letter-spacing: 0.02em;
   line-height: 1.55;
@@ -1246,7 +1245,7 @@ html.dark .about-panel::before {
 .about-panel--metric > strong {
   color: var(--about-ink);
   font-family: var(--mono);
-  font-size: clamp(36px, 4.4vw, 58px);
+  font-size: clamp(34px, 3.7vw, 50px);
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 0.8;
@@ -1292,7 +1291,7 @@ html.dark .about-panel::before {
   flex: 1;
   gap: clamp(8px, 1vw, 12px);
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  min-height: 172px;
+  min-height: 0;
 }
 
 .photo-roll-strip span {
@@ -1305,12 +1304,13 @@ html.dark .about-panel::before {
   border-radius: 7px;
   color: var(--about-ink);
   display: flex;
+  height: 100%;
   font-family: var(--mono);
   font-size: 8px;
   font-weight: 700;
   justify-content: center;
   letter-spacing: 0.1em;
-  min-height: 172px;
+  min-height: 0;
   overflow: hidden;
   padding: 9px 7px;
   position: relative;
@@ -3350,6 +3350,7 @@ html.dark .portfolio-sections .contact-rings i {
   }
 
   .about-dashboard {
+    --about-panel-row: auto;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -3651,6 +3652,9 @@ html.dark .portfolio-sections .contact-rings i {
   }
 
   .about-dashboard {
+    --about-body-size: 11px;
+    --about-label-size: 9px;
+    --about-title-size: clamp(17px, 5.4vw, 21px);
     gap: 10px;
     grid-template-columns: 1fr;
   }
