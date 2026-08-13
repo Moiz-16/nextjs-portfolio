@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { IconType } from "react-icons";
 import {
   BsAirplane,
   BsBook,
@@ -105,6 +106,15 @@ const dashboardContent = {
     detail: "Tiny memory pins from places, walks and weekends.",
   },
 };
+
+const techStack = [
+  { label: "Python", Icon: SiPython },
+  { label: "Java", Icon: FaJava },
+  { label: "C / C++", Icon: SiCplusplus },
+  { label: "TypeScript", Icon: SiTypescript },
+  { label: "PyTorch", Icon: SiPytorch },
+  { label: "AWS", Icon: SiAmazonaws },
+] satisfies Array<{ label: string; Icon: IconType }>;
 
 function AboutDashboard() {
   const dashboardRef = useRef<HTMLDivElement>(null);
@@ -225,24 +235,18 @@ function AboutDashboard() {
         </span>
 
         <div className="tech-stack-icons" aria-label="Technologies">
-          <span aria-label="Python" title="Python">
-            <SiPython aria-hidden="true" />
-          </span>
-          <span aria-label="Java" title="Java">
-            <FaJava aria-hidden="true" />
-          </span>
-          <span aria-label="C / C++" title="C / C++">
-            <SiCplusplus aria-hidden="true" />
-          </span>
-          <span aria-label="TypeScript" title="TypeScript">
-            <SiTypescript aria-hidden="true" />
-          </span>
-          <span aria-label="PyTorch" title="PyTorch">
-            <SiPytorch aria-hidden="true" />
-          </span>
-          <span aria-label="AWS" title="AWS">
-            <SiAmazonaws aria-hidden="true" />
-          </span>
+          <div className="tech-stack-icons-track">
+            {[...techStack, ...techStack].map(({ label, Icon }, index) => (
+              <span
+                aria-hidden={index >= techStack.length}
+                aria-label={index < techStack.length ? label : undefined}
+                key={`${label}-${index}`}
+                title={label}
+              >
+                <Icon aria-hidden="true" />
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="tech-stack-copy">

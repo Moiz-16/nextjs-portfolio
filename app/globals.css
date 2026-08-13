@@ -1076,6 +1076,7 @@ html.dark .about-panel::before {
 
 .about-panel--graph {
   grid-column: span 4;
+  grid-row: span 2;
 }
 
 .about-panel--latest {
@@ -1099,7 +1100,6 @@ html.dark .about-panel::before {
 
 .about-panel--tech-stack {
   grid-column: span 6;
-  grid-row: span 2;
 }
 
 .about-panel--reading,
@@ -1131,24 +1131,49 @@ html.dark .about-panel::before {
 
 .tech-stack-icons {
   align-items: center;
-  display: grid;
-  gap: clamp(8px, 1.2vw, 16px);
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  margin: 2px 0;
+  display: flex;
+  margin: 0;
+  max-width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+.tech-stack-icons-track {
+  animation: tech-stack-marquee 16s linear infinite;
+  display: flex;
+  flex: 0 0 max-content;
+  gap: clamp(16px, 2vw, 28px);
+  min-width: max-content;
+  will-change: transform;
 }
 
 .tech-stack-icons span {
   align-items: center;
   color: var(--about-ink);
   display: flex;
+  flex: 0 0 auto;
   justify-content: center;
-  min-height: clamp(30px, 3vw, 42px);
+  min-height: clamp(30px, 2.6vw, 38px);
   opacity: 0.82;
+  width: clamp(34px, 3.2vw, 46px);
 }
 
 .tech-stack-icons svg {
-  height: clamp(23px, 2.45vw, 36px);
-  width: clamp(23px, 2.45vw, 36px);
+  height: clamp(22px, 2.2vw, 32px);
+  width: clamp(22px, 2.2vw, 32px);
 }
 
 .tech-stack-copy {
@@ -1167,6 +1192,22 @@ html.dark .about-panel::before {
   font-weight: 600;
   letter-spacing: 0.02em;
   line-height: 1.5;
+}
+
+@keyframes tech-stack-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - clamp(8px, 1vw, 14px)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-stack-icons-track {
+    animation: none;
+  }
 }
 
 .about-panel-topline {
@@ -1252,10 +1293,12 @@ html.dark .about-panel::before {
 }
 
 .commit-graph {
+  align-items: end;
   display: grid;
   gap: clamp(4px, 0.55vw, 7px);
   grid-template-columns: repeat(30, minmax(7px, 1fr));
-  min-height: 18px;
+  margin-top: auto;
+  min-height: clamp(34px, 4vw, 54px);
   overflow-x: hidden;
   overflow-y: hidden;
   padding: 6px 0 8px;
@@ -1267,6 +1310,7 @@ html.dark .about-panel::before {
   background: var(--commit-zero);
   aspect-ratio: 1;
   border-radius: 4px;
+  max-width: 18px;
   width: 100%;
 }
 
