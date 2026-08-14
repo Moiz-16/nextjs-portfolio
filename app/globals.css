@@ -1081,21 +1081,18 @@ html.dark .about-panel::before {
 
 .about-panel--latest {
   grid-column: span 6;
+  grid-row: span 2;
   justify-content: space-between;
 }
 
 .about-panel--latest h3 {
-  display: -webkit-box;
   font-size: var(--about-title-size);
+  line-height: 1.28;
   max-width: 100%;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
 }
 
 .about-panel--metric {
   grid-column: span 2;
-  grid-row: span 2;
   justify-content: space-between;
 }
 
@@ -1287,24 +1284,22 @@ html.dark .about-panel::before {
 .about-panel--metric > strong {
   color: var(--about-ink);
   font-family: var(--mono);
-  font-size: clamp(44px, 5vw, 72px);
+  font-size: clamp(34px, 3.7vw, 50px);
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 0.8;
 }
 
 .commit-graph {
-  align-content: center;
-  align-items: center;
+  align-items: end;
   display: grid;
-  gap: clamp(7px, 0.75vw, 10px);
-  grid-template-columns: repeat(10, minmax(12px, 1fr));
-  grid-template-rows: repeat(3, minmax(12px, 1fr));
+  gap: clamp(4px, 0.55vw, 7px);
+  grid-template-columns: repeat(30, minmax(6px, 1fr));
   margin-top: auto;
-  min-height: clamp(104px, 9vw, 132px);
+  min-height: clamp(34px, 4vw, 54px);
   overflow-x: hidden;
   overflow-y: hidden;
-  padding: 8px 0;
+  padding: 6px 0 8px;
   scrollbar-color: var(--about-card-muted) transparent;
   scrollbar-width: thin;
 }
@@ -1312,8 +1307,8 @@ html.dark .about-panel::before {
 .commit-cell {
   background: var(--commit-zero);
   aspect-ratio: 1;
-  border-radius: 5px;
-  max-width: 20px;
+  border-radius: 4px;
+  max-width: 18px;
   width: 100%;
 }
 
@@ -3423,7 +3418,8 @@ html.dark .portfolio-sections .contact-rings i {
     grid-column: 1 / -1;
   }
 
-  .about-panel--graph {
+  .about-panel--graph,
+  .about-panel--latest {
     grid-row: auto;
   }
 
@@ -3735,10 +3731,10 @@ html.dark .portfolio-sections .contact-rings i {
   }
 
   .commit-graph {
-    gap: 5px;
-    grid-template-columns: repeat(10, minmax(8px, 1fr));
-    grid-template-rows: repeat(3, minmax(8px, 1fr));
-    min-height: 70px;
+    gap: 3px;
+    grid-template-columns: repeat(30, minmax(5px, 1fr));
+    grid-template-rows: none;
+    min-height: 18px;
   }
 
   .photo-roll-strip {
