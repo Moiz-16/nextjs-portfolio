@@ -257,7 +257,12 @@ const education = [
       "Founded Nexus, an internship application platform for students.",
       "Built trading bots and research tooling across data, markets and automation.",
     ],
-    tags: ["BRISTOL", "MATHEMATICS", "COMPUTER SCIENCE", "SRE"],
+    stats: [
+      { label: "Dissertation", value: "Neural SDE" },
+      { label: "Coursework", value: "HPC" },
+      { label: "Talk", value: "IMA TMT" },
+      { label: "Build", value: "Nexus" },
+    ],
   },
 ];
 
@@ -581,9 +586,12 @@ function EducationSection() {
             </ul>
           </div>
 
-          <div className="education-tags" aria-label="Education tags">
-            {item.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
+          <div className="education-score-grid" aria-label="Education highlights">
+            {item.stats.map((stat) => (
+              <div className="education-score-card" key={stat.label}>
+                <span>{stat.label}</span>
+                <strong>{stat.value}</strong>
+              </div>
             ))}
           </div>
         </article>
