@@ -24,6 +24,9 @@ export default function Header() {
         <a className="cursor-can-hover" href="#projects">
           PROJECTS
         </a>
+        <a className="cursor-can-hover" href="#education">
+          EDUCATION
+        </a>
         <a className="cursor-can-hover" href="#experience">
           EXPERIENCE
         </a>

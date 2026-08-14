@@ -166,16 +166,6 @@ const projects: ProjectItem[] = [
 
 const experience = [
   {
-    period: "SEP 2023 - JUN 2026",
-    role: "BSc Mathematics and Computer Science",
-    company: "University of Bristol",
-    description: [
-      "Studied a blend of rigorous mathematics and practical computer science.",
-      "Covered imperative and functional programming, object-oriented programming, algorithms, probability, statistics and linear algebra.",
-    ],
-    skills: ["MATHEMATICS", "COMPUTER SCIENCE", "BRISTOL"],
-  },
-  {
     period: "JUN 2025 - AUG 2025",
     role: "Research Intern",
     company: "University of Bristol",
@@ -227,8 +217,49 @@ const experience = [
   },
 ];
 
-const educationItems = experience.slice(0, 1);
-const experienceItems = experience.slice(1);
+const education = [
+  {
+    period: "SEP 2023 - JUN 2026",
+    institution: "University of Bristol",
+    qualification: "BSc Mathematics and Computer Science",
+    focus: "Mathematics, computer systems, software engineering and applied AI.",
+    result: "Graduated",
+    modules: [
+      {
+        label: "Mathematics",
+        items: [
+          "Probability and statistics",
+          "Linear algebra",
+          "Mathematics for computer science",
+        ],
+      },
+      {
+        label: "Computer Science",
+        items: [
+          "Imperative and functional programming",
+          "Object-oriented programming and algorithms",
+          "Computer systems",
+        ],
+      },
+      {
+        label: "Final Focus",
+        items: [
+          "Neural SDE dissertation project",
+          "High performance computing",
+          "Software engineering project work",
+        ],
+      },
+    ],
+    achievements: [
+      "Built a neural SDE dissertation project using PyTorch and stochastic modelling.",
+      "Worked on HPC code optimisation and systems-level performance problems.",
+      "Invited IMA TMT speaker on cointegration-based trading strategies.",
+      "Founded Nexus, an internship application platform for students.",
+      "Built trading bots and research tooling across data, markets and automation.",
+    ],
+    tags: ["BRISTOL", "MATHEMATICS", "COMPUTER SCIENCE", "SRE"],
+  },
+];
 
 function getTimelineYear(period: string) {
   const years = Array.from(period.matchAll(/\b\d{4}\b/g), (match) => match[0]);
@@ -491,6 +522,76 @@ function ExperienceCard({
   );
 }
 
+function EducationSection() {
+  const item = education[0];
+
+  return (
+    <ScrollFrame className="education-inner">
+      <div className="education-heading ps-reveal">
+        <p className="ps-eyebrow">A FORMAL BASE</p>
+        <h2>Where the work started.</h2>
+      </div>
+
+      <div className="education-layout">
+        <div className="education-list ps-reveal">
+          {education.map((entry) => (
+            <article
+              className="education-list-card"
+              data-cursor-target
+              key={`${entry.institution}-${entry.period}`}
+            >
+              <time>{entry.period}</time>
+              <h3>{entry.institution}</h3>
+              <p>{entry.qualification}</p>
+            </article>
+          ))}
+        </div>
+
+        <article
+          className="education-detail ps-reveal ps-reveal-delay"
+          data-cursor-target
+        >
+          <header>
+            <div>
+              <p className="education-detail-label">Result</p>
+              <h3>{item.result}</h3>
+            </div>
+            <p>{item.focus}</p>
+          </header>
+
+          <div className="education-modules" aria-label="Selected study areas">
+            {item.modules.map((group) => (
+              <section key={group.label}>
+                <h4>{group.label}</h4>
+                <ul>
+                  {group.items.map((module) => (
+                    <li key={module}>{module}</li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+
+          <div className="education-achievements">
+            <h4>Built from it</h4>
+            <ul>
+              {item.achievements.map((achievement) => (
+                <li key={achievement}>{achievement}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="education-tags" aria-label="Education tags">
+            {item.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </article>
+      </div>
+    </ScrollFrame>
+  );
+}
+
 function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -566,6 +667,7 @@ function ContactForm() {
 
 export default function PortfolioSections() {
   const projectsView = useSectionInView("Projects", 0.25);
+  const educationView = useSectionInView("Education", 0.25);
   const experienceView = useSectionInView("Experience", 0.25);
   const contactView = useSectionInView("Contact", 0.35);
 
@@ -654,11 +756,20 @@ export default function PortfolioSections() {
       </section>
 
       <section
+        ref={educationView.ref}
+        className="education ps-section-shell"
+        id="education"
+      >
+        <div className="ps-section-index">03 / EDUCATION</div>
+        <EducationSection />
+      </section>
+
+      <section
         ref={experienceView.ref}
         className="experience ps-grid-surface ps-section-shell"
         id="experience"
       >
-        <div className="ps-section-index">03 / EXPERIENCE</div>
+        <div className="ps-section-index">04 / EXPERIENCE</div>
 
         <ScrollFrame className="experience-inner">
           <div className="experience-heading ps-reveal">
@@ -667,41 +778,24 @@ export default function PortfolioSections() {
               <br />
               <em>building and learning.</em>
             </h2>
-            <p>Education, research and projects that shaped how I build.</p>
+            <p>Research, products and technical work that shaped how I build.</p>
           </div>
 
           <div className="experience-groups">
-            <section className="experience-group" aria-labelledby="education-heading">
-              <h3 className="experience-side-label" id="education-heading">
-                Education
-              </h3>
-              <div className="experience-card-list">
-                <div className="experience-connector" aria-hidden="true" />
-                {educationItems.map((item, index) => (
-                  <ExperienceCard
-                    item={item}
-                    index={index}
-                    showTimelineYear
-                    key={`${item.company}-${item.period}`}
-                  />
-                ))}
-              </div>
-            </section>
-
             <section className="experience-group" aria-labelledby="experience-heading">
               <h3 className="experience-side-label" id="experience-heading">
                 Experience
               </h3>
               <div className="experience-card-list">
                 <div className="experience-connector" aria-hidden="true" />
-                {experienceItems.map((item, index) => (
+                {experience.map((item, index) => (
                   <ExperienceCard
                     item={item}
-                    index={index + educationItems.length}
+                    index={index}
                     showTimelineYear={
                       index === 0 ||
                       getTimelineYear(item.period) !==
-                        getTimelineYear(experienceItems[index - 1].period)
+                        getTimelineYear(experience[index - 1].period)
                     }
                     key={`${item.company}-${item.period}`}
                   />
@@ -717,7 +811,7 @@ export default function PortfolioSections() {
         className="contact ps-section-shell"
         id="contact"
       >
-        <div className="ps-section-index">04 / CONTACT</div>
+        <div className="ps-section-index">05 / CONTACT</div>
 
         <ScrollFrame className="contact-scroll-frame">
           <div className="contact-rings" aria-hidden="true">
@@ -769,6 +863,7 @@ export default function PortfolioSections() {
         </div>
         <nav>
           <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
           <a href="#experience">Experience</a>
           <a href="#home">Back to top</a>
         </nav>
