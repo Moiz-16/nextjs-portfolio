@@ -1077,9 +1077,7 @@ html.dark .about-panel::before {
 
 .about-panel--graph {
   grid-column: span 6;
-  grid-row: span 2;
   justify-content: space-between;
-  min-height: clamp(238px, 18vw, 302px);
 }
 
 .about-panel--latest {
@@ -1348,56 +1346,11 @@ html.dark .about-panel::before {
 }
 
 .commit-calendar {
-  --commit-gap: clamp(2px, 0.2vw, 3px);
-  display: grid;
-  gap: 5px;
+  --commit-gap: clamp(1.5px, 0.18vw, 3px);
   margin: auto 0 0;
   min-width: 0;
-  padding: 4px 0 0;
+  padding: 6px 0 4px;
   width: 100%;
-}
-
-.commit-months {
-  color: var(--about-card-muted);
-  display: grid;
-  font-family: var(--mono);
-  font-size: clamp(7px, 0.58vw, 9px);
-  font-weight: 600;
-  gap: var(--commit-gap);
-  grid-template-columns: 24px repeat(var(--graph-weeks), minmax(0, 1fr));
-  line-height: 1;
-  opacity: 0.86;
-}
-
-.commit-months span {
-  min-width: 0;
-  overflow: visible;
-  white-space: nowrap;
-}
-
-.commit-body {
-  display: grid;
-  gap: var(--commit-gap);
-  grid-template-columns: 24px minmax(0, 1fr);
-  min-width: 0;
-}
-
-.commit-weekdays {
-  color: var(--about-card-muted);
-  display: grid;
-  font-family: var(--mono);
-  font-size: clamp(7px, 0.58vw, 9px);
-  font-weight: 600;
-  gap: var(--commit-gap);
-  grid-template-rows: repeat(7, minmax(0, 1fr));
-  line-height: 1;
-  opacity: 0.86;
-}
-
-.commit-weekdays span {
-  align-items: center;
-  display: flex;
-  min-height: 0;
 }
 
 .commit-graph {
@@ -1442,26 +1395,6 @@ html.dark .about-panel::before {
 
 .commit-cell--empty {
   opacity: 0;
-}
-
-.commit-legend {
-  align-items: center;
-  color: var(--about-card-muted);
-  display: flex;
-  font-family: var(--mono);
-  font-size: clamp(7px, 0.58vw, 9px);
-  font-weight: 600;
-  gap: 4px;
-  justify-content: flex-end;
-  line-height: 1;
-  margin-top: 1px;
-}
-
-.commit-legend i {
-  aspect-ratio: 1;
-  border-radius: 2px;
-  display: block;
-  width: clamp(7px, 0.62vw, 9px);
 }
 
 .photo-roll-strip {
@@ -4124,26 +4057,9 @@ html.dark .portfolio-sections .education-score-card {
 
   .commit-calendar {
     --commit-gap: 2px;
-    gap: 4px;
   }
 
-  .commit-months,
-  .commit-body {
-    grid-template-columns: 18px repeat(var(--graph-weeks), minmax(0, 1fr));
-  }
-
-  .commit-body {
-    grid-template-columns: 18px minmax(0, 1fr);
-  }
-
-  .commit-months,
-  .commit-weekdays,
-  .commit-legend {
-    font-size: 7px;
-  }
-
-  .commit-cell,
-  .commit-legend i {
+  .commit-cell {
     border-radius: 1.5px;
   }
 
