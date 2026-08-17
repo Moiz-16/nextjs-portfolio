@@ -1077,7 +1077,9 @@ html.dark .about-panel::before {
 
 .about-panel--graph {
   grid-column: span 6;
+  grid-row: span 2;
   justify-content: space-between;
+  min-height: clamp(238px, 18vw, 302px);
 }
 
 .about-panel--latest {
