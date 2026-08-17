@@ -1346,24 +1346,24 @@ html.dark .about-panel::before {
 }
 
 .commit-graph {
-  align-items: end;
+  align-content: center;
+  align-items: stretch;
   display: grid;
-  gap: clamp(4px, 0.55vw, 7px);
-  grid-template-columns: repeat(30, minmax(6px, 1fr));
+  gap: clamp(3px, 0.34vw, 5px);
+  grid-auto-columns: clamp(12px, 0.95vw, 16px);
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, clamp(12px, 0.95vw, 16px));
+  justify-content: start;
   margin: auto 0 0;
-  min-height: clamp(28px, 3vw, 42px);
-  overflow-x: hidden;
-  overflow-y: hidden;
-  padding: 6px 0 8px;
-  scrollbar-color: var(--about-card-muted) transparent;
-  scrollbar-width: thin;
+  min-height: clamp(102px, 8vw, 128px);
+  overflow: visible;
+  padding: 6px 0 10px;
 }
 
 .commit-cell {
   background: var(--commit-zero);
-  aspect-ratio: 1;
-  border-radius: 4px;
-  max-width: 18px;
+  border-radius: 3px;
+  height: 100%;
   width: 100%;
 }
 
@@ -4043,9 +4043,10 @@ html.dark .portfolio-sections .education-score-card {
 
   .commit-graph {
     gap: 3px;
-    grid-template-columns: repeat(30, minmax(5px, 1fr));
-    grid-template-rows: none;
-    min-height: 18px;
+    grid-auto-columns: 9px;
+    grid-template-columns: none;
+    grid-template-rows: repeat(7, 9px);
+    min-height: 81px;
   }
 
   .photo-roll-strip {
