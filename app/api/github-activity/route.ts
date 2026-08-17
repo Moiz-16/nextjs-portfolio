@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 type ActivityDay = {
   count: number;
+  date: string;
   level: number;
 };
 
@@ -32,15 +33,30 @@ type GitHubCommit = {
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME ?? "Moiz-16";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
 const DAY_MS = 86400000;
-const GRAPH_DAYS = 30;
+const GRAPH_DAYS = 365;
 
 export const dynamic = "force-dynamic";
 
+function formatGraphDate(date: Date) {
+  const month = `${date.getMonth() + 1}`.padStart(2, "0");
+  const day = `${date.getDate()}`.padStart(2, "0");
+
+  return `${date.getFullYear()}-${month}-${day}`;
+}
+
 function emptyGraph() {
-  return Array.from({ length: GRAPH_DAYS }, () => ({
-    count: 0,
-    level: 0,
-  }));
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return Array.from({ length: GRAPH_DAYS }, (_, index) => {
+    const date = new Date(today.getTime() - (GRAPH_DAYS - 1 - index) * DAY_MS);
+
+    return {
+      count: 0,
+      date: formatGraphDate(date),
+      level: 0,
+    };
+  });
 }
 
 function contributionLevel(count: number) {
@@ -218,6 +234,7 @@ async function contributionGraphFromGitHub() {
             weeks {
               contributionDays {
                 contributionCount
+                date
               }
             }
           }
@@ -256,15 +273,18 @@ async function contributionGraphFromGitHub() {
     const calendar = user?.year?.contributionCalendar;
     const days =
       calendar?.weeks?.flatMap(
-        (week: { contributionDays?: Array<{ contributionCount: number }> }) =>
+        (week: {
+          contributionDays?: Array<{ contributionCount: number; date: string }>;
+        }) =>
           week.contributionDays ?? [],
       ) ?? [];
 
     if (!days.length) return null;
 
     return {
-      graph: days.map((day: { contributionCount: number }) => ({
+      graph: days.map((day: { contributionCount: number; date: string }) => ({
         count: day.contributionCount,
+        date: day.date,
         level: contributionLevel(day.contributionCount),
       })) as ActivityDay[],
       sevenDayCommits:

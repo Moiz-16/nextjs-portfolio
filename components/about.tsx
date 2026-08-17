@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import type { IconType } from "react-icons";
 import {
   BsAirplane,
@@ -29,6 +30,7 @@ import { useSectionInView } from "@/lib/hooks";
 type GitHubActivityDay = {
   level: number;
   count: number;
+  date: string;
 };
 
 type GitHubStats = {
@@ -45,10 +47,42 @@ type GitHubStats = {
   sevenDayCommits: number;
 };
 
-const FALLBACK_GRAPH: GitHubActivityDay[] = Array.from({ length: 30 }, () => ({
-  count: 0,
-  level: 0,
-}));
+const DAY_MS = 86400000;
+const GRAPH_DAYS = 365;
+
+const monthFormatter = new Intl.DateTimeFormat("en-GB", { month: "short" });
+
+const weekdayLabels = ["", "Mon", "", "Wed", "", "Fri", ""];
+
+function formatGraphDate(date: Date) {
+  const month = `${date.getMonth() + 1}`.padStart(2, "0");
+  const day = `${date.getDate()}`.padStart(2, "0");
+
+  return `${date.getFullYear()}-${month}-${day}`;
+}
+
+function parseGraphDate(input: string) {
+  const [year, month, day] = input.split("-").map(Number);
+
+  return new Date(year, month - 1, day);
+}
+
+function createFallbackGraph(length = GRAPH_DAYS): GitHubActivityDay[] {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return Array.from({ length }, (_, index) => {
+    const date = new Date(today.getTime() - (length - 1 - index) * DAY_MS);
+
+    return {
+      count: 0,
+      date: formatGraphDate(date),
+      level: 0,
+    };
+  });
+}
+
+const FALLBACK_GRAPH: GitHubActivityDay[] = createFallbackGraph();
 
 const FALLBACK_GITHUB_STATS: GitHubStats = {
   graph: FALLBACK_GRAPH,
@@ -116,6 +150,63 @@ const techStack = [
   { label: "AWS", Icon: SiAmazonaws },
 ] satisfies Array<{ label: string; Icon: IconType }>;
 
+function buildContributionCalendar(graph: GitHubActivityDay[]) {
+  const datedGraph = (graph.length ? graph : createFallbackGraph()).map(
+    (day, index, days) => {
+      if (day.date) return day;
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const date = new Date(today.getTime() - (days.length - 1 - index) * DAY_MS);
+
+      return {
+        ...day,
+        date: formatGraphDate(date),
+      };
+    },
+  );
+
+  const sortedDays = [...datedGraph].sort((a, b) =>
+    a.date.localeCompare(b.date),
+  );
+  const firstDate = parseGraphDate(sortedDays[0].date);
+  const lastDate = parseGraphDate(sortedDays.at(-1)?.date ?? sortedDays[0].date);
+  const startDate = new Date(firstDate);
+  const endDate = new Date(lastDate);
+
+  startDate.setDate(firstDate.getDate() - firstDate.getDay());
+  endDate.setDate(lastDate.getDate() + (6 - lastDate.getDay()));
+
+  const daysByDate = new Map(sortedDays.map((day) => [day.date, day]));
+  const weeks: Array<Array<GitHubActivityDay | null>> = [];
+  const monthLabels: string[] = [];
+  let previousMonth = -1;
+  const cursor = new Date(startDate);
+
+  while (cursor <= endDate) {
+    const week: Array<GitHubActivityDay | null> = [];
+    let monthLabel = "";
+
+    for (let dayIndex = 0; dayIndex < 7; dayIndex += 1) {
+      const dateKey = formatGraphDate(cursor);
+      const day = daysByDate.get(dateKey) ?? null;
+
+      if (day && cursor.getMonth() !== previousMonth) {
+        monthLabel = monthFormatter.format(cursor);
+        previousMonth = cursor.getMonth();
+      }
+
+      week.push(day);
+      cursor.setDate(cursor.getDate() + 1);
+    }
+
+    weeks.push(week);
+    monthLabels.push(monthLabel);
+  }
+
+  return { monthLabels, weeks };
+}
+
 function AboutDashboard() {
   const dashboardRef = useRef<HTMLDivElement>(null);
   const [githubStats, setGithubStats] = useState<GitHubStats>(
@@ -176,18 +267,17 @@ function AboutDashboard() {
     };
   }, []);
 
-  const graphCells = useMemo(
-    () =>
-      githubStats.graph.map((day, index) => (
-        <span
-          aria-hidden="true"
-          className={`commit-cell commit-cell--${day.level}`}
-          key={`${day.count}-${index}`}
-          title={`${day.count} contributions`}
-        />
-      )),
+  const contributionCalendar = useMemo(
+    () => buildContributionCalendar(githubStats.graph),
     [githubStats.graph],
   );
+  const graphRangeLabel =
+    githubStats.graph.length >= 360
+      ? "Last year"
+      : `Last ${githubStats.graph.length} days`;
+  const graphStyle = {
+    "--graph-weeks": contributionCalendar.weeks.length,
+  } as CSSProperties;
 
   return (
     <div className="about-dashboard reveal reveal-dashboard" ref={dashboardRef}>
@@ -211,15 +301,59 @@ function AboutDashboard() {
           <strong>{githubStats.totalContributions}</strong>
         </div>
 
-        <div
-          aria-label="GitHub contribution activity graph"
-          className="commit-graph"
-          role="img"
-        >
-          {graphCells}
+        <div className="commit-calendar" style={graphStyle}>
+          <div className="commit-months" aria-hidden="true">
+            <span />
+            {contributionCalendar.monthLabels.map((label, index) => (
+              <span key={`${label}-${index}`}>{label}</span>
+            ))}
+          </div>
+
+          <div className="commit-body">
+            <div className="commit-weekdays" aria-hidden="true">
+              {weekdayLabels.map((label, index) => (
+                <span key={`${label}-${index}`}>{label}</span>
+              ))}
+            </div>
+
+            <div
+              aria-label="GitHub contribution activity graph"
+              className="commit-graph"
+              role="img"
+            >
+              {contributionCalendar.weeks.flatMap((week, weekIndex) =>
+                week.map((day, dayIndex) =>
+                  day ? (
+                    <span
+                      aria-hidden="true"
+                      className={`commit-cell commit-cell--${day.level}`}
+                      key={day.date}
+                      title={`${day.count} contributions on ${day.date}`}
+                    />
+                  ) : (
+                    <span
+                      aria-hidden="true"
+                      className="commit-cell commit-cell--empty"
+                      key={`empty-${weekIndex}-${dayIndex}`}
+                    />
+                  ),
+                ),
+              )}
+            </div>
+          </div>
+
+          <div className="commit-legend" aria-hidden="true">
+            <span>Less</span>
+            {[0, 1, 2, 3, 4].map((level) => (
+              <i className={`commit-cell--${level}`} key={level} />
+            ))}
+            <span>More</span>
+          </div>
         </div>
 
-        <p>Last 30 days - {githubStats.source}</p>
+        <p>
+          {graphRangeLabel} - {githubStats.source}
+        </p>
       </article>
 
       <article className="about-panel about-panel--metric">
