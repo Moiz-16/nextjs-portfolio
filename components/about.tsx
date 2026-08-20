@@ -484,13 +484,9 @@ export default function About() {
 
       <div className="about-heading reveal">
         <h2>
-          A LITTLE
+          A little context
           <br />
-          CONTEXT
-          <br />
-          ABOUT
-          <br />
-          ME
+          about <em>me</em>
         </h2>
       </div>
 

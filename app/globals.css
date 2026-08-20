@@ -4212,22 +4212,25 @@ html.dark {
 }
 
 .about h2 {
-  max-width: 10ch;
+  max-width: none;
 }
 
 .about .about-heading h2 {
   color: var(--about-ink);
   font-family: var(--serif);
-  font-size: clamp(42px, 5vw, 76px);
+  font-size: clamp(50px, 6vw, 92px);
   font-weight: 700;
-  line-height: 0.96;
-  max-width: 11.5ch;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+  max-width: 12.8ch;
 }
 
 .about .about-heading h2 em {
-  color: var(--about-ink);
+  color: var(--ps-blue);
   font-family: var(--hero-serif);
+  font-style: italic;
   font-weight: 400;
+  letter-spacing: 0;
 }
 
 .about-copy {
