@@ -4218,10 +4218,6 @@ html.dark {
   max-width: none;
 }
 
-.about-heading {
-  transform: translateX(clamp(18px, 3vw, 54px));
-}
-
 .about .about-heading h2 {
   color: var(--about-ink);
   font-family: var(--serif);
@@ -4230,8 +4226,7 @@ html.dark {
   letter-spacing: -0.045em;
   line-height: 0.96;
   margin: 0;
-  max-width: none;
-  white-space: nowrap;
+  max-width: 10.6ch;
 }
 
 .about .about-heading h2 em {
@@ -4501,14 +4496,6 @@ html.dark {
   .about-copy {
     margin-left: 0;
     max-width: 42rem;
-  }
-
-  .about-heading {
-    transform: none;
-  }
-
-  .about .about-heading h2 {
-    white-space: normal;
   }
 
   .about-stat {
