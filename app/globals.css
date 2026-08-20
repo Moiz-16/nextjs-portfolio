@@ -4146,7 +4146,7 @@ html.dark {
 
 .about {
   align-items: start;
-  column-gap: clamp(36px, 5vw, 72px);
+  column-gap: clamp(18px, 2.8vw, 40px);
   grid-template-columns: minmax(0, max-content) minmax(360px, 0.82fr);
   justify-content: center;
   min-height: auto;
@@ -4242,6 +4242,7 @@ html.dark {
   margin-left: 0;
   max-width: 36rem;
   padding-top: 0;
+  transform: translateX(clamp(-70px, -4vw, -28px));
 }
 
 .about .about-copy .about-lead {
@@ -4496,6 +4497,10 @@ html.dark {
   .about-copy {
     margin-left: 0;
     max-width: 42rem;
+  }
+
+  .about-copy {
+    transform: none;
   }
 
   .about-stat {
