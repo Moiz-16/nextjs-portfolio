@@ -21,6 +21,9 @@ const unbounded = Unbounded({
 export const metadata = {
   title: 'Moiz | Personal Portfolio',
   description: '...',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
