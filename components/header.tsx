@@ -36,10 +36,6 @@ export default function Header() {
       </nav>
 
       <div className="header-actions">
-        <a className="header-status cursor-can-hover" href="#contact">
-          <span />
-          OPEN TO IDEAS
-        </a>
         <button
           aria-label={`Switch to ${nextTheme} mode`}
           className="theme-toggle cursor-can-hover"
