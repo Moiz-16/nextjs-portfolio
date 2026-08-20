@@ -6,7 +6,9 @@ import { FiArrowRight } from "react-icons/fi";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import toast from "react-hot-toast";
 import { sendEmail } from "@/actions/sendEmail";
+import { projectsData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
+import type { StaticImageData } from "next/image";
 
 type ProjectAccent = "yellow" | "coral" | "green" | "sky";
 
@@ -21,148 +23,44 @@ type ProjectItem = {
   background: string;
 };
 
-const projects: ProjectItem[] = [
-  {
-    number: "01",
-    title: "Mobile App Games",
-    category: "MOBILE / GAME DESIGN",
-    year: "2026",
-    tags: ["MOBILE", "TYPESCRIPT", "GAME DESIGN"],
-    color: "sky",
-    image: "/dropkick_app.png",
-    background: "/assets/backgrounds/mobile-app.jpg",
-  },
-  {
-    number: "02",
-    title: "Neural SDE Dissertation Project",
-    category: "DISSERTATION / STOCHASTIC ML",
-    year: "2026",
-    tags: ["PYTHON", "PYTORCH", "SDES"],
-    color: "green",
-    image: "/assets/backgrounds/neural-sdes.jpg",
-    background: "/assets/backgrounds/neural-sdes.jpg",
-  },
-  {
-    number: "03",
-    title: "HPC Code Optimisation",
-    category: "PERFORMANCE / PARALLEL COMPUTING",
-    year: "2025",
-    tags: ["C", "C++", "PROFILING"],
-    color: "coral",
-    image: "/he_project.png",
-    background: "/assets/backgrounds/sec-dealscan.jpg",
-  },
-  {
-    number: "04",
-    title: "Nexus - Internship Application Tracker",
-    category: "PRODUCT / AI",
-    year: "2025",
-    tags: ["NEXT.JS", "TAILWIND", "TYPESCRIPT"],
-    color: "yellow",
-    image: "/nexus.png",
-    background: "/assets/backgrounds/nexus.jpg",
-  },
-  {
-    number: "05",
-    title: "IMC Prosperity 3 Challenge",
-    category: "QUANT / COMPETITION",
-    year: "2025",
-    tags: ["PYTHON", "PANDAS", "NUMPY"],
-    color: "coral",
-    image: "/imc_prosperity.png",
-    background: "/assets/backgrounds/imc-prosperity.jpg",
-  },
-  {
-    number: "06",
-    title: "Quantum Bank Heist: QAOA Path Optimisation",
-    category: "QUANTUM / OPTIMISATION",
-    year: "2025",
-    tags: ["PYTHON", "QISKIT", "QUANTUM"],
-    color: "green",
-    image: "/qhack_2025.png",
-    background: "/assets/backgrounds/qhack.jpg",
-  },
-  {
-    number: "07",
-    title: "IMA TMT 2025 Conference Talk",
-    category: "RESEARCH / FINANCE",
-    year: "2025",
-    tags: ["RESEARCH", "QUANT FINANCE"],
-    color: "sky",
-    image: "/IMA_TMT_2025_Conference_Abstract.png",
-    background: "/assets/backgrounds/ima-tmt.jpg",
-  },
-  {
-    number: "08",
-    title: "TradingView Strategy Indicators",
-    category: "TRADING / INDICATORS",
-    year: "2025",
-    tags: ["PINE SCRIPT", "DATA ANALYSIS"],
-    color: "yellow",
-    image: "/tradingview_indicators.png",
-    background: "/assets/backgrounds/tradingview.jpg",
-  },
-  {
-    number: "09",
-    title: "Forex/Crypto Trading Bot",
-    category: "ALGORITHMIC TRADING",
-    year: "2025",
-    tags: ["PYTHON", "PANDAS", "MQL"],
-    color: "coral",
-    image: "/fx_trading_bot.png",
-    background: "/assets/backgrounds/fx-bot.jpg",
-  },
-  {
-    number: "10",
-    title: "ChatGPT News Trader",
-    category: "AI / TRADING",
-    year: "2025",
-    tags: ["JAVASCRIPT", "OPENAI", "API"],
-    color: "green",
-    image: "/gpt_bot.png",
-    background: "/assets/backgrounds/news-trader.jpg",
-  },
-  {
-    number: "11",
-    title: "Scotland Yard AI",
-    category: "GAME AI",
-    year: "2024",
-    tags: ["JAVA", "OOP", "ALGORITHMS"],
-    color: "sky",
-    image: "/scotlandyard_ai.png",
-    background: "/assets/backgrounds/scotland-yard.jpg",
-  },
-  {
-    number: "12",
-    title: "Self Driving Car AI",
-    category: "REINFORCEMENT LEARNING",
-    year: "2024",
-    tags: ["PYTHON", "PYTORCH", "DQN"],
-    color: "yellow",
-    image: "/self_driving_car.png",
-    background: "/assets/backgrounds/self-driving.jpg",
-  },
-  {
-    number: "13",
-    title: "Mobile App Prototype",
-    category: "MOBILE / PRODUCT",
-    year: "2024",
-    tags: ["FLUTTER", "DART", "UI/UX"],
-    color: "coral",
-    image: "/dropkick_app.png",
-    background: "/assets/backgrounds/mobile-app.jpg",
-  },
-  {
-    number: "14",
-    title: "HE+ Research Project",
-    category: "RESEARCH / QUANTUM",
-    year: "2021",
-    tags: ["RESEARCH", "QUANTUM", "RSA"],
-    color: "green",
-    image: "/he_project.png",
-    background: "/assets/backgrounds/he-research.jpg",
-  },
-];
+const projectAccents: ProjectAccent[] = ["yellow", "coral", "green", "sky"];
+
+const projectBackgrounds: Record<string, string> = {
+  "Nexus - Internship Application Tracker": "/assets/backgrounds/nexus.jpg",
+  "IMC Prosperity 3 Challenge": "/assets/backgrounds/imc-prosperity.jpg",
+  "Quantum Bank Heist: QAOA Path Optimisation (QHack 2025)":
+    "/assets/backgrounds/qhack.jpg",
+  "IMA TMT 2025 Conference Talk": "/assets/backgrounds/ima-tmt.jpg",
+  "Mobile App Games": "/assets/backgrounds/mobile-app.jpg",
+  "Neural SDE Dissertation Project": "/assets/backgrounds/neural-sdes.jpg",
+  "HPC Code Optimisation": "/assets/backgrounds/sec-dealscan.jpg",
+  "TradingView Strategy Indicators": "/assets/backgrounds/tradingview.jpg",
+  "Forex/Crypto Trading Bot": "/assets/backgrounds/fx-bot.jpg",
+  "ChatGPT News Trader": "/assets/backgrounds/news-trader.jpg",
+  "Scotland Yard AI": "/assets/backgrounds/scotland-yard.jpg",
+  "Self Driving Car AI": "/assets/backgrounds/self-driving.jpg",
+  "Mobile App Prototype": "/assets/backgrounds/mobile-app.jpg",
+  "HE+ Research Project": "/assets/backgrounds/he-research.jpg",
+};
+
+function projectImageSrc(image: string | StaticImageData) {
+  return typeof image === "string" ? image : image.src;
+}
+
+function projectCategory(tags: readonly string[]) {
+  return tags.slice(0, 2).join(" / ").toUpperCase();
+}
+
+const projects: ProjectItem[] = projectsData.map((project, index) => ({
+  number: `${index + 1}`.padStart(2, "0"),
+  title: project.title,
+  category: projectCategory(project.tags),
+  year: "",
+  tags: [...project.tags],
+  color: projectAccents[index % projectAccents.length],
+  image: projectImageSrc(project.imageUrl),
+  background: projectBackgrounds[project.title] ?? projectImageSrc(project.imageUrl),
+}));
 
 const experience = [
   {
