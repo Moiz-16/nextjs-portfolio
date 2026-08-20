@@ -4148,8 +4148,16 @@ html.dark {
   align-items: start;
   column-gap: clamp(36px, 5vw, 72px);
   grid-template-columns: minmax(0, max-content) minmax(360px, 0.82fr);
-  justify-content: center;
+  justify-content: start;
   min-height: auto;
+  padding-left: max(
+    var(--site-section-x),
+    calc((100vw - var(--site-content-width)) / 2)
+  );
+  padding-right: max(
+    var(--site-section-x),
+    calc((100vw - var(--site-content-width)) / 2)
+  );
   padding-bottom: clamp(60px, 7vw, 96px);
   padding-top: clamp(54px, 7vw, 88px);
   row-gap: clamp(18px, 3vw, 36px);
