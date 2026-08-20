@@ -6,11 +6,21 @@ import { FiArrowRight } from "react-icons/fi";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import toast from "react-hot-toast";
 import { sendEmail } from "@/actions/sendEmail";
-import { projectsData } from "@/lib/data";
+import {
+  contactFormData,
+  educationData,
+  footerData,
+  portfolioExperienceData,
+  portfolioSectionData,
+  projectAccentCycle,
+  projectBackgrounds,
+  projectsData,
+  socialLinks,
+} from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
 import type { StaticImageData } from "next/image";
 
-type ProjectAccent = "yellow" | "coral" | "green" | "sky";
+type ProjectAccent = (typeof projectAccentCycle)[number];
 
 type ProjectItem = {
   number: string;
@@ -21,26 +31,6 @@ type ProjectItem = {
   color: ProjectAccent;
   image: string;
   background: string;
-};
-
-const projectAccents: ProjectAccent[] = ["yellow", "coral", "green", "sky"];
-
-const projectBackgrounds: Record<string, string> = {
-  "Nexus - Internship Application Tracker": "/assets/backgrounds/nexus.jpg",
-  "IMC Prosperity 3 Challenge": "/assets/backgrounds/imc-prosperity.jpg",
-  "Quantum Bank Heist: QAOA Path Optimisation (QHack 2025)":
-    "/assets/backgrounds/qhack.jpg",
-  "IMA TMT 2025 Conference Talk": "/assets/backgrounds/ima-tmt.jpg",
-  "Mobile App Games": "/assets/backgrounds/mobile-app.jpg",
-  "Neural SDE Dissertation Project": "/assets/backgrounds/neural-sdes.jpg",
-  "HPC Code Optimisation": "/assets/backgrounds/sec-dealscan.jpg",
-  "TradingView Strategy Indicators": "/assets/backgrounds/tradingview.jpg",
-  "Forex/Crypto Trading Bot": "/assets/backgrounds/fx-bot.jpg",
-  "ChatGPT News Trader": "/assets/backgrounds/news-trader.jpg",
-  "Scotland Yard AI": "/assets/backgrounds/scotland-yard.jpg",
-  "Self Driving Car AI": "/assets/backgrounds/self-driving.jpg",
-  "Mobile App Prototype": "/assets/backgrounds/mobile-app.jpg",
-  "HE+ Research Project": "/assets/backgrounds/he-research.jpg",
 };
 
 function projectImageSrc(image: string | StaticImageData) {
@@ -57,112 +47,13 @@ const projects: ProjectItem[] = projectsData.map((project, index) => ({
   category: projectCategory(project.tags),
   year: "",
   tags: [...project.tags],
-  color: projectAccents[index % projectAccents.length],
+  color: projectAccentCycle[index % projectAccentCycle.length],
   image: projectImageSrc(project.imageUrl),
   background: projectBackgrounds[project.title] ?? projectImageSrc(project.imageUrl),
 }));
 
-const experience = [
-  {
-    period: "JUN 2025 - AUG 2025",
-    role: "Research Intern",
-    company: "University of Bristol",
-    description: [
-      "Devised a process for maximising links between financial databases using textual analysis and natural language processing.",
-      "Built research tooling for document matching, entity comparison and large-scale data workflows.",
-    ],
-    skills: ["PYTHON", "NLP", "DATA LINKING"],
-  },
-  {
-    period: "MAR 2025 - PRESENT",
-    role: "Founder",
-    company: "Nexus",
-    description: [
-      "Created an intelligent platform to streamline internship applications for students.",
-      "Built a centralised dashboard with AI-assisted data entry, application insights and interview preparation tools.",
-    ],
-    skills: ["PRODUCT", "AI", "NEXT.JS"],
-  },
-  {
-    period: "JUN 2024 - JAN 2025",
-    role: "Applied Data Science Lab",
-    company: "WorldQuant University",
-    description: [
-      "Developed an ARMA time-series model for forecasting particulate matter levels in Kenya using MongoDB datasets.",
-      "Built a machine-learning pipeline with feature encoding and imputation to predict apartment prices in Argentina.",
-    ],
-    skills: ["DATA SCIENCE", "MONGODB", "TIME SERIES"],
-  },
-  {
-    period: "FEB 2024 - MAR 2024",
-    role: "AI Foundation Bootcamp",
-    company: "Encode Club",
-    description: [
-      "Explored the architecture and applications of large language models including ChatGPT and LLaMA-2.",
-      "Integrated the ChatGPT API with a local web UI and experimented with Stable Diffusion text-to-image workflows.",
-    ],
-    skills: ["LLMS", "PROMPTING", "AI"],
-  },
-  {
-    period: "AUG 2021",
-    role: "Quantum Technology Research",
-    company: "KETS Quantum Security LTD",
-    description: [
-      "Collaborated on a group research project into quantum technology and computing fundamentals.",
-      "Presented the findings to the company and engaged with external experts to deepen industry understanding.",
-    ],
-    skills: ["QUANTUM", "RESEARCH", "PRESENTATION"],
-  },
-];
-
-const education = [
-  {
-    period: "SEP 2023 - JUN 2026",
-    institution: "University of Bristol",
-    qualification: "BSc Mathematics and Computer Science",
-    focus: "Mathematics, computer systems, software engineering and applied AI.",
-    result: "Graduated",
-    modules: [
-      {
-        label: "Mathematics",
-        items: [
-          "Probability and statistics",
-          "Linear algebra",
-          "Mathematics for computer science",
-        ],
-      },
-      {
-        label: "Computer Science",
-        items: [
-          "Imperative and functional programming",
-          "Object-oriented programming and algorithms",
-          "Computer systems",
-        ],
-      },
-      {
-        label: "Final Focus",
-        items: [
-          "Neural SDE dissertation project",
-          "High performance computing",
-          "Software engineering project work",
-        ],
-      },
-    ],
-    achievements: [
-      "Built a neural SDE dissertation project using PyTorch and stochastic modelling.",
-      "Worked on HPC code optimisation and systems-level performance problems.",
-      "Invited IMA TMT speaker on cointegration-based trading strategies.",
-      "Founded Nexus, an internship application platform for students.",
-      "Built trading bots and research tooling across data, markets and automation.",
-    ],
-    stats: [
-      { label: "Dissertation", value: "Neural SDE" },
-      { label: "Coursework", value: "HPC" },
-      { label: "Talk", value: "IMA TMT" },
-      { label: "Build", value: "Nexus" },
-    ],
-  },
-];
+const experience = portfolioExperienceData;
+const education = educationData;
 
 function getTimelineYear(period: string) {
   const years = Array.from(period.matchAll(/\b\d{4}\b/g), (match) => match[0]);
@@ -427,12 +318,13 @@ function ExperienceCard({
 
 function EducationSection() {
   const item = education[0];
+  const copy = portfolioSectionData.education;
 
   return (
     <ScrollFrame className="education-inner">
       <div className="education-heading ps-reveal">
-        <p className="ps-eyebrow">A FORMAL BASE</p>
-        <h2>Where the work started.</h2>
+        <p className="ps-eyebrow">{copy.eyebrow}</p>
+        <h2>{copy.title}</h2>
       </div>
 
       <div className="education-layout">
@@ -501,6 +393,7 @@ function EducationSection() {
 function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const fields = contactFormData.fields;
 
   return (
     <form
@@ -517,7 +410,7 @@ function ContactForm() {
             return;
           }
 
-          toast.success("Message sent successfully.");
+          toast.success(contactFormData.successMessage);
           formRef.current?.reset();
         } finally {
           setIsSubmitting(false);
@@ -526,21 +419,21 @@ function ContactForm() {
     >
       <div className="contact-form-row">
         <label className="contact-input-group">
-          <span>Full name</span>
+          <span>{fields.name.label}</span>
           <input
             autoComplete="name"
             name="senderName"
-            placeholder="Moiz Saleem"
+            placeholder={fields.name.placeholder}
             type="text"
           />
         </label>
 
         <label className="contact-input-group">
-          <span>Email address</span>
+          <span>{fields.email.label}</span>
           <input
             autoComplete="email"
             name="senderEmail"
-            placeholder="you@example.com"
+            placeholder={fields.email.placeholder}
             required
             type="email"
           />
@@ -548,21 +441,23 @@ function ContactForm() {
       </div>
 
       <label className="contact-input-group">
-        <span>Your message</span>
+        <span>{fields.message.label}</span>
         <textarea
           name="message"
-          placeholder="Tell me about your project, idea or opportunity."
+          placeholder={fields.message.placeholder}
           required
           rows={7}
         />
       </label>
 
-      <p className="contact-form-note">
-        I&apos;ll never share your details. Straight to my inbox, nothing noisy.
-      </p>
+      <p className="contact-form-note">{contactFormData.note}</p>
 
       <button className="contact-submit" disabled={isSubmitting} type="submit">
-        <span>{isSubmitting ? "Sending..." : "Send message"}</span>
+        <span>
+          {isSubmitting
+            ? contactFormData.submittingLabel
+            : contactFormData.submitLabel}
+        </span>
         <FiArrowRight aria-hidden="true" />
         <i aria-hidden="true" />
         <i aria-hidden="true" />
@@ -636,17 +531,17 @@ export default function PortfolioSections() {
         className="projects ps-section-shell"
         id="projects"
       >
-        <div className="ps-section-index">02 / SELECTED PROJECTS</div>
+        <div className="ps-section-index">
+          {portfolioSectionData.projects.sectionIndex}
+        </div>
 
         <ScrollFrame className="projects-inner">
           <div className="projects-heading ps-reveal">
             <h2>
-              Things I&apos;ve <em>built</em>
+              {portfolioSectionData.projects.title.prefix}{" "}
+              <em>{portfolioSectionData.projects.title.emphasis}</em>
             </h2>
-            <p>
-              Research, infrastructure and products built to solve real
-              problems.
-            </p>
+            <p>{portfolioSectionData.projects.description}</p>
           </div>
 
           <div className="project-card-grid">
@@ -666,7 +561,9 @@ export default function PortfolioSections() {
         className="education ps-section-shell"
         id="education"
       >
-        <div className="ps-section-index">03 / EDUCATION</div>
+        <div className="ps-section-index">
+          {portfolioSectionData.education.sectionIndex}
+        </div>
         <EducationSection />
       </section>
 
@@ -675,22 +572,24 @@ export default function PortfolioSections() {
         className="experience ps-grid-surface ps-section-shell"
         id="experience"
       >
-        <div className="ps-section-index">04 / EXPERIENCE</div>
+        <div className="ps-section-index">
+          {portfolioSectionData.experience.sectionIndex}
+        </div>
 
         <ScrollFrame className="experience-inner">
           <div className="experience-heading ps-reveal">
             <h2>
-              A timeline of
+              {portfolioSectionData.experience.title.prefix}
               <br />
-              <em>building and learning.</em>
+              <em>{portfolioSectionData.experience.title.emphasis}</em>
             </h2>
-            <p>Research, products and technical work that shaped how I build.</p>
+            <p>{portfolioSectionData.experience.description}</p>
           </div>
 
           <div className="experience-groups">
             <section className="experience-group" aria-labelledby="experience-heading">
               <h3 className="experience-side-label" id="experience-heading">
-                Experience
+                {portfolioSectionData.experience.sideLabel}
               </h3>
               <div className="experience-card-list">
                 <div className="experience-connector" aria-hidden="true" />
@@ -717,7 +616,9 @@ export default function PortfolioSections() {
         className="contact ps-section-shell"
         id="contact"
       >
-        <div className="ps-section-index">05 / CONTACT</div>
+        <div className="ps-section-index">
+          {portfolioSectionData.contact.sectionIndex}
+        </div>
 
         <ScrollFrame className="contact-scroll-frame">
           <div className="contact-rings" aria-hidden="true">
@@ -728,15 +629,16 @@ export default function PortfolioSections() {
 
           <div className="contact-layout">
             <div className="contact-copy">
-              <p className="ps-eyebrow ps-reveal">GET IN TOUCH</p>
+              <p className="ps-eyebrow ps-reveal">
+                {portfolioSectionData.contact.eyebrow}
+              </p>
               <h2 className="ps-reveal ps-reveal-delay">
-                Let&apos;s build something
+                {portfolioSectionData.contact.title.prefix}
                 <br />
-                <em>worth talking about.</em>
+                <em>{portfolioSectionData.contact.title.emphasis}</em>
               </h2>
               <p className="contact-summary ps-reveal">
-                Send a note about software, research, quant ideas or anything
-                ambitious enough to be interesting.
+                {portfolioSectionData.contact.summary}
               </p>
             </div>
 
@@ -746,32 +648,33 @@ export default function PortfolioSections() {
       </section>
 
       <footer className="portfolio-footer">
-        <p>2026 Moiz Saleem. All rights reserved.</p>
+        <p>{footerData.copyright}</p>
         <div className="portfolio-footer-socials" aria-label="Social links">
           <a
-            href="https://github.com/Moiz-16"
+            href={socialLinks.github.href}
             target="_blank"
             rel="noreferrer"
-            aria-label="GitHub"
+            aria-label={socialLinks.github.label}
             data-cursor-target
           >
             <SiGithub />
           </a>
           <a
-            href="https://www.linkedin.com/in/moiz-saleem/"
+            href={socialLinks.linkedin.href}
             target="_blank"
             rel="noreferrer"
-            aria-label="LinkedIn"
+            aria-label={socialLinks.linkedin.label}
             data-cursor-target
           >
             <SiLinkedin />
           </a>
         </div>
         <nav>
-          <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
-          <a href="#experience">Experience</a>
-          <a href="#home">Back to top</a>
+          {footerData.nav.map((item) => (
+            <a href={item.href} key={item.href}>
+              {item.label}
+            </a>
+          ))}
         </nav>
       </footer>
     </div>

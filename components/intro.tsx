@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useSectionInView } from "@/lib/hooks";
 import ParticlesContainer from "@/components/particles-container";
+import { homeData, socialLinks } from "@/lib/data";
 
 function MotionEffects() {
   useEffect(() => {
@@ -52,55 +53,56 @@ export default function Intro() {
         <span className="pixel-comet pixel-comet--two" aria-hidden="true" />
         <div className="hero-background-fade" aria-hidden="true" />
 
-        <p className="hero-coordinates">51.5054° N&nbsp;&nbsp;0.0235° W</p>
+        <p className="hero-coordinates">{homeData.coordinates}</p>
 
         {/* <div className="hero-kicker">
-          <span>SOFTWARE ENGINEER</span>
-          <span>QUANTITATIVE BUILDER</span>
+          <span>{homeData.hiddenLabels.kicker[0]}</span>
+          <span>{homeData.hiddenLabels.kicker[1]}</span>
         </div> */}
 
         <div className="hero-title-wrap">
           <h1 id="hero-title">
             <span className="hero-ghost hero-ghost--one" aria-hidden="true">
-              moiz saleem
+              {homeData.name}
             </span>
 
             <span className="hero-ghost hero-ghost--two" aria-hidden="true">
-              moiz saleem
+              {homeData.name}
             </span>
 
-            <span className="hero-name">moiz saleem</span>
+            <span className="hero-name">{homeData.name}</span>
           </h1>
         </div>
 
-        {/* <p className="hero-location">BASED IN THE UK</p> */}
+        {/* <p className="hero-location">{homeData.hiddenLabels.location}</p> */}
 
-        <p className="hero-intro">
-          Bristol Maths and Computer Science graduate building across software,
-          data and systems as an incoming Site Reliability Engineer.
-        </p>
+        <p className="hero-intro">{homeData.intro}</p>
 
         <div className="hero-socials" aria-label="Home links">
-          <a className="hero-socials-contact" href="#contact" data-cursor-target>
-            Contact
+          <a
+            className="hero-socials-contact"
+            href={homeData.socials.contactHref}
+            data-cursor-target
+          >
+            {homeData.socials.contactLabel}
           </a>
           <div className="hero-socials-icons">
             <a
               className="hero-socials-icon"
-              href="https://github.com/Moiz-16"
+              href={socialLinks.github.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label={socialLinks.github.label}
               data-cursor-target
             >
               <SiGithub />
             </a>
             <a
               className="hero-socials-icon"
-              href="https://www.linkedin.com/in/moiz-saleem/"
+              href={socialLinks.linkedin.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              aria-label={socialLinks.linkedin.label}
               data-cursor-target
             >
               <SiLinkedin />
@@ -110,17 +112,17 @@ export default function Intro() {
 
         <div className="hero-footer">
           {/* <span>
-            AVAILABLE FOR
+            {homeData.hiddenLabels.footerLeft[0]}
             <br />
-            INTERESTING IDEAS
+            {homeData.hiddenLabels.footerLeft[1]}
           </span> */}
 
-          <a href="#about">↓ SCROLL TO EXPLORE</a>
+          <a href="#about">{homeData.scrollPrompt}</a>
 
           {/* <span className="hero-footer-right">
-            MATHEMATICS × CS
+            {homeData.hiddenLabels.footerRight[0]}
             <br />
-            BRISTOL
+            {homeData.hiddenLabels.footerRight[1]}
           </span> */}
         </div>
       </section>

@@ -25,6 +25,7 @@ import {
   SiPython,
   SiTypescript,
 } from "react-icons/si";
+import { aboutDashboardData, aboutData, techStackData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
 
 type GitHubActivityDay = {
@@ -82,69 +83,25 @@ const FALLBACK_GRAPH: GitHubActivityDay[] = createFallbackGraph();
 
 const FALLBACK_GITHUB_STATS: GitHubStats = {
   graph: FALLBACK_GRAPH,
-  latest: {
-    branch: "main",
-    hash: "sync",
-    message: "Fetching public GitHub activity",
-    repo: "Moiz-16",
-    when: "loading",
-  },
-  source: "GitHub",
+  latest: aboutDashboardData.githubFallback.latest,
+  source: aboutDashboardData.githubFallback.source,
   totalContributions: 0,
   sevenDayCommits: 0,
 };
 
-const dashboardContent = {
-  reading: {
-    title: "Iliad - Homer",
-    detail: "Penguin Classics - Fagles",
-  },
-  country: {
-    title: "Indonesia",
-    detail: "Jakarta - most recent travel pin",
-  },
-  travel: {
-    title: "Japan, Türkiye, Morocco",
-    detail: "Next three places I'd like to explore.",
-  },
-  quote: {
-    title: "Make failure boring.",
-    detail: "A useful little rule for software, systems and life.",
-  },
-  queue: {
-    title: "Same As Ever - Morgan Housel",
-    detail: "Next after Iliad.",
-  },
-  game: {
-    title: "Catan: Starfarers",
-    detail: "Trade, explore and over-negotiate slightly.",
-  },
-  lego: {
-    title: "LEGO Icons Concorde",
-    detail: "Engineering nostalgia in tiny white bricks.",
-  },
-  life: {
-    title: "Reading, travelling, training or trying new food.",
-    detail: "Usually with a notes app open somewhere nearby.",
-  },
-  learning: {
-    title: "Kubernetes internals",
-    detail: "Systems get more interesting when the abstractions leak.",
-  },
-  photoRoll: {
-    places: ["Jakarta", "Bristol", "London", "Next"],
-    detail: "Tiny memory pins from places, walks and weekends.",
-  },
-};
+const techStackIconMap = {
+  Python: SiPython,
+  Java: FaJava,
+  "C / C++": SiCplusplus,
+  TypeScript: SiTypescript,
+  PyTorch: SiPytorch,
+  AWS: SiAmazonaws,
+} satisfies Record<(typeof techStackData)[number], IconType>;
 
-const techStack = [
-  { label: "Python", Icon: SiPython },
-  { label: "Java", Icon: FaJava },
-  { label: "C / C++", Icon: SiCplusplus },
-  { label: "TypeScript", Icon: SiTypescript },
-  { label: "PyTorch", Icon: SiPytorch },
-  { label: "AWS", Icon: SiAmazonaws },
-] satisfies Array<{ label: string; Icon: IconType }>;
+const techStack = techStackData.map((label) => ({
+  label,
+  Icon: techStackIconMap[label],
+}));
 
 function buildContributionCalendar(graph: GitHubActivityDay[]) {
   const datedGraph = (graph.length ? graph : createFallbackGraph()).map(
@@ -196,6 +153,7 @@ function buildContributionCalendar(graph: GitHubActivityDay[]) {
 
 function AboutDashboard() {
   const dashboardRef = useRef<HTMLDivElement>(null);
+  const panels = aboutDashboardData.panels;
   const [githubStats, setGithubStats] = useState<GitHubStats>(
     FALLBACK_GITHUB_STATS,
   );
@@ -269,7 +227,7 @@ function AboutDashboard() {
   return (
     <div className="about-dashboard reveal reveal-dashboard" ref={dashboardRef}>
       <article className="about-panel about-panel--latest">
-        <span className="about-panel-kicker">RECENT WORK</span>
+        <span className="about-panel-kicker">{panels.latestWork.label}</span>
         <h3>{githubStats.latest.message}</h3>
         <p>
           <strong>{githubStats.latest.hash}</strong>
@@ -283,14 +241,14 @@ function AboutDashboard() {
         <div className="about-panel-topline">
           <span className="about-panel-label">
             <BsGithub aria-hidden="true" />
-            GitHub activity
+            {panels.githubActivity.label}
           </span>
           <strong>{githubStats.totalContributions}</strong>
         </div>
 
         <div className="commit-calendar" style={graphStyle}>
           <div
-            aria-label="GitHub contribution activity graph"
+            aria-label={panels.githubActivity.ariaLabel}
             className="commit-graph"
             role="img"
           >
@@ -321,15 +279,15 @@ function AboutDashboard() {
       </article>
 
       <article className="about-panel about-panel--metric">
-        <span className="about-panel-kicker">LAST 7D</span>
+        <span className="about-panel-kicker">{panels.sevenDayCommits.label}</span>
         <strong>{githubStats.sevenDayCommits}</strong>
-        <p>commits</p>
+        <p>{panels.sevenDayCommits.unit}</p>
       </article>
 
       <article className="about-panel about-panel--tech-stack">
         <span className="about-panel-label">
           <BsStack aria-hidden="true" />
-          Tech stack
+          {panels.techStack.label}
         </span>
 
         <div className="tech-stack-icons" aria-label="Technologies">
@@ -348,106 +306,103 @@ function AboutDashboard() {
         </div>
 
         <div className="tech-stack-copy">
-          <h3>Tech stacks I&apos;m familiar with</h3>
-          <p>
-            Python, Java, C / C++, TypeScript, PyTorch and AWS across research,
-            product experiments and systems-focused work.
-          </p>
+          <h3>{panels.techStack.title}</h3>
+          <p>{panels.techStack.detail}</p>
         </div>
       </article>
 
       <article className="about-panel about-panel--learning">
         <span className="about-panel-label">
           <BsLightbulb aria-hidden="true" />
-          One thing I&apos;m learning
+          {panels.learning.label}
         </span>
-        <h3>{dashboardContent.learning.title}</h3>
-        <p>{dashboardContent.learning.detail}</p>
+        <h3>{panels.learning.title}</h3>
+        <p>{panels.learning.detail}</p>
       </article>
 
       <article className="about-panel about-panel--reading">
         <span className="about-panel-label">
           <BsBook aria-hidden="true" />
-          Currently reading
+          {panels.reading.label}
         </span>
-        <h3>{dashboardContent.reading.title}</h3>
-        <p>{dashboardContent.reading.detail}</p>
+        <h3>{panels.reading.title}</h3>
+        <p>{panels.reading.detail}</p>
       </article>
 
       <article className="about-panel about-panel--queue">
         <span className="about-panel-label">
           <BsBookHalf aria-hidden="true" />
-          Book queue
+          {panels.queue.label}
         </span>
-        <h3>{dashboardContent.queue.title}</h3>
-        <p>{dashboardContent.queue.detail}</p>
+        <h3>{panels.queue.title}</h3>
+        <p>{panels.queue.detail}</p>
       </article>
 
       <article className="about-panel about-panel--country">
         <span className="about-panel-label">
           <BsGlobe2 aria-hidden="true" />
-          Last visited country
+          {panels.country.label}
         </span>
-        <h3>{dashboardContent.country.title}</h3>
-        <p>{dashboardContent.country.detail}</p>
+        <h3>{panels.country.title}</h3>
+        <p>{panels.country.detail}</p>
       </article>
 
       <article className="about-panel about-panel--travel">
         <span className="about-panel-label">
           <BsAirplane aria-hidden="true" />
-          Travel list
+          {panels.travel.label}
         </span>
-        <h3>{dashboardContent.travel.title}</h3>
-        <p>{dashboardContent.travel.detail}</p>
+        <h3>{panels.travel.title}</h3>
+        <p>{panels.travel.detail}</p>
       </article>
 
       <article className="about-panel about-panel--photo-roll">
         <span className="about-panel-label">
           <BsCamera aria-hidden="true" />
-          Photo roll
+          {panels.photoRoll.label}
         </span>
         <div className="photo-roll-strip" aria-hidden="true">
-          {dashboardContent.photoRoll.places.map((place) => (
+          {panels.photoRoll.places.map((place) => (
             <span key={place}>{place}</span>
           ))}
         </div>
-        <p>{dashboardContent.photoRoll.detail}</p>
+        <p>{panels.photoRoll.detail}</p>
       </article>
 
       <article className="about-panel about-panel--quote">
         <span className="about-panel-label">
           <BsQuote aria-hidden="true" />
-          Favourite quote
+          {panels.quote.label}
         </span>
-        <h3>{dashboardContent.quote.title}</h3>
-        <p>{dashboardContent.quote.detail}</p>
+        <h3>{panels.quote.title}</h3>
+        <p>{panels.quote.detail}</p>
       </article>
 
       <article className="about-panel about-panel--game">
         <span className="about-panel-label">
           <BsJoystick aria-hidden="true" />
-          Favourite game
+          {panels.game.label}
         </span>
-        <h3>{dashboardContent.game.title}</h3>
-        <p>{dashboardContent.game.detail}</p>
+        <h3>{panels.game.title}</h3>
+        <p>{panels.game.detail}</p>
       </article>
 
       <article className="about-panel about-panel--lego">
         <span className="about-panel-label">
           <BsBricks aria-hidden="true" />
-          Current Lego set
+          {panels.lego.label}
         </span>
-        <h3>{dashboardContent.lego.title}</h3>
-        <p>{dashboardContent.lego.detail}</p>
+        <h3>{panels.lego.title}</h3>
+        <p>{panels.lego.detail}</p>
       </article>
 
       <article className="about-panel about-panel--life">
         <span className="about-panel-label">
           <BsCodeSlash aria-hidden="true" />
-          If not coding
+          {panels.life.label}
         </span>
-        <h3>{dashboardContent.life.title}</h3>
-        <p>{dashboardContent.life.detail}</p>
+        <h3>{panels.life.title}</h3>
+        <p>{panels.life.detail}</p>
       </article>
     </div>
   );
@@ -480,36 +435,20 @@ export default function About() {
 
   return (
     <section ref={ref} className="about section-shell" id="about">
-      <div className="section-index">01 / ABOUT</div>
+      <div className="section-index">{aboutData.sectionIndex}</div>
 
       <div className="about-heading reveal">
         <h2>
-          A little context
+          {aboutData.heading.lineOne}
           <br />
-          about <em>me</em>
+          {aboutData.heading.lineTwo} <em>{aboutData.heading.emphasis}</em>
         </h2>
       </div>
 
       <div className="about-copy reveal reveal-delay">
-        <p className="about-lead">
-          I&apos;m a Bristol Maths and Computer Science graduate joining
-          JPMorgan Chase as a Site Reliability Engineer.
-        </p>
+        <p className="about-lead">{aboutData.lead}</p>
 
-        <p>
-          My work spans neural SDE research, trading bots, HPC code
-          optimisation, financial NLP, product design, data science and
-          quantitative finance. I&apos;ve built Nexus, an internship application
-          platform for students, developed cointegration-based trading
-          strategies that led to an invited IMA TMT talk, worked on dissertation
-          research around neural SDEs, and taken on performance-focused systems
-          work through HPC optimisation. I&apos;m drawn to projects where
-          there&apos;s a knot of complexity to untangle, whether that means
-          turning research into usable tools, making data-heavy workflows
-          clearer, or building products that solve practical problems. Away
-          from software, I&apos;m into word puzzles, reading, travelling,
-          training, trying new food, Lego and board games.
-        </p>
+        <p>{aboutData.body}</p>
       </div>
 
       <AboutDashboard />

@@ -2,6 +2,7 @@
 
 import { BsMoon, BsSun } from "react-icons/bs";
 import { useTheme } from "@/context/theme-context";
+import { headerData } from "@/lib/data";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -12,27 +13,18 @@ export default function Header() {
       <a
         className="wordmark cursor-can-hover"
         href="#home"
-        aria-label="Moiz Saleem - home"
+        aria-label={headerData.homeAriaLabel}
       >
-        MS<span>©26</span>
+        {headerData.wordmark}
+        <span>{headerData.suffix}</span>
       </a>
 
       <nav aria-label="Main navigation">
-        <a className="cursor-can-hover" href="#about">
-          ABOUT
-        </a>
-        <a className="cursor-can-hover" href="#projects">
-          PROJECTS
-        </a>
-        <a className="cursor-can-hover" href="#education">
-          EDUCATION
-        </a>
-        <a className="cursor-can-hover" href="#experience">
-          EXPERIENCE
-        </a>
-        <a className="cursor-can-hover" href="#contact">
-          CONTACT
-        </a>
+        {headerData.nav.map((item) => (
+          <a className="cursor-can-hover" href={item.href} key={item.href}>
+            {item.label}
+          </a>
+        ))}
       </nav>
 
       <div className="header-actions">
