@@ -439,9 +439,8 @@ export default function About() {
 
       <div className="about-heading reveal">
         <h2>
-          {aboutData.heading.lineOne}
-          <br />
-          {aboutData.heading.lineTwo} <em>{aboutData.heading.emphasis}</em>
+          {aboutData.heading.lineOne} {aboutData.heading.lineTwo}{" "}
+          <em>{aboutData.heading.emphasis}</em>
         </h2>
       </div>
 

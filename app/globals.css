@@ -4147,7 +4147,8 @@ html.dark {
 .about {
   align-items: start;
   column-gap: clamp(36px, 5vw, 72px);
-  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.78fr);
+  grid-template-columns: minmax(0, max-content) minmax(360px, 0.82fr);
+  justify-content: center;
   min-height: auto;
   padding-bottom: clamp(60px, 7vw, 96px);
   padding-top: clamp(54px, 7vw, 88px);
@@ -4220,11 +4221,13 @@ html.dark {
 .about .about-heading h2 {
   color: var(--about-ink);
   font-family: var(--serif);
-  font-size: clamp(50px, 6vw, 92px);
+  font-size: var(--site-heading-size);
   font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 0.94;
-  max-width: 12.8ch;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+  margin: 0;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .about .about-heading h2 em {
@@ -4236,9 +4239,10 @@ html.dark {
 }
 
 .about-copy {
-  margin-left: clamp(-96px, -4.8vw, -42px);
+  align-self: center;
+  margin-left: 0;
   max-width: 36rem;
-  padding-top: clamp(14px, 1.8vw, 28px);
+  padding-top: 0;
 }
 
 .about .about-copy .about-lead {
@@ -4493,6 +4497,10 @@ html.dark {
   .about-copy {
     margin-left: 0;
     max-width: 42rem;
+  }
+
+  .about .about-heading h2 {
+    white-space: normal;
   }
 
   .about-stat {
