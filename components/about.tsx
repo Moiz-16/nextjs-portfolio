@@ -498,18 +498,23 @@ export default function About() {
 
       <div className="about-copy reveal reveal-delay">
         <p className="about-lead">
-          I&apos;m a Bristol Maths and Computer Science graduate who likes
-          building at the edge of software, data and finance.
+          I&apos;m a Bristol Maths and Computer Science graduate joining
+          JPMorgan Chase as a Site Reliability Engineer.
         </p>
 
         <p>
-          I&apos;ve worked on Nexus, financial NLP research, trading bots,
-          neural SDEs, HPC optimisation and a handful of data science projects,
-          but the thing I enjoy most is the process underneath: figuring out how
-          something works, where it breaks, and how to make it better. I&apos;m
-          now heading into Site Reliability Engineering at JPMorgan Chase. Away
-          from the technical side, I&apos;m into word puzzles, reading,
-          travelling, training, trying new food, Lego and board games.
+          My work spans neural SDE research, trading bots, HPC code
+          optimisation, financial NLP, product design, data science and
+          quantitative finance. I&apos;ve built Nexus, an internship application
+          platform for students, developed cointegration-based trading
+          strategies that led to an invited IMA TMT talk, worked on dissertation
+          research around neural SDEs, and taken on performance-focused systems
+          work through HPC optimisation. I&apos;m drawn to projects where
+          there&apos;s a knot of complexity to untangle, whether that means
+          turning research into usable tools, making data-heavy workflows
+          clearer, or building products that solve practical problems. Away
+          from software, I&apos;m into word puzzles, reading, travelling,
+          training, trying new food, Lego and board games.
         </p>
       </div>
 
