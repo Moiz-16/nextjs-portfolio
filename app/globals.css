@@ -4144,9 +4144,8 @@ html.dark {
 
 .about {
   align-items: start;
-  column-gap: clamp(26px, 3.4vw, 52px);
-  grid-template-columns: minmax(0, max-content) minmax(360px, 0.78fr);
-  justify-content: start;
+  column-gap: clamp(36px, 5vw, 72px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.78fr);
   min-height: auto;
   padding-bottom: clamp(60px, 7vw, 96px);
   padding-top: clamp(54px, 7vw, 88px);
@@ -4235,6 +4234,7 @@ html.dark {
 }
 
 .about-copy {
+  margin-left: clamp(-96px, -4.8vw, -42px);
   max-width: 36rem;
   padding-top: clamp(14px, 1.8vw, 28px);
 }
@@ -4489,6 +4489,7 @@ html.dark {
 
   .about-heading,
   .about-copy {
+    margin-left: 0;
     max-width: 42rem;
   }
 
