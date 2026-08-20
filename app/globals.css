@@ -717,6 +717,8 @@ html.dark .hero-particles-halo {
 }
 
 .hero-footer a {
+  grid-column: 2;
+  justify-self: center;
   transition: color 150ms ease;
 }
 
