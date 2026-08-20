@@ -52,12 +52,12 @@ export default function Intro() {
         <span className="pixel-comet pixel-comet--two" aria-hidden="true" />
         <div className="hero-background-fade" aria-hidden="true" />
 
-        <p className="hero-coordinates">51.5072° N&nbsp;&nbsp;0.1276° W</p>
+        <p className="hero-coordinates">51.5054° N&nbsp;&nbsp;0.0235° W</p>
 
-        <div className="hero-kicker">
+        {/* <div className="hero-kicker">
           <span>SOFTWARE ENGINEER</span>
           <span>QUANTITATIVE BUILDER</span>
-        </div>
+        </div> */}
 
         <div className="hero-title-wrap">
           <h1 id="hero-title">
@@ -73,7 +73,7 @@ export default function Intro() {
           </h1>
         </div>
 
-        <p className="hero-location">BASED IN THE UK</p>
+        {/* <p className="hero-location">BASED IN THE UK</p> */}
 
         <p className="hero-intro">
           Bristol Maths and Computer Science graduate building across software,
@@ -109,19 +109,19 @@ export default function Intro() {
         </div>
 
         <div className="hero-footer">
-          <span>
+          {/* <span>
             AVAILABLE FOR
             <br />
             INTERESTING IDEAS
-          </span>
+          </span> */}
 
           <a href="#about">↓ SCROLL TO EXPLORE</a>
 
-          <span className="hero-footer-right">
+          {/* <span className="hero-footer-right">
             MATHEMATICS × CS
             <br />
             BRISTOL
-          </span>
+          </span> */}
         </div>
       </section>
     </>
