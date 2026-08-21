@@ -437,17 +437,19 @@ export default function About() {
     <section ref={ref} className="about section-shell" id="about">
       <div className="section-index">{aboutData.sectionIndex}</div>
 
-      <div className="about-heading reveal">
-        <h2>
-          {aboutData.heading.lineOne} {aboutData.heading.lineTwo}{" "}
-          <em>{aboutData.heading.emphasis}</em>
-        </h2>
-      </div>
+      <div className="about-intro">
+        <div className="about-heading reveal">
+          <h2>
+            {aboutData.heading.lineOne} {aboutData.heading.lineTwo}{" "}
+            <em>{aboutData.heading.emphasis}</em>
+          </h2>
+        </div>
 
-      <div className="about-copy reveal reveal-delay">
-        <p className="about-lead">{aboutData.lead}</p>
+        <div className="about-copy reveal reveal-delay">
+          <p className="about-lead">{aboutData.lead}</p>
 
-        <p>{aboutData.body}</p>
+          <p>{aboutData.body}</p>
+        </div>
       </div>
 
       <AboutDashboard />

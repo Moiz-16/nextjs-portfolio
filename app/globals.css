@@ -830,6 +830,7 @@ html.dark .orbit-badge-ring::before {
 }
 
 .section-index,
+.about-intro,
 .about-heading,
 .about-copy,
 .about-stat,
@@ -967,8 +968,11 @@ html.dark .orbit-badge-ring::before {
   grid-auto-rows: var(--about-panel-row);
   grid-column: 1 / -1;
   grid-template-columns: repeat(12, minmax(0, 1fr));
+  margin: clamp(44px, 6vw, 82px) auto 0;
+  max-width: var(--site-content-width);
   padding: clamp(14px, 2vw, 24px);
   position: relative;
+  width: 100%;
   z-index: 2;
 }
 
@@ -4147,12 +4151,26 @@ html.dark {
 .about {
   align-items: start;
   column-gap: clamp(8px, 1.4vw, 22px);
+  display: block;
   grid-template-columns: minmax(0, max-content) minmax(420px, 0.98fr);
   justify-content: center;
   min-height: auto;
   padding-bottom: clamp(60px, 7vw, 96px);
   padding-top: clamp(54px, 7vw, 88px);
   row-gap: clamp(18px, 3vw, 36px);
+}
+
+.about-intro {
+  align-items: center;
+  column-gap: clamp(28px, 4vw, 72px);
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(420px, 1fr);
+  justify-content: start;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--site-content-width);
+  row-gap: var(--site-eyebrow-gap);
+  width: 100%;
 }
 
 .section-index,
@@ -4240,9 +4258,9 @@ html.dark {
 .about-copy {
   align-self: center;
   margin-left: 0;
-  max-width: clamp(42rem, 43vw, 52rem);
+  max-width: clamp(42rem, 48vw, 54rem);
   padding-top: 0;
-  transform: translateX(clamp(-132px, -7vw, -56px));
+  transform: none;
 }
 
 .about .about-copy .about-lead {
@@ -4490,6 +4508,10 @@ html.dark {
 
 @media (max-width: 900px) {
   .about {
+    grid-template-columns: 1fr;
+  }
+
+  .about-intro {
     grid-template-columns: 1fr;
   }
 
