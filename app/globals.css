@@ -4162,9 +4162,10 @@ html.dark {
 
 .about-intro {
   align-items: center;
-  column-gap: clamp(28px, 4vw, 72px);
+  column-gap: clamp(10px, 1.2vw, 20px);
   display: grid;
-  grid-template-columns: minmax(0, max-content) minmax(420px, 1fr);
+  grid-template-columns: minmax(0, max-content)
+    minmax(clamp(420px, 36vw, 620px), 1fr);
   justify-content: start;
   margin-left: auto;
   margin-right: auto;
@@ -4258,9 +4259,10 @@ html.dark {
 .about-copy {
   align-self: center;
   margin-left: 0;
-  max-width: clamp(42rem, 48vw, 54rem);
+  max-width: min(100%, 62rem);
   padding-top: 0;
   transform: none;
+  width: 100%;
 }
 
 .about .about-copy .about-lead {
