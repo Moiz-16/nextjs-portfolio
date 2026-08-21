@@ -12,8 +12,9 @@ import tvImg from "@/public/tradingview_indicators.png";
 import carAiImg from "@/public/self_driving_car.png";
 import qhackImg from "@/public/qhack_2025.png";
 import imcImg from "@/public/imc_prosperity.png";
-import nexusImg from "@/public/nexus.png";
 import tmtImg from "@/public/IMA_TMT_2025_Conference_Abstract.png";
+import nexusImg from "@/public/nexus_landing.png";
+import dissImg from "@/public/Moiz_Saleem_Neural_SDEs_for_Option_Pricing.png"
 import { FaBriefcase } from "react-icons/fa";
 
 export const links = [
@@ -254,8 +255,34 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
+
+  // {
+  //   title: "Mobile App Games",
+  //   description:
+  //     "Built mobile-first game experiments focused on quick sessions, responsive touch interactions, scoring loops and polished feedback across small screens.",
+  //   tags: ["Mobile", "TypeScript", "Game Design"],
+  //   imageUrl: appImg,
+  //   link: "",
+  // },
   {
-    title: "Nexus - Internship Application Tracker",
+    title: "Dissertation - Neural SDEs for Options Pricing",
+    description:
+      "Final-year dissertation exploring neural stochastic differential equations for modelling continuous-time dynamics under uncertainty, combining stochastic calculus with PyTorch experimentation.",
+    tags: ["Python", "PyTorch", "SDEs", "Research"],
+    imageUrl: dissImg,
+    link: "",
+  },
+  {
+    title: "HPC D2Q9-BGK Simulation Optimisation",
+    description:
+      "Optimised D2Q9-BGK simulation using C and C++ by profiling bottlenecks, improving memory access patterns and tightening computational routines for faster research-style workloads.",
+    tags: ["C", "C++", "Profiling", "HPC"],
+    imageUrl: heImg,
+    link: "",
+  },
+
+  {
+    title: "Nexus Internship Application Tracker",
     description:
       "Nexus is an intelligent platform designed to streamline the internship application process for students. It provides a centralised dashboard to track applications, leverages AI to automate data entry, and offers tools for data-driven insights and interview preparation.",
     tags: ["Next.js", "Tailwind", "TypeScript"],
@@ -271,7 +298,7 @@ export const projectsData = [
     link: "",
   },
   {
-    title: "Quantum Bank Heist: QAOA Path Optimisation (QHack 2025)",
+    title: "QAOA Path Optimisation (QHack 2025)",
     description:
       "🥈Second place at QHack 2025🥈 Solo project using QAOA to optimize escape routes in a bank heist scenario. Implemented 3-layer quantum circuits with Qiskit, achieving 95% approximation to classical algorithms across 50+ test simulations.",
     tags: ["Python", "Qiskit", "Quantum Technology"],
@@ -286,30 +313,7 @@ export const projectsData = [
     imageUrl: tmtImg,
     link: "",
   },
-  {
-    title: "Mobile App Games",
-    description:
-      "Built mobile-first game experiments focused on quick sessions, responsive touch interactions, scoring loops and polished feedback across small screens.",
-    tags: ["Mobile", "TypeScript", "Game Design"],
-    imageUrl: appImg,
-    link: "",
-  },
-  {
-    title: "Neural SDE Dissertation Project",
-    description:
-      "Final-year dissertation exploring neural stochastic differential equations for modelling continuous-time dynamics under uncertainty, combining stochastic calculus with PyTorch experimentation.",
-    tags: ["Python", "PyTorch", "SDEs", "Research"],
-    imageUrl: tmtImg,
-    link: "",
-  },
-  {
-    title: "HPC Code Optimisation",
-    description:
-      "Optimised scientific code by profiling bottlenecks, improving memory access patterns and tightening computational routines for faster research-style workloads.",
-    tags: ["C", "C++", "Profiling", "HPC"],
-    imageUrl: heImg,
-    link: "",
-  },
+
   {
     title: "TradingView Strategy Indicators",
     description:
@@ -343,7 +347,7 @@ export const projectsData = [
     link: "",
   },
   {
-    title: "Self Driving Car AI",
+    title: "DQN Self Driving Car AI",
     description:
       "Implemented an AI-driven self-driving car simulation using Deep Q-Learning (DQN), a reinforcement learning technique, that learns to autonomously navigate a dynamic 2D environment with obstacles.",
     tags: ["Python", "PyTorch", "OOP"],
@@ -351,7 +355,7 @@ export const projectsData = [
     link: "",
   },
   {
-    title: "Mobile App Prototype",
+    title: "Shoe Drop Tracker Mobile App",
     description:
       "Prototype for a cross-platform mobile application that acted as a calendar for limited shoe releases using Flutter and a GraphQL API to connect to a local Node.JS headless CMS (Strapi).",
     tags: ["Flutter", "Dart", "UI/UX"],
