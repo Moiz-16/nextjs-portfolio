@@ -4146,7 +4146,7 @@ html.dark {
 
 .about {
   align-items: start;
-  column-gap: clamp(18px, 2.8vw, 40px);
+  column-gap: clamp(8px, 1.4vw, 22px);
   grid-template-columns: minmax(0, max-content) minmax(360px, 0.82fr);
   justify-content: center;
   min-height: auto;
@@ -4242,7 +4242,7 @@ html.dark {
   margin-left: 0;
   max-width: 36rem;
   padding-top: 0;
-  transform: translateX(clamp(-70px, -4vw, -28px));
+  transform: translateX(clamp(-132px, -7vw, -56px));
 }
 
 .about .about-copy .about-lead {
