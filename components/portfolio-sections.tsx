@@ -116,7 +116,6 @@ function ProjectScrollingPreview({
   const reduceMotion = useReducedMotion();
   const viewportRef = useRef<HTMLDivElement>(null);
   const [scrollPx, setScrollPx] = useState(0);
-  const [bgReady, setBgReady] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -145,23 +144,6 @@ function ProjectScrollingPreview({
     };
   }, [src]);
 
-  useEffect(() => {
-    if (!bg) {
-      setBgReady(false);
-      return;
-    }
-
-    let cancelled = false;
-    const img = new window.Image();
-    img.onload = () => !cancelled && setBgReady(true);
-    img.onerror = () => !cancelled && setBgReady(false);
-    img.src = bg;
-
-    return () => {
-      cancelled = true;
-    };
-  }, [bg]);
-
   const scrolls = scrollPx > 0;
   const animate = !reduceMotion && scrolls;
   const pan = scrollPx / PAN_SPEED;
@@ -183,7 +165,9 @@ function ProjectScrollingPreview({
       <div
         className="project-preview-background"
         style={{
-          backgroundImage: bgReady && bg ? `url("${bg}")` : FALLBACK_PROJECT_BG,
+          backgroundImage: bg
+            ? `url("${bg}"), ${FALLBACK_PROJECT_BG}`
+            : FALLBACK_PROJECT_BG,
         }}
       />
 

@@ -2729,22 +2729,25 @@ html.dark .portfolio-sections .contact-rings i {
   background-color: #0f172a;
   background-position: center;
   background-size: cover;
+  filter: brightness(1.18) saturate(1.22) contrast(1.04);
   inset: 0;
   position: absolute;
+  transform: scale(1.02);
 }
 
 .portfolio-sections .project-preview-shot {
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 10px;
-  bottom: 0;
+  bottom: 52px;
   box-shadow:
-    0 24px 50px -12px rgba(8, 20, 55, 0.55),
-    0 8px 18px -8px rgba(8, 20, 55, 0.45);
-  left: 22px;
+    0 18px 42px -18px rgba(8, 20, 55, 0.42),
+    0 6px 16px -10px rgba(8, 20, 55, 0.34);
+  left: 34px;
   overflow: hidden;
   position: absolute;
-  right: 22px;
-  top: 20px;
+  right: 34px;
+  top: 28px;
   transition: transform 0.5s ease-out;
 }
 
@@ -2755,6 +2758,8 @@ html.dark .portfolio-sections .contact-rings i {
 .portfolio-sections .project-preview-image {
   background-repeat: no-repeat;
   inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.68;
   position: absolute;
 }
 
@@ -2762,7 +2767,7 @@ html.dark .portfolio-sections .contact-rings i {
   background: linear-gradient(
     to top,
     var(--ps-paper),
-    rgba(240, 236, 223, 0.82),
+    rgba(240, 236, 223, 0.66),
     transparent
   );
   bottom: 0;
@@ -4628,9 +4633,10 @@ html.dark {
   }
 
   .portfolio-sections .project-preview-shot {
-    left: 16px;
-    right: 16px;
-    top: 16px;
+    bottom: 44px;
+    left: 22px;
+    right: 22px;
+    top: 22px;
   }
 
   .portfolio-sections .experience-card header {
