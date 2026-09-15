@@ -128,38 +128,38 @@ export const aboutDashboardData = {
     },
     techStack: {
       label: "Tech stack",
-      title: "Tech stacks I'm familiar with",
+      title: "Tech stacks I've built with",
       detail:
-        "Python, Java, C / C++, TypeScript, PyTorch and AWS across research, product experiments and systems-focused work.",
+        "Python, PyTorch, Pandas / NumPy, C / C++, Java, TypeScript / Next.js, AWS and API work from the projects above.",
     },
     learning: {
       label: "One thing I'm learning",
-      title: "Kubernetes internals",
-      detail: "Systems get more interesting when the abstractions leak.",
+      title: "Kubernetes",
+      detail: "",
     },
     reading: {
       label: "Currently reading",
-      title: "Iliad - Homer",
-      detail: "Penguin Classics - Fagles",
+      title: "The Heirs",
+      detail: "Faridah Abike-Iyimide",
     },
     queue: {
       label: "Book queue",
-      title: "Same As Ever - Morgan Housel",
-      detail: "Next after Iliad.",
+      title: "East of Eden",
+      detail: "Next after The Heirs.",
     },
     country: {
       label: "Last visited country",
-      title: "Indonesia",
-      detail: "Jakarta - most recent travel pin",
+      title: "Japan",
+      detail: "Most recent travel pin.",
     },
     travel: {
       label: "Travel list",
-      title: "Japan, Türkiye, Morocco",
+      title: "Bosnia, Italy, Turkey",
       detail: "Next three places I'd like to explore.",
     },
     photoRoll: {
       label: "Photo roll",
-      places: ["Jakarta", "Bristol", "London", "Next"],
+      places: ["Canada", "Malta", "Spain", "Japan"],
       detail: "Tiny memory pins from places, walks and weekends.",
     },
     quote: {
@@ -169,28 +169,24 @@ export const aboutDashboardData = {
     },
     game: {
       label: "Favourite game",
-      title: "Catan: Starfarers",
-      detail: "Trade, explore and over-negotiate slightly.",
+      title: "Spottle Movies",
+      detail: "A daily film-guessing puzzle.",
     },
     lego: {
       label: "Current Lego set",
-      title: "LEGO Icons Concorde",
-      detail: "Engineering nostalgia in tiny white bricks.",
-    },
-    life: {
-      label: "If not coding",
-      title: "Reading, travelling, training or trying new food.",
-      detail: "Usually with a notes app open somewhere nearby.",
+      title: "LEGO Technic Ferrari SF-24",
+      detail: "A tiny race engineering project for the desk.",
     },
   },
 } as const;
 
 export const techStackData = [
   "Python",
+  "PyTorch",
+  "Pandas / NumPy",
+  "TypeScript / Next.js",
   "Java",
   "C / C++",
-  "TypeScript",
-  "PyTorch",
   "AWS",
 ] as const;
 

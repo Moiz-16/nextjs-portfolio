@@ -9,7 +9,6 @@ import {
   BsBookHalf,
   BsBricks,
   BsCamera,
-  BsCodeSlash,
   BsGithub,
   BsGlobe2,
   BsJoystick,
@@ -91,10 +90,11 @@ const FALLBACK_GITHUB_STATS: GitHubStats = {
 
 const techStackIconMap = {
   Python: SiPython,
+  PyTorch: SiPytorch,
+  "Pandas / NumPy": SiPython,
+  "TypeScript / Next.js": SiTypescript,
   Java: FaJava,
   "C / C++": SiCplusplus,
-  TypeScript: SiTypescript,
-  PyTorch: SiPytorch,
   AWS: SiAmazonaws,
 } satisfies Record<(typeof techStackData)[number], IconType>;
 
@@ -394,15 +394,6 @@ function AboutDashboard() {
         </span>
         <h3>{panels.lego.title}</h3>
         <p>{panels.lego.detail}</p>
-      </article>
-
-      <article className="about-panel about-panel--life">
-        <span className="about-panel-label">
-          <BsCodeSlash aria-hidden="true" />
-          {panels.life.label}
-        </span>
-        <h3>{panels.life.title}</h3>
-        <p>{panels.life.detail}</p>
       </article>
     </div>
   );

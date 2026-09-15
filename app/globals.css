@@ -1129,24 +1129,18 @@ html.dark .about-panel::before {
 .about-panel--queue,
 .about-panel--game,
 .about-panel--lego,
-.about-panel--life,
 .about-panel--learning,
 .about-panel--photo-roll {
   grid-column: span 3;
   min-height: 0;
 }
 
-.about-panel--life,
 .about-panel--photo-roll {
   grid-column: span 6;
 }
 
 .about-panel--photo-roll {
   grid-row: span 2;
-}
-
-.about-panel--life {
-  grid-column: span 12;
 }
 
 .tech-stack-icons {
@@ -1304,30 +1298,18 @@ html.dark .about-panel::before {
   overflow-wrap: anywhere;
 }
 
-.about-panel:not(.about-panel--latest):not(.about-panel--photo-roll):not(
-    .about-panel--life
-  )
-  h3,
-.about-panel:not(.about-panel--latest):not(.about-panel--photo-roll):not(
-    .about-panel--life
-  )
-  p {
+.about-panel:not(.about-panel--latest):not(.about-panel--photo-roll) h3,
+.about-panel:not(.about-panel--latest):not(.about-panel--photo-roll) p {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
 }
 
-.about-panel:not(.about-panel--latest):not(.about-panel--photo-roll):not(
-    .about-panel--life
-  )
-  h3 {
+.about-panel:not(.about-panel--latest):not(.about-panel--photo-roll) h3 {
   -webkit-line-clamp: 2;
 }
 
-.about-panel:not(.about-panel--latest):not(.about-panel--photo-roll):not(
-    .about-panel--life
-  )
-  p {
+.about-panel:not(.about-panel--latest):not(.about-panel--photo-roll) p {
   -webkit-line-clamp: 2;
 }
 
@@ -3738,7 +3720,6 @@ html.dark .portfolio-sections .education-score-card {
 
   .about-panel--graph,
   .about-panel--latest,
-  .about-panel--life,
   .about-panel--tech-stack,
   .about-panel--photo-roll {
     grid-column: 1 / -1;
@@ -4044,7 +4025,6 @@ html.dark .portfolio-sections .education-score-card {
   .about-panel--queue,
   .about-panel--game,
   .about-panel--lego,
-  .about-panel--life,
   .about-panel--learning,
   .about-panel--tech-stack,
   .about-panel--photo-roll {
