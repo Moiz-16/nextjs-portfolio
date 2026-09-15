@@ -76,7 +76,7 @@ export const homeData = {
   name: "moiz saleem",
   coordinates: "51.5054° N\u00A0\u00A00.0235° W",
   intro:
-    "Bristol Maths and Computer Science graduate building across software, data and systems as an incoming Site Reliability Engineer.",
+    "Bristol Maths and Computer Science graduate building across software, data and systems as a Site Reliability Engineer.",
   socials: {
     contactLabel: "Contact",
     contactHref: "#contact",
@@ -98,7 +98,7 @@ export const aboutData = {
     emphasis: "me",
   },
   lead:
-    "I'm a Bristol Maths and Computer Science graduate joining JPMorgan Chase as a Site Reliability Engineer.",
+    "I'm a Bristol Maths and Computer Science graduate and Site Reliability Engineer at JPMorgan Chase.",
   body:
     "My work spans neural SDE research, trading bots, HPC code optimisation, financial NLP, product design, data science and quantitative finance. I've built Nexus, an internship application platform for students, developed cointegration-based trading strategies that led to an invited IMA TMT talk, worked on dissertation research around neural SDEs, and taken on performance-focused systems work through HPC optimisation. I'm drawn to projects where there's a knot of complexity to untangle, whether that means turning research into usable tools, making data-heavy workflows clearer, or building products that solve practical problems. Away from software, I'm into word puzzles, reading, travelling, training, trying new food, Lego and board games.",
 } as const;
@@ -375,20 +375,19 @@ export const projectsData = [
 export const projectAccentCycle = ["yellow", "coral", "green", "sky"] as const;
 
 export const projectBackgrounds = {
-  "Nexus - Internship Application Tracker": "/assets/backgrounds/nexus.jpg",
+  "Dissertation - Neural SDEs for Options Pricing":
+    "/assets/backgrounds/neural-sdes.jpg",
+  "HPC D2Q9-BGK Simulation Optimisation": "/assets/backgrounds/sec-dealscan.jpg",
+  "Nexus Internship Application Tracker": "/assets/backgrounds/nexus.jpg",
   "IMC Prosperity 3 Challenge": "/assets/backgrounds/imc-prosperity.jpg",
-  "Quantum Bank Heist: QAOA Path Optimisation (QHack 2025)":
-    "/assets/backgrounds/qhack.jpg",
+  "QAOA Path Optimisation (QHack 2025)": "/assets/backgrounds/qhack.jpg",
   "IMA TMT 2025 Conference Talk": "/assets/backgrounds/ima-tmt.jpg",
-  "Mobile App Games": "/assets/backgrounds/mobile-app.jpg",
-  "Neural SDE Dissertation Project": "/assets/backgrounds/neural-sdes.jpg",
-  "HPC Code Optimisation": "/assets/backgrounds/sec-dealscan.jpg",
   "TradingView Strategy Indicators": "/assets/backgrounds/tradingview.jpg",
   "Forex/Crypto Trading Bot": "/assets/backgrounds/fx-bot.jpg",
   "ChatGPT News Trader": "/assets/backgrounds/news-trader.jpg",
   "Scotland Yard AI": "/assets/backgrounds/scotland-yard.jpg",
-  "Self Driving Car AI": "/assets/backgrounds/self-driving.jpg",
-  "Mobile App Prototype": "/assets/backgrounds/mobile-app.jpg",
+  "DQN Self Driving Car AI": "/assets/backgrounds/self-driving.jpg",
+  "Shoe Drop Tracker Mobile App": "/assets/backgrounds/mobile-app.jpg",
   "HE+ Research Project": "/assets/backgrounds/he-research.jpg",
 } as const;
 
