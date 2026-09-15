@@ -15,6 +15,7 @@ import imcImg from "@/public/imc_prosperity.png";
 import tmtImg from "@/public/IMA_TMT_2025_Conference_Abstract.png";
 import nexusImg from "@/public/nexus_landing.png";
 import dissImg from "@/public/Moiz_Saleem_Neural_SDEs_for_Option_Pricing.png"
+import hpcImg from "@/public/hpc_cw.png"
 import { FaBriefcase } from "react-icons/fa";
 
 export const links = [
@@ -273,7 +274,7 @@ export const projectsData = [
     description:
       "Optimised D2Q9-BGK simulation using C and C++ by profiling bottlenecks, improving memory access patterns and tightening computational routines for faster research-style workloads.",
     tags: ["C", "C++", "Profiling", "HPC"],
-    imageUrl: heImg,
+    imageUrl: hpcImg,
     link: "",
   },
 
