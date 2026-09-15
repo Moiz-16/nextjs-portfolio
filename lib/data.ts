@@ -373,19 +373,28 @@ export const projectAccentCycle = ["yellow", "coral", "green", "sky"] as const;
 
 export const projectBackgrounds = {
   "Dissertation - Neural SDEs for Options Pricing":
-    "/assets/backgrounds/neural-sdes.jpg",
-  "HPC D2Q9-BGK Simulation Optimisation": "/assets/backgrounds/sec-dealscan.jpg",
-  "Nexus Internship Application Tracker": "/assets/backgrounds/nexus.jpg",
-  "IMC Prosperity 3 Challenge": "/assets/backgrounds/imc-prosperity.jpg",
-  "QAOA Path Optimisation (QHack 2025)": "/assets/backgrounds/qhack.jpg",
-  "IMA TMT 2025 Conference Talk": "/assets/backgrounds/ima-tmt.jpg",
-  "TradingView Strategy Indicators": "/assets/backgrounds/tradingview.jpg",
-  "Forex/Crypto Trading Bot": "/assets/backgrounds/fx-bot.jpg",
-  "ChatGPT News Trader": "/assets/backgrounds/news-trader.jpg",
-  "Scotland Yard AI": "/assets/backgrounds/scotland-yard.jpg",
-  "DQN Self Driving Car AI": "/assets/backgrounds/self-driving.jpg",
-  "Shoe Drop Tracker Mobile App": "/assets/backgrounds/mobile-app.jpg",
-  "HE+ Research Project": "/assets/backgrounds/he-research.jpg",
+    "/assets/backgrounds/generated/teal-mountain-lake.jpg",
+  "HPC D2Q9-BGK Simulation Optimisation":
+    "/assets/backgrounds/generated/blue-city-overlook.jpg",
+  "Nexus Internship Application Tracker":
+    "/assets/backgrounds/generated/pastel-rooftop.jpg",
+  "IMC Prosperity 3 Challenge":
+    "/assets/backgrounds/generated/aurora-harbor.jpg",
+  "QAOA Path Optimisation (QHack 2025)":
+    "/assets/backgrounds/generated/purple-waterfall.jpg",
+  "IMA TMT 2025 Conference Talk":
+    "/assets/backgrounds/generated/canal-evening.jpg",
+  "TradingView Strategy Indicators":
+    "/assets/backgrounds/generated/rainy-city-train.jpg",
+  "Forex/Crypto Trading Bot": "/assets/backgrounds/generated/railway-sunset.jpg",
+  "ChatGPT News Trader":
+    "/assets/backgrounds/generated/neon-night-alley.jpg",
+  "Scotland Yard AI": "/assets/backgrounds/generated/tram-suburb.jpg",
+  "DQN Self Driving Car AI":
+    "/assets/backgrounds/generated/neon-desert-road.jpg",
+  "Shoe Drop Tracker Mobile App":
+    "/assets/backgrounds/generated/harbor-dusk.jpg",
+  "HE+ Research Project": "/assets/backgrounds/generated/glasshouse-garden.jpg",
 } as const;
 
 export const portfolioSectionData = {
