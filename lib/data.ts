@@ -100,7 +100,7 @@ export const aboutData = {
   lead:
     "I am a Bristol Maths and Computer Science graduate, working as a Site Reliability Engineer at JPMorganChase.",
   body:
-    "My work spans neural SDE research, trading bots, HPC code optimisation, financial NLP, product design, data science and quantitative finance. I've built Nexus, an internship application platform for students, developed cointegration-based trading strategies that led to an invited IMA TMT talk, worked on dissertation research around neural SDEs, and taken on performance-focused systems work through HPC optimisation. I'm drawn to projects where there's a knot of complexity to untangle, whether that means turning research into usable tools, making data-heavy workflows clearer, or building products that solve practical problems. Away from software, I'm into word puzzles, reading, travelling, training, trying new food, Lego and board games.",
+    "My work spans neural SDE research, trading bots, HPC code optimisation, financial NLP, product design, data science and quantitative finance. I've built Nexus, an internship application platform for students, developed cointegration-based trading strategies that led to an invited IMA TMT talk, worked on dissertation research around neural SDEs, and taken on performance-focused systems work through HPC optimisation. I enjoy projects where I get to dig into the details, understand the moving parts, and build something that makes the whole thing easier to use. Away from software, I'm into word puzzles, reading, travelling, training, trying new food, Lego and board games.",
 } as const;
 
 export const aboutDashboardData = {
