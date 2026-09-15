@@ -131,52 +131,52 @@ export const aboutDashboardData = {
       label: "Tech stack",
       title: "Tech stacks I've built with",
       detail:
-        "Python, PyTorch, Pandas / NumPy, C / C++, Java, TypeScript / Next.js, AWS and API work from the projects above.",
+        "Python, PyTorch, Pandas / NumPy, C / C++, Java, TypeScript / Next.js and enough AWS to keep things moving.",
     },
     learning: {
       label: "One thing I'm learning",
       title: "Kubernetes",
-      detail: "",
+      detail: "Trying to make pods, nodes and YAML feel less mysterious.",
     },
     reading: {
       label: "Currently reading",
       title: "The Heirs",
-      detail: "Faridah Abike-Iyimide",
+      detail: "Faridah Abike-Iyimide. Elite school chaos, apparently relaxing.",
     },
     queue: {
       label: "Book queue",
       title: "East of Eden",
-      detail: "Next after The Heirs.",
+      detail: "Steinbeck is waiting patiently on the bench.",
     },
     country: {
       label: "Last visited country",
       title: "Japan",
-      detail: "Most recent travel pin.",
+      detail: "Great food, tiny shops and dangerously good convenience stores.",
     },
     travel: {
       label: "Travel list",
       title: "Bosnia, Italy, Turkey",
-      detail: "Next three places I'd like to explore.",
+      detail: "A shortlist pretending it will not become a spreadsheet.",
     },
     photoRoll: {
       label: "Photo roll",
       places: ["Canada", "Malta", "Spain", "Japan"],
-      detail: "Tiny memory pins from places, walks and weekends.",
+      detail: "Evidence that I do occasionally leave the laptop.",
     },
     quote: {
       label: "Favourite quote",
       title: "Make failure boring.",
-      detail: "A useful little rule for software, systems and life.",
+      detail: "A useful rule for anything you have to do twice.",
     },
     game: {
       label: "Favourite game",
       title: "Spottle Movies",
-      detail: "A daily film-guessing puzzle.",
+      detail: "Wordle energy, but for people who pause films too much.",
     },
     lego: {
       label: "Current Lego set",
       title: "LEGO Technic Ferrari SF-24",
-      detail: "A tiny race engineering project for the desk.",
+      detail: "Several hundred pieces of red aerodynamic procrastination.",
     },
   },
 } as const;
