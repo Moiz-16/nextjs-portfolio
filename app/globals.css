@@ -2758,8 +2758,7 @@ html.dark .portfolio-sections .contact-rings i {
 .portfolio-sections .project-preview-image {
   background-repeat: no-repeat;
   inset: 0;
-  mix-blend-mode: multiply;
-  opacity: 0.68;
+  opacity: 0.9;
   position: absolute;
 }
 
