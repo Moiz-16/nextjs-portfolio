@@ -2765,12 +2765,13 @@ html.dark .portfolio-sections .contact-rings i {
 .portfolio-sections .project-template-overlay {
   background: linear-gradient(
     to top,
-    var(--ps-paper),
-    rgba(240, 236, 223, 0.66),
+    rgba(240, 236, 223, 0.98) 0%,
+    rgba(240, 236, 223, 0.94) 46%,
+    rgba(240, 236, 223, 0.72) 76%,
     transparent
   );
   bottom: 0;
-  height: 96px;
+  height: 124px;
   left: 0;
   pointer-events: none;
   position: absolute;
@@ -2787,7 +2788,7 @@ html.dark .portfolio-sections .contact-rings i {
   height: 100%;
   justify-content: flex-end;
   left: 0;
-  padding: 16px;
+  padding: 18px;
   position: absolute;
   width: 100%;
 }
@@ -2797,8 +2798,9 @@ html.dark .portfolio-sections .contact-rings i {
   font-family: var(--sans);
   font-size: 18px;
   line-height: 1.15;
+  max-width: min(100%, 21rem);
   text-align: left;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  text-shadow: 0 1px 0 rgba(248, 244, 232, 0.42);
 }
 
 .portfolio-sections .project-template-overlay-inner span {
