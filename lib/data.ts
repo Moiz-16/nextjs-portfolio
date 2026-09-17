@@ -141,7 +141,7 @@ export const aboutDashboardData = {
     reading: {
       label: "Currently reading",
       title: "The Heirs",
-      detail: "Faridah Abike-Iyimide. Elite school chaos, apparently relaxing.",
+      detail: "Faridah Abike-Iyimide.",
     },
     queue: {
       label: "Book queue",
@@ -161,10 +161,10 @@ export const aboutDashboardData = {
     photoRoll: {
       label: "Photo roll",
       places: [
-        { name: "Japan", image: "/assets/photo-roll/japan.jpg" },
         { name: "Canada", image: "/assets/photo-roll/canada.jpg" },
-        { name: "Spain", image: "/assets/photo-roll/spain.jpg" },
         { name: "Malta", image: "/assets/photo-roll/malta.jpg" },
+        { name: "Spain", image: "/assets/photo-roll/spain.jpg" },
+        { name: "Japan", image: "/assets/photo-roll/japan.jpg" },
       ],
       detail: "Evidence that I do occasionally leave the laptop.",
     },

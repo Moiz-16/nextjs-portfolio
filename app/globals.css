@@ -2708,7 +2708,7 @@ html.dark .portfolio-sections .contact-rings i {
 }
 
 .portfolio-sections .project-card-template {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 4 / 3;
   background: transparent;
   border: 0;
   border-radius: 8px;
@@ -2748,7 +2748,7 @@ html.dark .portfolio-sections .contact-rings i {
   background: rgba(15, 23, 42, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 10px;
-  bottom: 52px;
+  bottom: 76px;
   box-shadow:
     0 18px 42px -18px rgba(8, 20, 55, 0.42),
     0 6px 16px -10px rgba(8, 20, 55, 0.34);
@@ -2774,9 +2774,9 @@ html.dark .portfolio-sections .contact-rings i {
 .portfolio-sections .project-template-overlay {
   background: linear-gradient(
     to top,
-    rgba(240, 236, 223, 0.98) 0%,
-    rgba(240, 236, 223, 0.94) 46%,
-    rgba(240, 236, 223, 0.72) 76%,
+    rgba(240, 236, 223, 0.88) 0%,
+    rgba(240, 236, 223, 0.7) 46%,
+    rgba(240, 236, 223, 0.38) 76%,
     transparent
   );
   bottom: 0;
@@ -4648,7 +4648,7 @@ html.dark {
   }
 
   .portfolio-sections .project-preview-shot {
-    bottom: 44px;
+    bottom: 64px;
     left: 22px;
     right: 22px;
     top: 22px;
