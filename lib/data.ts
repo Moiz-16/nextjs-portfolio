@@ -32,16 +32,16 @@ export const links = [
     hash: "#projects",
   },
   {
-    name: "Education",
-    hash: "#education",
+    name: "Experience",
+    hash: "#experience",
   },
   {
     name: "Skills",
     hash: "#skills",
   },
   {
-    name: "Experience",
-    hash: "#experience",
+    name: "Education",
+    hash: "#education",
   },
   {
     name: "Contact",
@@ -56,8 +56,8 @@ export const headerData = {
   nav: [
     { label: "ABOUT", href: "#about" },
     { label: "PROJECTS", href: "#projects" },
-    { label: "EDUCATION", href: "#education" },
     { label: "EXPERIENCE", href: "#experience" },
+    { label: "EDUCATION", href: "#education" },
     { label: "CONTACT", href: "#contact" },
   ],
 } as const;
@@ -421,12 +421,12 @@ export const portfolioSectionData = {
       "Research, infrastructure and products built to solve real problems.",
   },
   education: {
-    sectionIndex: "03 / EDUCATION",
+    sectionIndex: "04 / EDUCATION",
     eyebrow: "A FORMAL BASE",
     title: "Where the work started.",
   },
   experience: {
-    sectionIndex: "04 / EXPERIENCE",
+    sectionIndex: "03 / EXPERIENCE",
     title: {
       prefix: "A timeline of",
       emphasis: "building and learning.",
@@ -514,46 +514,49 @@ export const educationData = [
     period: "SEP 2023 - JUN 2026",
     institution: "University of Bristol",
     qualification: "BSc Mathematics and Computer Science",
-    focus: "Mathematics, computer systems, software engineering and applied AI.",
-    result: "Graduated",
+    focus: "",
+    result: "Upper second class honours (2:1)",
     modules: [
       {
-        label: "Mathematics",
+        label: "First Year",
         items: [
-          "Probability and statistics",
-          "Linear algebra",
-          "Mathematics for computer science",
+          "Imperative and Functional Programming",
+          "Object-Oriented Programming and Algorithms I",
+          "Probability and Statistics",
+          "Linear Algebra",
         ],
       },
       {
-        label: "Computer Science",
+        label: "Second Year",
         items: [
-          "Imperative and functional programming",
-          "Object-oriented programming and algorithms",
-          "Computer systems",
+          "Software engineering project work",
+          "Algorithms and data structures",
+          "Intro to Machine Learning",
         ],
       },
       {
-        label: "Final Focus",
+        label: "Final Year",
         items: [
           "Neural SDE dissertation project",
-          "High performance computing",
-          "Software engineering project work",
+          "High Performance Computing",
+          "Innovation and Enterprise",
         ],
       },
     ],
+    achievementsTitle: "Societies & activities",
     achievements: [
-      "Built a neural SDE dissertation project using PyTorch and stochastic modelling.",
-      "Worked on HPC code optimisation and systems-level performance problems.",
-      "Invited IMA TMT speaker on cointegration-based trading strategies.",
       "Founded Nexus, an internship application platform for students.",
-      "Built trading bots and research tooling across data, markets and automation.",
+      "Quantitative Analyst at Bristol Trading Society.",
+      "Invited undergraduate speaker at the IMA TMT 2025 conference.",
+      "SEO London Candidate and upReach Associate.",
+      "Research Intern at the University of Bristol Business School.",
+      "Completed the Bristol PLUS Award.",
     ],
     stats: [
+      { label: "Result", value: "2:1" },
       { label: "Dissertation", value: "Neural SDE" },
-      { label: "Coursework", value: "HPC" },
-      { label: "Talk", value: "IMA TMT" },
-      { label: "Build", value: "Nexus" },
+      { label: "Society", value: "Bristol Trading" },
+      { label: "Award", value: "Bristol PLUS" },
     ],
   },
   {
@@ -674,8 +677,8 @@ export const footerData = {
   copyright: "2026 Moiz Saleem. All rights reserved.",
   nav: [
     { label: "Projects", href: "#projects" },
-    { label: "Education", href: "#education" },
     { label: "Experience", href: "#experience" },
+    { label: "Education", href: "#education" },
     { label: "Back to top", href: "#home" },
   ],
 } as const;

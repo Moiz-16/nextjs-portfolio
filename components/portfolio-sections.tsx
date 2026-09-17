@@ -341,7 +341,7 @@ function EducationSection() {
               <p className="education-detail-label">Result</p>
               <h3>{item.result}</h3>
             </div>
-            <p>{item.focus}</p>
+            {item.focus ? <p>{item.focus}</p> : null}
           </header>
 
           <div className="education-modules" aria-label="Selected study areas">
@@ -358,7 +358,11 @@ function EducationSection() {
           </div>
 
           <div className="education-achievements">
-            <h4>Built from it</h4>
+            <h4>
+              {"achievementsTitle" in item
+                ? item.achievementsTitle
+                : "Built from it"}
+            </h4>
             <ul>
               {item.achievements.map((achievement) => (
                 <li key={achievement}>{achievement}</li>
@@ -547,17 +551,6 @@ export default function PortfolioSections() {
       </section>
 
       <section
-        ref={educationView.ref}
-        className="education ps-section-shell"
-        id="education"
-      >
-        <div className="ps-section-index">
-          {portfolioSectionData.education.sectionIndex}
-        </div>
-        <EducationSection />
-      </section>
-
-      <section
         ref={experienceView.ref}
         className="experience ps-grid-surface ps-section-shell"
         id="experience"
@@ -599,6 +592,17 @@ export default function PortfolioSections() {
             </section>
           </div>
         </ScrollFrame>
+      </section>
+
+      <section
+        ref={educationView.ref}
+        className="education ps-section-shell"
+        id="education"
+      >
+        <div className="ps-section-index">
+          {portfolioSectionData.education.sectionIndex}
+        </div>
+        <EducationSection />
       </section>
 
       <section
