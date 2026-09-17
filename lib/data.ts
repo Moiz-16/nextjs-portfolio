@@ -453,7 +453,6 @@ export const portfolioExperienceData = [
     company: "JPMorgan Chase",
     description: [
       "Working on the ICB SRE team across software engineering and reliability-focused systems in a production financial services environment.",
-      "Building production engineering habits around dependable systems, observability and operational quality.",
     ],
     skills: ["SOFTWARE ENGINEERING", "RELIABILITY", "FINANCE"],
   },

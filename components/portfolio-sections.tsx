@@ -58,10 +58,6 @@ const education = educationData;
 function getTimelineYear(period: string) {
   const years = Array.from(period.matchAll(/\b\d{4}\b/g), (match) => match[0]);
 
-  if (years.length > 1 && years[0] !== years[years.length - 1]) {
-    return `${years[0]}-${years[years.length - 1].slice(2)}`;
-  }
-
   return years[0] ?? period;
 }
 
