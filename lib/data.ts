@@ -194,9 +194,9 @@ export const techStackData = [
 export const experiencesData = [
   {
     title: "JPMorgan Chase",
-    subtitle: "Software Engineering Analyst",
+    subtitle: "Software Engineering Analyst, ICB SRE Team",
     description:
-      `Working across software engineering and reliability-focused systems in a production financial services environment.`,
+      `Working on the ICB SRE team across software engineering and reliability-focused systems in a production financial services environment.`,
     icon: FaBriefcase,
     date: "Sep 2026 - Present",
   },
@@ -444,10 +444,10 @@ export const portfolioSectionData = {
 export const portfolioExperienceData = [
   {
     period: "SEP 2026 - PRESENT",
-    role: "Software Engineering Analyst",
+    role: "Software Engineering Analyst, ICB SRE Team",
     company: "JPMorgan Chase",
     description: [
-      "Working across software engineering and reliability-focused systems in a production financial services environment.",
+      "Working on the ICB SRE team across software engineering and reliability-focused systems in a production financial services environment.",
       "Building production engineering habits around dependable systems, observability and operational quality.",
     ],
     skills: ["SOFTWARE ENGINEERING", "RELIABILITY", "FINANCE"],
