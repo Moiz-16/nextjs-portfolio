@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import type { IconType } from "react-icons";
 import {
   BsAirplane,
@@ -361,9 +362,17 @@ function AboutDashboard() {
           <BsCamera aria-hidden="true" />
           {panels.photoRoll.label}
         </span>
-        <div className="photo-roll-strip" aria-hidden="true">
+        <div className="photo-roll-strip">
           {panels.photoRoll.places.map((place) => (
-            <span key={place}>{place}</span>
+            <figure className="photo-roll-card" key={place.name}>
+              <Image
+                src={place.image}
+                alt={`${place.name} travel photo`}
+                fill
+                sizes="(max-width: 700px) 46vw, 13vw"
+              />
+              <figcaption>{place.name}</figcaption>
+            </figure>
           ))}
         </div>
         <p>{panels.photoRoll.detail}</p>

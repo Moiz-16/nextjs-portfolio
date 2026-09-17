@@ -160,7 +160,12 @@ export const aboutDashboardData = {
     },
     photoRoll: {
       label: "Photo roll",
-      places: ["Canada", "Malta", "Spain", "Japan"],
+      places: [
+        { name: "Japan", image: "/assets/photo-roll/japan.jpg" },
+        { name: "Canada", image: "/assets/photo-roll/canada.jpg" },
+        { name: "Spain", image: "/assets/photo-roll/spain.jpg" },
+        { name: "Malta", image: "/assets/photo-roll/malta.jpg" },
+      ],
       detail: "Evidence that I do occasionally leave the laptop.",
     },
     quote: {
