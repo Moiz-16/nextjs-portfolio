@@ -563,84 +563,55 @@ export const educationData = [
     period: "SEP 2020 - JUN 2022",
     institution: "North Bristol Post-16 Centre",
     qualification: "A-Levels",
-    focus:
-      "A-level study with a strong quantitative base, including top-of-cohort performance in Physics and Economics.",
+    focus: "",
     result: "Top cohort in Physics & Economics",
+    activitiesFirst: true,
     modules: [
       {
         label: "Subjects",
         items: [
           "Physics - top of cohort",
           "Economics - top of cohort",
-          "Quantitative problem solving",
-        ],
-      },
-      {
-        label: "Built From It",
-        items: [
-          "Modelling messy systems",
-          "Quantum technology work experience",
-          "University preparation through Access to Bristol",
-        ],
-      },
-      {
-        label: "Programmes",
-        items: [
-          "Access to Bristol course",
-          "Cambridge HE+ programme",
-          "KETS quantum technology work experience",
+          "Quantitative problem solving and university preparation",
         ],
       },
     ],
+    achievementsTitle: "Activities & achievements",
     achievements: [
       "Ranked top of cohort for Physics.",
       "Ranked top of cohort for Economics.",
-      "Completed the Access to Bristol course and Cambridge HE+ programme.",
-      "Completed quantum technology work experience with KETS.",
+      "Access to Bristol course.",
+      "Cambridge HE+ programme.",
+      "KETS quantum technology work experience.",
     ],
     stats: [
       { label: "Physics", value: "Top cohort" },
       { label: "Economics", value: "Top cohort" },
-      { label: "Course", value: "Access Bristol" },
       { label: "Programme", value: "Cambridge HE+" },
+      { label: "Course", value: "Access Bristol" },
     ],
   },
   {
     period: "SEP 2015 - JUN 2020",
     institution: "Bristol Metropolitan Academy",
     qualification: "GCSEs",
-    focus:
-      "GCSE study across a broad set of subjects, finishing top of cohort across the board.",
+    focus: "",
     result: "Top of cohort across all GCSEs",
+    activitiesFirst: true,
     modules: [
       {
-        label: "Breadth",
+        label: "Details",
         items: [
           "Mathematics and sciences",
           "English and written analysis",
           "A broad GCSE subject base",
         ],
       },
-      {
-        label: "Habits",
-        items: [
-          "Consistent revision",
-          "Working carefully through detail",
-          "Turning effort into results",
-        ],
-      },
-      {
-        label: "Foundation",
-        items: [
-          "Confidence with technical subjects",
-          "Clear communication",
-          "Strong academic momentum",
-        ],
-      },
     ],
+    achievementsTitle: "Activities & achievements",
     achievements: [
       "Ranked top of cohort across all GCSE subjects.",
-      "Built the study habits that carried into A-levels and university.",
+      "Built the study habits that carried into A-levels.",
       "Developed an early mix of technical confidence and written clarity.",
     ],
     stats: [

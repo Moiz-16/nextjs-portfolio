@@ -304,6 +304,33 @@ function EducationSection() {
   const [selectedEducation, setSelectedEducation] = useState(0);
   const item = education[selectedEducation] ?? education[0];
   const copy = portfolioSectionData.education;
+  const achievementsTitle =
+    "achievementsTitle" in item ? item.achievementsTitle : "Built from it";
+  const activitiesFirst = "activitiesFirst" in item && item.activitiesFirst;
+  const modulesBlock = (
+    <div className="education-modules" aria-label="Selected study areas">
+      {item.modules.map((group) => (
+        <section key={group.label}>
+          <h4>{group.label}</h4>
+          <ul>
+            {group.items.map((module) => (
+              <li key={module}>{module}</li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  );
+  const achievementsBlock = (
+    <div className="education-achievements">
+      <h4>{achievementsTitle}</h4>
+      <ul>
+        {item.achievements.map((achievement) => (
+          <li key={achievement}>{achievement}</li>
+        ))}
+      </ul>
+    </div>
+  );
 
   return (
     <ScrollFrame className="education-inner">
@@ -344,31 +371,8 @@ function EducationSection() {
             {item.focus ? <p>{item.focus}</p> : null}
           </header>
 
-          <div className="education-modules" aria-label="Selected study areas">
-            {item.modules.map((group) => (
-              <section key={group.label}>
-                <h4>{group.label}</h4>
-                <ul>
-                  {group.items.map((module) => (
-                    <li key={module}>{module}</li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
-
-          <div className="education-achievements">
-            <h4>
-              {"achievementsTitle" in item
-                ? item.achievementsTitle
-                : "Built from it"}
-            </h4>
-            <ul>
-              {item.achievements.map((achievement) => (
-                <li key={achievement}>{achievement}</li>
-              ))}
-            </ul>
-          </div>
+          {activitiesFirst ? achievementsBlock : modulesBlock}
+          {activitiesFirst ? modulesBlock : achievementsBlock}
 
           <div className="education-score-grid" aria-label="Education highlights">
             {item.stats.map((stat) => (
