@@ -551,6 +551,96 @@ export const educationData = [
       { label: "Build", value: "Nexus" },
     ],
   },
+  {
+    period: "SEP 2020 - JUN 2022",
+    institution: "North Bristol Post-16 Centre",
+    qualification: "A-Levels",
+    focus:
+      "A-level study with a strong quantitative base, including top-of-cohort performance in Physics and Economics.",
+    result: "Top cohort in Physics & Economics",
+    modules: [
+      {
+        label: "Subjects",
+        items: [
+          "Physics - top of cohort",
+          "Economics - top of cohort",
+          "Quantitative problem solving",
+        ],
+      },
+      {
+        label: "Built From It",
+        items: [
+          "Modelling messy systems",
+          "Clear written arguments",
+          "Comfort with numbers under pressure",
+        ],
+      },
+      {
+        label: "Carried Forward",
+        items: [
+          "Systems thinking",
+          "Analytical discipline",
+          "A taste for technical detail",
+        ],
+      },
+    ],
+    achievements: [
+      "Ranked top of cohort for Physics.",
+      "Ranked top of cohort for Economics.",
+      "Built the academic base for Maths and Computer Science at Bristol.",
+    ],
+    stats: [
+      { label: "Physics", value: "Top cohort" },
+      { label: "Economics", value: "Top cohort" },
+      { label: "Focus", value: "Quant" },
+      { label: "Next", value: "Bristol" },
+    ],
+  },
+  {
+    period: "SEP 2015 - JUN 2020",
+    institution: "Bristol Metropolitan Academy",
+    qualification: "GCSEs",
+    focus:
+      "GCSE study across a broad set of subjects, finishing top of cohort across the board.",
+    result: "Top of cohort across all GCSEs",
+    modules: [
+      {
+        label: "Breadth",
+        items: [
+          "Mathematics and sciences",
+          "English and written analysis",
+          "A broad GCSE subject base",
+        ],
+      },
+      {
+        label: "Habits",
+        items: [
+          "Consistent revision",
+          "Working carefully through detail",
+          "Turning effort into results",
+        ],
+      },
+      {
+        label: "Foundation",
+        items: [
+          "Confidence with technical subjects",
+          "Clear communication",
+          "Strong academic momentum",
+        ],
+      },
+    ],
+    achievements: [
+      "Ranked top of cohort across all GCSE subjects.",
+      "Built the study habits that carried into A-levels and university.",
+      "Developed an early mix of technical confidence and written clarity.",
+    ],
+    stats: [
+      { label: "Rank", value: "Top cohort" },
+      { label: "Scope", value: "All GCSEs" },
+      { label: "Base", value: "STEM + writing" },
+      { label: "Next", value: "A-Levels" },
+    ],
+  },
 ] as const;
 
 export const contactFormData = {

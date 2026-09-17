@@ -301,7 +301,8 @@ function ExperienceCard({
 }
 
 function EducationSection() {
-  const item = education[0];
+  const [selectedEducation, setSelectedEducation] = useState(0);
+  const item = education[selectedEducation] ?? education[0];
   const copy = portfolioSectionData.education;
 
   return (
@@ -313,16 +314,21 @@ function EducationSection() {
 
       <div className="education-layout">
         <div className="education-list ps-reveal">
-          {education.map((entry) => (
-            <article
-              className="education-list-card"
+          {education.map((entry, index) => (
+            <button
+              type="button"
+              className={`education-list-card${
+                selectedEducation === index ? " education-list-card--active" : ""
+              }`}
               data-cursor-target
               key={`${entry.institution}-${entry.period}`}
+              onClick={() => setSelectedEducation(index)}
+              aria-pressed={selectedEducation === index}
             >
               <time>{entry.period}</time>
               <h3>{entry.institution}</h3>
               <p>{entry.qualification}</p>
-            </article>
+            </button>
           ))}
         </div>
 
