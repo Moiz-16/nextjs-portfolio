@@ -4489,6 +4489,190 @@ html.dark {
   width: 100%;
 }
 
+html.dark .portfolio-sections .projects-heading .ps-eyebrow,
+html.dark .portfolio-sections .experience-heading .ps-eyebrow,
+html.dark .portfolio-sections .projects-heading > p:last-child,
+html.dark .portfolio-sections .experience-heading > p,
+html.dark .portfolio-sections .contact-summary,
+html.dark .portfolio-sections .contact-form-note {
+  color: rgba(226, 232, 240, 0.66);
+}
+
+html.dark .portfolio-sections .project-card-template {
+  box-shadow:
+    0 24px 74px -46px rgba(0, 0, 0, 0.92),
+    0 0 0 1px rgba(148, 163, 184, 0.14);
+}
+
+html.dark .portfolio-sections .project-preview-background {
+  filter: brightness(0.88) saturate(1.08) contrast(1.06);
+}
+
+html.dark .portfolio-sections .project-preview-shot {
+  background: rgba(2, 8, 23, 0.2);
+  border-color: rgba(226, 232, 240, 0.18);
+  box-shadow:
+    0 18px 42px -18px rgba(0, 0, 0, 0.72),
+    0 6px 16px -10px rgba(0, 0, 0, 0.58);
+}
+
+html.dark .portfolio-sections .project-template-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(2, 8, 23, 0.92) 0%,
+    rgba(2, 8, 23, 0.74) 48%,
+    rgba(2, 8, 23, 0.36) 78%,
+    transparent
+  );
+}
+
+html.dark .portfolio-sections .project-template-overlay-inner div {
+  color: hsl(210 40% 98%);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.86);
+}
+
+html.dark .portfolio-sections .project-template-overlay-inner span {
+  background: rgba(248, 244, 232, 0.1);
+  border: 1px solid rgba(248, 244, 232, 0.18);
+  color: hsl(210 40% 98%);
+}
+
+html.dark .portfolio-sections .experience {
+  background: hsl(222.2 84% 4.9%);
+  color: hsl(210 40% 98%);
+}
+
+html.dark .portfolio-sections .experience-connector {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(226, 232, 240, 0.28) 12%,
+    rgba(148, 163, 184, 0.18) 50%,
+    rgba(226, 232, 240, 0.28) 88%,
+    transparent
+  );
+}
+
+html.dark .portfolio-sections .experience-timeline-marker::after {
+  background: hsl(210 40% 98%);
+  border-color: hsl(222.2 84% 4.9%);
+  box-shadow: 0 0 0 1px rgba(226, 232, 240, 0.22);
+}
+
+html.dark .portfolio-sections .experience-timeline-marker span {
+  background: hsl(222.2 84% 4.9%);
+  border-color: rgba(226, 232, 240, 0.24);
+  color: hsl(210 40% 98%);
+}
+
+html.dark .portfolio-sections .experience-card {
+  background: rgba(15, 23, 42, 0.72);
+  border-color: rgba(148, 163, 184, 0.22);
+  box-shadow: 0 18px 54px -42px rgba(0, 0, 0, 0.85);
+  color: hsl(210 40% 98%);
+}
+
+html.dark .portfolio-sections .experience-card:hover {
+  background: rgba(15, 23, 42, 0.86);
+  border-color: rgba(226, 232, 240, 0.32);
+  box-shadow: 0 22px 64px -44px rgba(0, 0, 0, 0.92);
+}
+
+html.dark .portfolio-sections .experience-card header p,
+html.dark .portfolio-sections .experience-card ul {
+  color: rgba(226, 232, 240, 0.68);
+}
+
+html.dark .portfolio-sections .experience-card time,
+html.dark .portfolio-sections .experience-skills span {
+  background: rgba(248, 244, 232, 0.07);
+  color: hsl(210 40% 98%);
+}
+
+html.dark .portfolio-sections .experience-skills span:hover {
+  background: rgba(248, 244, 232, 0.12);
+}
+
+html.dark .portfolio-sections .education-list-card--active {
+  border-color: rgba(226, 232, 240, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.08);
+}
+
+html.dark .portfolio-sections .education-list-card:hover,
+html.dark .portfolio-sections .education-detail:hover {
+  border-color: rgba(226, 232, 240, 0.42);
+  box-shadow: 0 18px 46px -36px rgba(0, 0, 0, 0.8);
+}
+
+html.dark .portfolio-sections .education-score-card strong,
+html.dark .portfolio-sections .education-list-card h3,
+html.dark .portfolio-sections .education-detail h3 {
+  color: hsl(210 40% 98%);
+}
+
+html.dark .portfolio-sections .contact-rings i {
+  border-color: rgba(226, 232, 240, 0.14);
+}
+
+html.dark .portfolio-sections .reference-contact-form {
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.84)) padding-box,
+    linear-gradient(135deg, rgba(226, 232, 240, 0.28), rgba(148, 163, 184, 0.2)) border-box;
+  box-shadow:
+    0 28px 80px -56px rgba(0, 0, 0, 0.95),
+    inset 0 1px 0 rgba(226, 232, 240, 0.08);
+}
+
+html.dark .portfolio-sections .reference-contact-form::before {
+  background: radial-gradient(
+    circle at 18% 0%,
+    rgba(226, 232, 240, 0.08),
+    transparent 38%
+  );
+}
+
+html.dark .portfolio-sections .contact-input-group span {
+  color: rgba(226, 232, 240, 0.7);
+}
+
+html.dark .portfolio-sections .contact-input-group input,
+html.dark .portfolio-sections .contact-input-group textarea {
+  background: rgba(2, 8, 23, 0.48);
+  border-color: rgba(148, 163, 184, 0.24);
+  box-shadow: 0 1px 0 rgba(226, 232, 240, 0.05) inset;
+  color: hsl(210 40% 98%);
+}
+
+html.dark .portfolio-sections .contact-input-group input::placeholder,
+html.dark .portfolio-sections .contact-input-group textarea::placeholder {
+  color: rgba(226, 232, 240, 0.38);
+}
+
+html.dark .portfolio-sections .contact-input-group input:focus,
+html.dark .portfolio-sections .contact-input-group textarea:focus {
+  background: rgba(2, 8, 23, 0.68);
+  border-color: rgba(226, 232, 240, 0.46);
+  box-shadow:
+    0 0 0 4px rgba(226, 232, 240, 0.08),
+    0 1px 0 rgba(226, 232, 240, 0.08) inset;
+}
+
+html.dark .portfolio-sections .contact-submit {
+  background: linear-gradient(135deg, hsl(210 40% 98%), rgba(226, 232, 240, 0.86));
+  border-color: rgba(226, 232, 240, 0.42);
+  color: hsl(222.2 84% 4.9%);
+}
+
+html.dark .portfolio-sections .portfolio-footer {
+  background: hsl(222.2 84% 4.9%);
+  border-color: rgba(226, 232, 240, 0.16);
+  color: hsl(210 40% 98%);
+}
+
+html.dark .portfolio-sections .portfolio-footer-socials a {
+  border-color: rgba(226, 232, 240, 0.24);
+}
+
 @media (max-width: 1100px) {
   .portfolio-sections .project-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
