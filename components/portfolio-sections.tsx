@@ -610,10 +610,7 @@ export default function PortfolioSections() {
           </div>
 
           <div className="experience-groups">
-            <section className="experience-group" aria-labelledby="experience-heading">
-              <h3 className="experience-side-label" id="experience-heading">
-                {portfolioSectionData.experience.sideLabel}
-              </h3>
+            <section className="experience-group" aria-label="Experience timeline">
               <div className="experience-card-list">
                 <div className="experience-connector" aria-hidden="true" />
                 {experience.map((item, index) => (
