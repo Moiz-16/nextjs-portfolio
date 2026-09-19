@@ -2966,6 +2966,11 @@ html.dark .portfolio-sections .contact-rings i {
   gap: 8px;
 }
 
+.portfolio-sections .education-detail header > div {
+  display: grid;
+  gap: 14px;
+}
+
 .portfolio-sections .education-detail header p:last-child {
   color: rgba(16, 16, 16, 0.62);
   font-size: clamp(14px, 1.05vw, 17px);

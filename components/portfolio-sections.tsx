@@ -303,6 +303,7 @@ function EducationSection() {
   const achievementsTitle =
     "achievementsTitle" in item ? item.achievementsTitle : "Built from it";
   const activitiesFirst = "activitiesFirst" in item && item.activitiesFirst;
+  const showStats = item.showStats !== false;
   const modulesBlock = (
     <div className="education-modules" aria-label="Selected study areas">
       {item.modules.map((group) => (
@@ -370,14 +371,16 @@ function EducationSection() {
           {activitiesFirst ? achievementsBlock : modulesBlock}
           {activitiesFirst ? modulesBlock : achievementsBlock}
 
-          <div className="education-score-grid" aria-label="Education highlights">
-            {item.stats.map((stat) => (
-              <div className="education-score-card" key={stat.label}>
-                <span>{stat.label}</span>
-                <strong>{stat.value}</strong>
-              </div>
-            ))}
-          </div>
+          {showStats ? (
+            <div className="education-score-grid" aria-label="Education highlights">
+              {item.stats.map((stat) => (
+                <div className="education-score-card" key={stat.label}>
+                  <span>{stat.label}</span>
+                  <strong>{stat.value}</strong>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </article>
       </div>
     </ScrollFrame>

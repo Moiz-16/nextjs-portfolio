@@ -515,6 +515,7 @@ export const educationData = [
     qualification: "BSc Mathematics and Computer Science",
     focus: "",
     result: "Upper second class honours (2:1)",
+    showStats: true,
     activitiesFirst: true,
     modules: [
       {
@@ -572,6 +573,7 @@ export const educationData = [
     qualification: "A-Levels",
     focus: "",
     result: "A* A* A A",
+    showStats: false,
     activitiesFirst: true,
     modules: [
       {
@@ -605,6 +607,7 @@ export const educationData = [
     qualification: "GCSEs",
     focus: "",
     result: "10 GCSEs at Grade 9 (A*)",
+    showStats: false,
     activitiesFirst: true,
     modules: [
       {
@@ -612,6 +615,13 @@ export const educationData = [
         items: [
           "Mathematics",
           "English Literature",
+          "English Language",
+          "Biology",
+          "Chemistry",
+          "Physics",
+          "Computer Science",
+          "History",
+          "German",
           "Further Mathematics",
         ],
       },
