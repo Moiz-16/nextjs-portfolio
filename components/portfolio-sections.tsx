@@ -383,7 +383,6 @@ function EducationSection() {
               className={`education-list-card${
                 selectedEducation === index ? " education-list-card--active" : ""
               }`}
-              data-cursor-target
               key={`${entry.institution}-${entry.period}`}
               onClick={() => setSelectedEducation(index)}
               aria-pressed={selectedEducation === index}
@@ -397,7 +396,6 @@ function EducationSection() {
 
         <article
           className="education-detail ps-reveal ps-reveal-delay"
-          data-cursor-target
         >
           <header>
             <div>
