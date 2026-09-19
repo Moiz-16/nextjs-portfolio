@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --site-accent: #0846d8;
   --blue: #f8f4e8;
   --ink: #101010;
   --yellow: #101010;
@@ -78,6 +79,7 @@ html {
 }
 
 html.dark {
+  --site-accent: hsl(210 40% 98%);
   --blue: hsl(222.2 84% 4.9%);
   --ink: hsl(210 40% 98%);
   --yellow: hsl(210 40% 98%);
@@ -230,7 +232,7 @@ a {
 }
 
 .wordmark span {
-  color: var(--yellow);
+  color: var(--site-accent);
   font-size: 8px;
   margin-left: 8px;
   vertical-align: top;
@@ -4254,7 +4256,7 @@ html.dark {
 }
 
 .about .about-heading h2 em {
-  color: var(--ps-blue);
+  color: var(--site-accent);
   font-family: var(--hero-serif);
   font-style: italic;
   font-weight: 400;
