@@ -61,6 +61,45 @@ function getTimelineYear(period: string) {
   return years[0] ?? period;
 }
 
+const monthIndexes: Record<string, number> = {
+  JAN: 0,
+  FEB: 1,
+  MAR: 2,
+  APR: 3,
+  MAY: 4,
+  JUN: 5,
+  JUL: 6,
+  AUG: 7,
+  SEP: 8,
+  OCT: 9,
+  NOV: 10,
+  DEC: 11,
+};
+
+function getTimelineStart(period: string) {
+  const match = period.match(
+    /\b(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\s+(\d{4})\b/,
+  );
+
+  if (!match) return Number.POSITIVE_INFINITY;
+
+  return Date.UTC(Number(match[2]), monthIndexes[match[1]], 1);
+}
+
+const firstExperienceIndexByYear = new Map<string, number>();
+
+experience.forEach((item, index) => {
+  const year = getTimelineYear(item.period);
+  const currentIndex = firstExperienceIndexByYear.get(year);
+
+  if (
+    currentIndex === undefined ||
+    getTimelineStart(item.period) < getTimelineStart(experience[currentIndex].period)
+  ) {
+    firstExperienceIndexByYear.set(year, index);
+  }
+});
+
 function ScrollFrame({
   children,
   className = "",
@@ -584,9 +623,8 @@ export default function PortfolioSections() {
                     item={item}
                     index={index}
                     showTimelineYear={
-                      index === 0 ||
-                      getTimelineYear(item.period) !==
-                        getTimelineYear(experience[index - 1].period)
+                      firstExperienceIndexByYear.get(getTimelineYear(item.period)) ===
+                      index
                     }
                     key={`${item.company}-${item.period}`}
                   />
