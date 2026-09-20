@@ -264,6 +264,11 @@ a {
   z-index: 151;
 }
 
+html.dark .jelly-blob,
+html.dark .jelly-dot {
+  display: none;
+}
+
 @media (pointer: fine) {
   body,
   body a,
@@ -277,6 +282,18 @@ a {
       background-color 180ms ease,
       border-color 180ms ease,
       color 180ms ease;
+  }
+
+  html.dark body {
+    cursor: auto;
+  }
+
+  html.dark body a,
+  html.dark body button,
+  html.dark body summary,
+  html.dark body .cursor-can-hover,
+  html.dark body [data-cursor-target] {
+    cursor: pointer;
   }
 }
 

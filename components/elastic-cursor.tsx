@@ -4,6 +4,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { useTheme } from "@/context/theme-context";
 
 const TARGET_SELECTOR = ".cursor-can-hover, [data-cursor-target]";
 
@@ -83,6 +84,8 @@ function measure(el: HTMLElement): Base {
 }
 
 export default function ElasticCursor() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const jellyRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
 
@@ -225,8 +228,8 @@ export default function ElasticCursor() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     const mobile = window.matchMedia("(max-width: 768px)").matches;
-    isDisabledRef.current = !finePointer || reducedMotion || mobile;
-  }, []);
+    isDisabledRef.current = !finePointer || reducedMotion || mobile || isDark;
+  }, [isDark]);
 
   useEffect(() => {
     if (isDisabledRef.current) return;
@@ -264,7 +267,7 @@ export default function ElasticCursor() {
       window.removeEventListener("mousemove", onMove);
       document.body.style.cursor = "";
     };
-  }, []);
+  }, [isDark]);
 
   useEffect(() => {
     if (isDisabledRef.current) return;
@@ -341,9 +344,11 @@ export default function ElasticCursor() {
       window.removeEventListener("scroll", onScroll);
       if (active.el) release();
     };
-  }, []);
+  }, [isDark]);
 
-  useTicker(render, !cursorMoved || isDisabledRef.current);
+  useTicker(render, !cursorMoved || isDisabledRef.current || isDark);
+
+  if (isDark) return null;
 
   return (
     <>
