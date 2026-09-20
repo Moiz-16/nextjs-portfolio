@@ -448,6 +448,7 @@ export const portfolioSectionData = {
       prefix: "Drop me a",
       emphasis: "message.",
     },
+    summary: "Whether it's a question, an idea, or just a quick hello.",
   },
 } as const;
 
