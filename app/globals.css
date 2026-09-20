@@ -290,11 +290,6 @@ a {
   z-index: 151;
 }
 
-html.dark .jelly-blob,
-html.dark .jelly-dot {
-  display: none;
-}
-
 @media (pointer: fine) {
   body,
   body a,
@@ -310,17 +305,6 @@ html.dark .jelly-dot {
       color 180ms ease;
   }
 
-  html.dark body {
-    cursor: auto;
-  }
-
-  html.dark body a,
-  html.dark body button,
-  html.dark body summary,
-  html.dark body .cursor-can-hover,
-  html.dark body [data-cursor-target] {
-    cursor: pointer;
-  }
 }
 
 /* Header */
@@ -1166,8 +1150,15 @@ html.dark .about-dashboard {
 }
 
 html.dark .about-panel {
-  background: var(--about-card);
-  border-color: var(--about-card-border);
+  background:
+    linear-gradient(var(--about-card), var(--about-card)) padding-box,
+    radial-gradient(
+      180px circle at var(--panel-x) var(--panel-y),
+      rgba(91, 141, 255, 0.72),
+      var(--about-card-border) 45%,
+      var(--about-card-border) 100%
+    ) border-box;
+  border-color: transparent;
 }
 
 .about-panel:not(:hover) {
