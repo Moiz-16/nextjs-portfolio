@@ -372,7 +372,11 @@ function EducationSection() {
     <ScrollFrame className="education-inner">
       <div className="education-heading ps-reveal">
         <p className="ps-eyebrow">{copy.eyebrow}</p>
-        <h2>{copy.title}</h2>
+        <h2>
+          {copy.title.prefix}
+          <br />
+          <em>{copy.title.emphasis}</em>
+        </h2>
       </div>
 
       <div className="education-layout">

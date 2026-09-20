@@ -423,7 +423,10 @@ export const portfolioSectionData = {
   education: {
     sectionIndex: "04 / EDUCATION",
     eyebrow: "A FORMAL BASE",
-    title: "Where the work started.",
+    title: {
+      prefix: "Where the work",
+      emphasis: "started.",
+    },
   },
   experience: {
     sectionIndex: "03 / EXPERIENCE",
