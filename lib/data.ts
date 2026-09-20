@@ -445,8 +445,8 @@ export const portfolioSectionData = {
     sectionIndex: "05 / CONTACT",
     eyebrow: "GET IN TOUCH",
     title: {
-      prefix: "Drop me a",
-      emphasis: "message.",
+      prefix: "Let's have a",
+      emphasis: "conversation.",
     },
     summary: "Whether it's a question, an idea, or just a quick hello.",
   },
