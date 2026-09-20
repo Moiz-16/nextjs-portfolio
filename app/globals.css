@@ -1135,18 +1135,8 @@ html.dark .about-dashboard {
 }
 
 html.dark .about-panel {
-  background:
-    linear-gradient(var(--about-card), var(--about-card)) padding-box,
-    radial-gradient(
-      190px circle at var(--panel-x) var(--panel-y),
-      rgba(248, 244, 232, 0.58),
-      var(--about-card-border) 44%,
-      var(--about-card-border) 100%
-    ) border-box;
-}
-
-html.dark .about-panel::after {
-  display: none;
+  background: var(--about-card);
+  border-color: var(--about-card-border);
 }
 
 .about-panel:not(:hover) {
