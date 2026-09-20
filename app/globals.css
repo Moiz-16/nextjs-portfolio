@@ -168,8 +168,8 @@ a {
 
 [data-tooltip]::after {
   background: var(--ink);
-  border: 1px solid var(--site-accent);
   border-radius: 5px;
+  box-shadow: 0 8px 18px rgba(16, 16, 16, 0.18);
   color: var(--blue);
   content: attr(data-tooltip);
   font-family: var(--mono);
@@ -180,19 +180,17 @@ a {
   line-height: 1;
   padding: 9px 11px;
   text-align: center;
-  top: calc(100% + 10px);
+  top: calc(100% + 16px);
   transform: translate(-50%, -4px);
   white-space: nowrap;
 }
 
 [data-tooltip]::before {
   background: var(--ink);
-  border-left: 1px solid var(--site-accent);
-  border-top: 1px solid var(--site-accent);
   content: "";
   height: 8px;
   left: 50%;
-  top: calc(100% + 6px);
+  top: calc(100% + 12px);
   transform: translate(-50%, -4px) rotate(45deg);
   width: 8px;
 }
@@ -222,13 +220,13 @@ a {
 }
 
 .hero-socials [data-tooltip]::after {
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 16px);
   top: auto;
   transform: translate(-50%, 4px);
 }
 
 .hero-socials [data-tooltip]::before {
-  bottom: calc(100% + 6px);
+  bottom: calc(100% + 12px);
   top: auto;
   transform: translate(-50%, 4px) rotate(225deg);
 }
