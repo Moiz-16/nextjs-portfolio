@@ -4512,6 +4512,7 @@ html.dark {
 
 .portfolio-sections .experience-card-list {
   gap: clamp(18px, 3vw, 32px);
+  grid-column: 2;
 }
 
 .portfolio-sections .experience-connector {
@@ -4882,6 +4883,7 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
   }
 
   .portfolio-sections .experience-card-list {
+    grid-column: auto;
     padding-left: 82px;
   }
 
