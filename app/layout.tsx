@@ -1,17 +1,33 @@
 import Header from '@/components/header'
 import './globals.css'
-import { Inter } from 'next/font/google'
 import ActiveSectionContextProvider from '@/context/active-section-context'
-import Footer from '@/components/footer'
-import ThemeSwitch from '@/components/theme-switch'
 import ThemeContextProvider from '@/context/theme-context'
-import ParticlesContainer from '@/components/particles-container'
+import ElasticCursor from '@/components/elastic-cursor'
+import ScrollProgress from '@/components/scroll-progress'
+import PortfolioToaster from '@/components/portfolio-toaster'
+import { Space_Grotesk, Unbounded } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+})
+
+const unbounded = Unbounded({
+  subsets: ['latin'],
+  variable: '--font-unbounded',
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'Moiz | Personal Portfolio',
   description: '...',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/icon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -21,8 +37,11 @@ export default function RootLayout({
 }) {
   return (
     
-    <html lang="en" className='!scroll-smooth ' >
-      <body className={`${inter.className} overscroll-none bg-gray-50 text-gray-950 pt-28 sm:pt-40 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}>
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${unbounded.variable} !scroll-smooth`}
+    >
+      <body>
         {/* <div className=' bg-[#1e96fc] absolute top[-6rem] -z-10 right-[11rem] h-[29.25rem]
          w-[31.25rem] rounded-full blur-[9rem] sm:w-[68.75rem]'></div>
         <div className='  bg-[#072ac8] absolute top[-1rem] -z-10 left-[-35rem] h-[26.25rem]
@@ -31,13 +50,15 @@ export default function RootLayout({
 
 
         <ThemeContextProvider>
-          <ParticlesContainer />
-          <ActiveSectionContextProvider>
-            <Header/>
-            {children}
-            <Footer/>
-            <ThemeSwitch/>
-          </ActiveSectionContextProvider>
+          <div className="relative z-10">
+            <ActiveSectionContextProvider>
+              <ScrollProgress/>
+              <Header/>
+              {children}
+              <ElasticCursor/>
+              <PortfolioToaster/>
+            </ActiveSectionContextProvider>
+          </div>
         </ThemeContextProvider>
         
         
