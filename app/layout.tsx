@@ -4,6 +4,7 @@ import ActiveSectionContextProvider from '@/context/active-section-context'
 import ThemeContextProvider from '@/context/theme-context'
 import ElasticCursor from '@/components/elastic-cursor'
 import ScrollProgress from '@/components/scroll-progress'
+import PortfolioToaster from '@/components/portfolio-toaster'
 import { Space_Grotesk, Unbounded } from 'next/font/google'
 
 const spaceGrotesk = Space_Grotesk({
@@ -55,6 +56,7 @@ export default function RootLayout({
               <Header/>
               {children}
               <ElasticCursor/>
+              <PortfolioToaster/>
             </ActiveSectionContextProvider>
           </div>
         </ThemeContextProvider>

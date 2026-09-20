@@ -444,12 +444,16 @@ function ContactForm() {
           const { error } = await sendEmail(formData);
 
           if (error) {
-            toast.error(error);
+            toast.error(error, { id: "contact-form" });
             return;
           }
 
-          toast.success(contactFormData.successMessage);
+          toast.success(contactFormData.successMessage, { id: "contact-form" });
           formRef.current?.reset();
+        } catch {
+          toast.error("Your message could not be sent. Please try again.", {
+            id: "contact-form",
+          });
         } finally {
           setIsSubmitting(false);
         }

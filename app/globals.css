@@ -32,6 +32,12 @@
   --hero-title-shadow: rgba(16, 16, 16, 0.08);
   --hero-ghost-stroke: rgba(16, 16, 16, 0.2);
   --hero-fade-color: rgba(248, 244, 232, 0.38);
+  --toast-background: #fffdf5;
+  --toast-border: rgba(16, 16, 16, 0.2);
+  --toast-text: #101010;
+  --toast-success-icon: #0846d8;
+  --toast-error-icon: #b42318;
+  --toast-icon-foreground: #fffdf5;
 
   --pointer-x: 50vw;
   --pointer-y: 50vh;
@@ -108,6 +114,12 @@ html.dark {
   --hero-title-shadow: rgba(255, 255, 255, 0.08);
   --hero-ghost-stroke: rgba(255, 255, 255, 0.2);
   --hero-fade-color: rgba(2, 8, 23, 0.42);
+  --toast-background: hsl(222.2 84% 7.5%);
+  --toast-border: hsl(217.2 32.6% 30%);
+  --toast-text: hsl(210 40% 98%);
+  --toast-success-icon: #5b8dff;
+  --toast-error-icon: #ff887e;
+  --toast-icon-foreground: hsl(222.2 84% 7.5%);
   --line-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -121,6 +133,30 @@ body {
   transition:
     background-color 220ms ease,
     color 220ms ease;
+}
+
+.portfolio-toast {
+  max-width: min(360px, calc(100vw - 32px)) !important;
+  margin: 0 !important;
+  padding: 14px 16px !important;
+  border: 1px solid var(--toast-border) !important;
+  border-radius: 4px !important;
+  background: var(--toast-background) !important;
+  box-shadow: 0 12px 30px rgba(16, 16, 16, 0.14) !important;
+  color: var(--toast-text) !important;
+  font-family: var(--mono) !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.45 !important;
+}
+
+.portfolio-toast-success {
+  border-left: 3px solid var(--toast-success-icon) !important;
+}
+
+.portfolio-toast-error {
+  border-left: 3px solid var(--toast-error-icon) !important;
 }
 
 .portfolio-sections .projects-heading,
