@@ -1158,6 +1158,10 @@ html.dark .about-panel {
     ) border-box;
 }
 
+html.dark .about-panel::after {
+  display: none;
+}
+
 .about-panel:not(:hover) {
   background: var(--about-card);
   border-color: var(--about-card-border);
