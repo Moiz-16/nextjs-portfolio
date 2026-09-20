@@ -3050,7 +3050,9 @@ html.dark .portfolio-sections .contact-rings i {
 }
 
 .portfolio-sections .education-detail {
-  display: grid;
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
   gap: clamp(20px, 2vw, 28px);
   min-height: clamp(430px, 42vw, 560px);
   overflow: hidden;
