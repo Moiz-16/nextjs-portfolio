@@ -671,9 +671,6 @@ export default function PortfolioSections() {
                 <br />
                 <em>{portfolioSectionData.contact.title.emphasis}</em>
               </h2>
-              <p className="contact-summary ps-reveal">
-                {portfolioSectionData.contact.summary}
-              </p>
             </div>
 
             <ContactForm />

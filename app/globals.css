@@ -2274,7 +2274,10 @@ html.dark .portfolio-sections .contact-rings i {
 
 .portfolio-sections .contact h2 em {
   color: var(--ps-blue);
+  font-family: var(--hero-serif);
+  font-style: italic;
   font-weight: 400;
+  letter-spacing: 0;
 }
 
 .portfolio-sections .contact-rings {
