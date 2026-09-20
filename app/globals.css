@@ -75,7 +75,6 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
-  scroll-snap-type: y proximity;
   --line-color: #e5e7eb;
 }
 
@@ -124,14 +123,6 @@ body {
     color 220ms ease;
 }
 
-/* Major sections settle to their heading while inner content remains freely readable. */
-.hero,
-.about,
-.portfolio-sections .ps-section-shell {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
-
 .portfolio-sections .projects-heading,
 .portfolio-sections .experience-heading,
 .portfolio-sections .education-heading,
@@ -141,7 +132,6 @@ body {
 .portfolio-sections .education-layout,
 .portfolio-sections .reference-contact-form {
   scroll-margin-top: calc(var(--header-height) + 24px);
-  scroll-snap-align: start;
 }
 
 a {
@@ -5017,7 +5007,6 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-    scroll-snap-type: none;
   }
 
   .portfolio-sections .ps-reveal {
