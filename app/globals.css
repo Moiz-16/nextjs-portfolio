@@ -219,36 +219,6 @@ a {
   transform: translate(-50%, 0) rotate(45deg);
 }
 
-.hero-socials [data-tooltip]::after {
-  bottom: calc(100% + 16px);
-  top: auto;
-  transform: translate(-50%, 4px);
-}
-
-.hero-socials [data-tooltip]::before {
-  bottom: calc(100% + 12px);
-  top: auto;
-  transform: translate(-50%, 4px) rotate(225deg);
-}
-
-@media (hover: hover) {
-  .hero-socials [data-tooltip]:hover::after {
-    transform: translate(-50%, 0);
-  }
-
-  .hero-socials [data-tooltip]:hover::before {
-    transform: translate(-50%, 0) rotate(225deg);
-  }
-}
-
-.hero-socials [data-tooltip]:focus-visible::after {
-  transform: translate(-50%, 0);
-}
-
-.hero-socials [data-tooltip]:focus-visible::before {
-  transform: translate(-50%, 0) rotate(225deg);
-}
-
 ::selection {
   background: #101010;
   color: var(--blue);
@@ -416,7 +386,7 @@ a {
   display: inline-flex;
   height: 40px;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   padding: 0;
   position: relative;
   transition:
