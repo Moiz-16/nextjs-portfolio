@@ -4436,11 +4436,13 @@ html.dark {
 }
 
 .portfolio-sections .education-heading .ps-eyebrow {
+  grid-column: 1 / -1;
   margin-bottom: 0;
 }
 
 .portfolio-sections .education-heading h2 {
   font-size: var(--site-heading-size);
+  grid-column: 1 / -1;
   line-height: 0.96;
   white-space: nowrap;
 }
@@ -5036,10 +5038,6 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
   .portfolio-sections .education-detail {
     min-height: 0;
     padding: 20px;
-  }
-
-  .portfolio-sections .education-heading .ps-eyebrow {
-    order: -1;
   }
 
   .portfolio-sections .education-score-grid {
