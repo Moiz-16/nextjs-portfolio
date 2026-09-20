@@ -83,6 +83,7 @@ export default function Intro() {
             className="hero-socials-contact"
             href={homeData.socials.contactHref}
             data-cursor-target
+            data-tooltip={homeData.socials.contactTooltip}
           >
             {homeData.socials.contactLabel}
           </a>
@@ -94,6 +95,7 @@ export default function Intro() {
               rel="noopener noreferrer"
               aria-label={socialLinks.github.label}
               data-cursor-target
+              data-tooltip={socialLinks.github.tooltip}
             >
               <SiGithub />
             </a>
@@ -104,6 +106,7 @@ export default function Intro() {
               rel="noopener noreferrer"
               aria-label={socialLinks.linkedin.label}
               data-cursor-target
+              data-tooltip={socialLinks.linkedin.tooltip}
             >
               <SiLinkedin />
             </a>

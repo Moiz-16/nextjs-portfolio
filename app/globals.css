@@ -128,6 +128,108 @@ a {
   text-decoration: none;
 }
 
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease,
+    visibility 160ms ease;
+  visibility: hidden;
+  z-index: 180;
+}
+
+[data-tooltip]::after {
+  background: var(--ink);
+  border: 1px solid var(--site-accent);
+  border-radius: 5px;
+  color: var(--blue);
+  content: attr(data-tooltip);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 650;
+  left: 50%;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 9px 11px;
+  text-align: center;
+  top: calc(100% + 10px);
+  transform: translate(-50%, -4px);
+  white-space: nowrap;
+}
+
+[data-tooltip]::before {
+  background: var(--ink);
+  border-left: 1px solid var(--site-accent);
+  border-top: 1px solid var(--site-accent);
+  content: "";
+  height: 8px;
+  left: 50%;
+  top: calc(100% + 6px);
+  transform: translate(-50%, -4px) rotate(45deg);
+  width: 8px;
+}
+
+@media (hover: hover) {
+  [data-tooltip]:hover::before,
+  [data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    visibility: visible;
+  }
+
+  [data-tooltip]:hover::before {
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+}
+
+[data-tooltip]:focus-visible::before,
+[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  visibility: visible;
+}
+
+[data-tooltip]:focus-visible::before {
+  transform: translate(-50%, 0) rotate(45deg);
+}
+
+.hero-socials [data-tooltip]::after {
+  bottom: calc(100% + 10px);
+  top: auto;
+  transform: translate(-50%, 4px);
+}
+
+.hero-socials [data-tooltip]::before {
+  bottom: calc(100% + 6px);
+  top: auto;
+  transform: translate(-50%, 4px) rotate(225deg);
+}
+
+@media (hover: hover) {
+  .hero-socials [data-tooltip]:hover::after {
+    transform: translate(-50%, 0);
+  }
+
+  .hero-socials [data-tooltip]:hover::before {
+    transform: translate(-50%, 0) rotate(225deg);
+  }
+}
+
+.hero-socials [data-tooltip]:focus-visible::after {
+  transform: translate(-50%, 0);
+}
+
+.hero-socials [data-tooltip]:focus-visible::before {
+  transform: translate(-50%, 0) rotate(225deg);
+}
+
 ::selection {
   background: #101010;
   color: var(--blue);

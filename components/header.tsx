@@ -14,6 +14,7 @@ export default function Header() {
         className="wordmark cursor-can-hover"
         href="#home"
         aria-label={headerData.homeAriaLabel}
+        data-tooltip={headerData.homeTooltip}
       >
         {headerData.wordmark}
         <span>{headerData.suffix}</span>
@@ -32,7 +33,9 @@ export default function Header() {
           aria-label={`Switch to ${nextTheme} mode`}
           className="theme-toggle cursor-can-hover"
           onClick={toggleTheme}
-          title="Toggle theme (D)"
+          data-tooltip={
+            theme === "light" ? "join the dark side" : "come back to the light"
+          }
           type="button"
         >
           <BsSun className="theme-toggle-sun" aria-hidden="true" />

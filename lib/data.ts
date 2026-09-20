@@ -53,6 +53,7 @@ export const headerData = {
   wordmark: "MS",
   suffix: "©26",
   homeAriaLabel: "Moiz Saleem - home",
+  homeTooltip: "me :D",
   nav: [
     { label: "ABOUT", href: "#about" },
     { label: "PROJECTS", href: "#projects" },
@@ -66,10 +67,12 @@ export const socialLinks = {
   github: {
     label: "GitHub",
     href: "https://github.com/Moiz-16",
+    tooltip: "see my work",
   },
   linkedin: {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/moiz-saleem/",
+    tooltip: "connect with me",
   },
 } as const;
 
@@ -81,6 +84,7 @@ export const homeData = {
   socials: {
     contactLabel: "Contact",
     contactHref: "#contact",
+    contactTooltip: "get in touch",
   },
   scrollPrompt: "↓ SCROLL TO EXPLORE",
   hiddenLabels: {
