@@ -416,7 +416,7 @@ export const projectBackgrounds = {
 
 export const portfolioSectionData = {
   projects: {
-    sectionIndex: "02 / SELECTED PROJECTS",
+    sectionIndex: "02 / PROJECTS",
     title: {
       prefix: "Things I've",
       emphasis: "built",
