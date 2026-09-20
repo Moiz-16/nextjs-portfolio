@@ -75,7 +75,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
   --line-color: #e5e7eb;
 }
 
@@ -124,7 +124,7 @@ body {
     color 220ms ease;
 }
 
-/* Let long-form sections settle naturally without making ordinary reading feel trapped. */
+/* Major sections settle to their heading while inner content remains freely readable. */
 .hero,
 .about,
 .portfolio-sections .ps-section-shell {
