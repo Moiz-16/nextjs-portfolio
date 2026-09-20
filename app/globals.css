@@ -75,7 +75,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   --line-color: #e5e7eb;
 }
 
