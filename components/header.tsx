@@ -34,7 +34,9 @@ export default function Header() {
           className="theme-toggle cursor-can-hover"
           onClick={toggleTheme}
           data-tooltip={
-            theme === "light" ? "join the dark side" : "come back to the light"
+            theme === "light"
+              ? "join the dark side..."
+              : "come back to the light :)"
           }
           type="button"
         >

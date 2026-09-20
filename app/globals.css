@@ -414,6 +414,11 @@ html.dark .jelly-dot {
   width: 40px;
 }
 
+.theme-toggle[data-tooltip]::after {
+  white-space: normal;
+  width: 108px;
+}
+
 .theme-toggle:hover,
 .theme-toggle:focus-visible {
   background: var(--button-hover-bg);
