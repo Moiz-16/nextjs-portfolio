@@ -4434,20 +4434,19 @@ html.dark {
   align-items: center;
   column-gap: clamp(28px, 4vw, 72px);
   display: grid;
-  grid-template-columns: minmax(0, max-content) minmax(280px, 420px);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
   justify-content: start;
   margin-bottom: clamp(40px, 6vw, 72px);
-  row-gap: var(--site-eyebrow-gap);
 }
 
 .portfolio-sections .education-heading .ps-eyebrow {
-  grid-column: 1 / -1;
   margin-bottom: 0;
 }
 
 .portfolio-sections .education-heading h2 {
   font-size: var(--site-heading-size);
   line-height: 0.96;
+  white-space: nowrap;
 }
 
 .portfolio-sections .education-heading h2 em {
@@ -4854,6 +4853,15 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
 
   .portfolio-sections .projects-heading {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-sections .education-heading {
+    grid-template-columns: 1fr;
+    row-gap: var(--site-eyebrow-gap);
+  }
+
+  .portfolio-sections .education-heading h2 {
+    white-space: normal;
   }
 
   .portfolio-sections .education-detail header,
