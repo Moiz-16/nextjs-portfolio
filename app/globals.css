@@ -4914,9 +4914,102 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
 
 @media (max-width: 700px) {
   :root {
+    --header-height: 58px;
     --site-section-x: 24px;
     --site-section-y: 76px;
     --site-heading-size: clamp(42px, 13vw, 64px);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .site-header {
+    column-gap: 8px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: 0 12px;
+  }
+
+  .site-header nav {
+    gap: 14px;
+    justify-self: stretch;
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 0 2px;
+    scrollbar-width: none;
+    white-space: nowrap;
+  }
+
+  .site-header nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-header nav a {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 9px;
+    min-height: 44px;
+  }
+
+  .site-header nav a:nth-child(4) {
+    display: inline-flex;
+  }
+
+  .wordmark {
+    font-size: 13px;
+  }
+
+  .wordmark span {
+    margin-left: 5px;
+  }
+
+  .theme-toggle {
+    flex: 0 0 40px;
+    height: 40px;
+    width: 40px;
+  }
+
+  .hero {
+    height: max(690px, 100svh);
+    min-height: 690px;
+    padding-top: var(--header-height);
+  }
+
+  .hero-title-wrap {
+    width: 94vw;
+  }
+
+  .hero h1 {
+    font-size: clamp(56px, 19vw, 76px);
+    letter-spacing: -0.06em;
+  }
+
+  .hero-intro {
+    bottom: 14%;
+    font-size: clamp(15px, 4.2vw, 17px);
+    max-width: 22rem;
+    width: 82%;
+  }
+
+  .hero-socials {
+    bottom: 23%;
+    gap: 8px;
+  }
+
+  .hero-socials-icons {
+    gap: 8px;
+  }
+
+  .hero-socials a {
+    height: 44px;
+    width: 50px;
+  }
+
+  .hero-socials .hero-socials-contact {
+    min-width: 108px;
+    padding: 0 14px;
   }
 
   .about,
@@ -4941,7 +5034,12 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
   }
 
   .portfolio-sections .education-detail {
+    min-height: 0;
     padding: 20px;
+  }
+
+  .portfolio-sections .education-heading .ps-eyebrow {
+    order: -1;
   }
 
   .portfolio-sections .education-score-grid {
@@ -4958,6 +5056,10 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
 
   .portfolio-sections .experience-card-shell {
     display: block;
+  }
+
+  .portfolio-sections .experience-card {
+    padding: 18px;
   }
 
   .portfolio-sections .experience-timeline-marker {
@@ -4990,6 +5092,28 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
 
   .portfolio-sections .contact-form-row {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-sections .contact-layout {
+    gap: 28px;
+  }
+
+  .portfolio-sections .contact-summary {
+    margin-top: 20px;
+  }
+
+  .portfolio-sections .reference-contact-form {
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .portfolio-sections .contact-input-group input,
+  .portfolio-sections .contact-input-group textarea {
+    font-size: 16px;
+  }
+
+  .portfolio-sections .contact-submit {
+    height: 48px;
   }
 
   .portfolio-sections .portfolio-footer {
