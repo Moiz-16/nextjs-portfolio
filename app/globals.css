@@ -357,8 +357,17 @@ a {
 }
 
 .site-header nav {
+  border-left: 1px solid var(--grid);
   display: flex;
-  gap: 34px;
+  gap: 0;
+}
+
+.site-header nav a {
+  align-items: center;
+  border-right: 1px solid var(--grid);
+  display: flex;
+  min-height: 32px;
+  padding: 0 17px;
 }
 
 .site-header nav a {
@@ -370,12 +379,12 @@ a {
   bottom: -7px;
   content: "";
   height: 2px;
-  left: 0;
+  left: 17px;
   position: absolute;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 180ms ease;
-  width: 100%;
+  width: calc(100% - 34px);
 }
 
 .site-header nav a:hover::after,
@@ -4960,7 +4969,7 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
   }
 
   .site-header nav {
-    gap: 14px;
+    gap: 0;
     justify-self: stretch;
     min-width: 0;
     overflow-x: auto;
@@ -4980,6 +4989,12 @@ html.dark .portfolio-sections .portfolio-footer-socials a {
     flex: 0 0 auto;
     font-size: 9px;
     min-height: 44px;
+    padding: 0 12px;
+  }
+
+  .site-header nav a::after {
+    left: 12px;
+    width: calc(100% - 24px);
   }
 
   .site-header nav a:nth-child(4) {
